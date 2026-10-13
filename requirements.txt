@@ -11,6 +11,7 @@ pyarrow==26.0.0
 pydantic==2.14.1
 pytest==9.1.1
 statsbombpy==1.22.0
+tensorboard==2.21.0
 torch==2.13.0
 transformers==5.17.0
 trl==1.15.0
