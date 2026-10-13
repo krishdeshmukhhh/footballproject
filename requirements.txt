@@ -1,0 +1,17 @@
+accelerate==1.15.0
+datasets==5.1.0
+fastapi==0.136.3
+hf-transfer==0.1.9
+huggingface-hub==1.33.0
+matplotlib==3.11.2
+openai==3.29.0
+pandas==3.0.6
+peft==0.21.2
+pyarrow==26.0.0
+pytest==9.1.1
+statsbombpy==1.22.0
+torch==2.13.0
+transformers==5.17.0
+trl==1.15.0
+uvicorn==0.54.0
+vllm==0.31.0
