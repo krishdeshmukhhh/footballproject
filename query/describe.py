@@ -38,7 +38,7 @@ def describe(spec: QuerySpec, min_minutes_applied: int = 0, player_names: list[s
         head = f"{metric} for {_join(player_names or f.players)}"
     else:
         unit = "team" if spec.group_by == "team" else "player"
-        totals = meta["kind"] == "count" and not spec.per90
+        totals = meta["kind"] == "minutes" or (meta["kind"] == "count" and not spec.per90)
         order = ("most" if totals else "highest") if spec.sort == "desc" else ("fewest" if totals else "lowest")
         phrase = f"{order} {metric[0].lower() + metric[1:]}"
         head = (f"The {unit} with the {phrase}" if spec.limit == 1

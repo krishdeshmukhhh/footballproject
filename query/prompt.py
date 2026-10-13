@@ -86,9 +86,11 @@ FEW_SHOT = [
 ]
 
 
-def build_messages(question: str) -> list[dict]:
+def build_messages(question: str, few_shot: bool = True) -> list[dict]:
+    """Teacher and base-model baselines use the few-shot examples; the fine-tuned student is trained
+    and served with the system prompt + question only."""
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
-    for q, spec in FEW_SHOT:
+    for q, spec in FEW_SHOT if few_shot else []:
         messages.append({"role": "user", "content": q})
         messages.append({"role": "assistant", "content": json.dumps(spec)})
     messages.append({"role": "user", "content": question})

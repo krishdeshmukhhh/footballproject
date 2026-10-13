@@ -2,7 +2,7 @@
 
 Each question has a hand-written expected spec. A translation counts as correct on the spec if the
 canonical specs match (player names compared after resolution), and on execution if both specs
-produce the same result rows.
+produce the same result rows (query/compare.py).
 
 Usage: python -m query.manual_test [--backend teacher|student]
 """
@@ -10,7 +10,8 @@ import argparse
 import json
 from pathlib import Path
 
-from query.executor import ExecutionError, execute, load_tables, resolve_player
+from query.compare import results_match, rows_key, spec_key
+from query.executor import ExecutionError, execute
 from query.llm import translate
 from query.schema import parse_spec
 
@@ -22,26 +23,17 @@ def load_cases(path=DEV_HARD) -> list[tuple[str, dict]]:
     return [(r["question"], r["spec"]) for r in map(json.loads, Path(path).read_text().splitlines()) if r]
 
 
-def comparable(spec_dict: dict) -> dict:
-    """Canonical spec with player names replaced by resolved ids, so 'Mbappe' == 'Kylian Mbappé'."""
-    spec = parse_spec(spec_dict).canonical()
-    if spec["filters"]["players"]:
-        _, players = load_tables()
-        ids = []
-        for name in spec["filters"]["players"]:
-            try:
-                ids.append(resolve_player(name, players))
-            except ExecutionError:
-                ids.append(name)
-        spec["filters"]["players"] = sorted(map(str, ids))
-    return spec
-
-
 def result_rows(spec_dict: dict):
     try:
-        return [(r.get("player", r.get("team")), r["value"]) for r in execute(parse_spec(spec_dict))["rows"]]
+        return execute(parse_spec(spec_dict))["rows"]
     except ExecutionError as e:
         return f"ExecutionError: {e}"
+
+
+def exec_equal(a, b) -> bool:
+    if isinstance(a, str) or isinstance(b, str):
+        return a == b
+    return results_match(a, b)
 
 
 def main():
@@ -56,9 +48,9 @@ def main():
         got = t.spec.canonical() if t.spec else None
         rec = {
             "question": question, "raw": t.raw, "latency_s": round(t.latency_s, 3), "error": t.error,
-            "spec_match": got is not None and comparable(got) == comparable(expected),
-            "exec_match": got is not None and result_rows(got) == result_rows(expected),
-            "result": result_rows(got) if got else None,
+            "spec_match": got is not None and spec_key(got) == spec_key(expected),
+            "exec_match": got is not None and exec_equal(result_rows(got), result_rows(expected)),
+            "result": rows_key(result_rows(got)) if got and not isinstance(result_rows(got), str) else None,
             "expected_spec": expected,
         }
         records.append(rec)
