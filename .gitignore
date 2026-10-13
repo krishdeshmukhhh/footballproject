@@ -9,3 +9,4 @@ node_modules/
 *.jsonl
 logs/
 *.npy
+!eval/*.jsonl

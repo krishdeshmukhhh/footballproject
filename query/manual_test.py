@@ -1,4 +1,4 @@
-"""Phase 2 step 4: run hand-written questions through the NL -> spec -> execute pipeline.
+"""Run the dev/hard questions (eval/dev_hard.jsonl) through the NL -> spec -> execute pipeline.
 
 Each question has a hand-written expected spec. A translation counts as correct on the spec if the
 canonical specs match (player names compared after resolution), and on execution if both specs
@@ -12,38 +12,14 @@ from pathlib import Path
 
 from query.executor import ExecutionError, execute, load_tables, resolve_player
 from query.llm import translate
-from query.prompt import KNOCKOUT, _spec
 from query.schema import parse_spec
 
-CASES = [
-    ("Who scored the most goals in the World Cup?", _spec("goals", limit=1)),
-    ("top 5 wingers for progressive carries per 90", _spec("progressive_carries", per90=True, position_groups=["W"])),
-    ("How many pressures did Julián Álvarez make?", _spec("pressures", limit=1, players=["Julián Álvarez"])),
-    ("Which Croatian midfielders completed the most passes under pressure?",
-     _spec("pressured_passes_completed", teams=["Croatia"], position_groups=["AM", "CM", "DM"])),
-    ("which team had the most xG in the group stage", _spec("xg", group_by="team", limit=1, stages=["Group Stage"])),
-    ("Messi vs Mbappe xT added", _spec("xt_added", limit=2, players=["Messi", "Mbappe"])),
-    ("Who had the most shot-creating actions against France?",
-     _spec("shot_creating_actions", limit=1, opponents=["France"])),
-    ("lowest pass completion % among strikers", _spec("pass_completion_pct", sort="asc", position_groups=["ST"])),
-    ("Which centre backs made the most progressive passes in the knockout stage? top 3",
-     _spec("progressive_passes", limit=3, position_groups=["CB"], stages=KNOCKOUT)),
-    ("How many minutes did Bellingham play?", _spec("minutes", limit=1, players=["Bellingham"])),
-    ("best goalkeepers by pass accuracy under pressure, min 270 mins",
-     _spec("pressured_pass_completion_pct", position_groups=["GK"], min_minutes=270)),
-    ("Who got the most assists for England?", _spec("assists", limit=1, teams=["England"])),
-    ("which countries' forwards had the most non-penalty xG per game",
-     _spec("npxg", per90=True, group_by="team", position_groups=["ST", "W"])),
-    ("how many key passes did de bruyne make vs Morocco",
-     _spec("key_passes", limit=1, players=["de bruyne"], opponents=["Morocco"])),
-    ("Who were the most aggressive pressers among defenders per 90, at least 200 minutes?",
-     _spec("pressures", per90=True, position_groups=["CB", "FB"], min_minutes=200)),
-    ("most progresive pases by a japanese player", _spec("progressive_passes", limit=1, teams=["Japan"])),
-    # Added after the prompt fix for position families, to check it generalises.
-    ("Which Spanish midfield players made the most progressive passes per 90?",
-     _spec("progressive_passes", per90=True, teams=["Spain"], position_groups=["AM", "CM", "DM"])),
-    ("attackers with the most shots against Argentina", _spec("shots", opponents=["Argentina"], position_groups=["ST", "W"])),
-]
+DEV_HARD = Path(__file__).resolve().parents[1] / "eval" / "dev_hard.jsonl"
+
+
+def load_cases(path=DEV_HARD) -> list[tuple[str, dict]]:
+    """Dev/hard questions with hand-written expected specs. Never used for training or testing."""
+    return [(r["question"], r["spec"]) for r in map(json.loads, Path(path).read_text().splitlines()) if r]
 
 
 def comparable(spec_dict: dict) -> dict:
@@ -75,7 +51,7 @@ def main():
     args = parser.parse_args()
 
     records = []
-    for question, expected in CASES:
+    for question, expected in load_cases():
         t = translate(question, args.backend)
         got = t.spec.canonical() if t.spec else None
         rec = {
@@ -90,6 +66,11 @@ def main():
         print(f"{mark}{question}\n    spec:   {t.raw}")
         if not rec["spec_match"]:
             print(f"    wanted: {json.dumps(expected)}")
+        if got is not None:
+            try:
+                print(f"    reads:  {execute(t.spec)['interpretation']}")
+            except ExecutionError:
+                pass
         print(f"    result: {rec['result']}  ({t.latency_s:.2f}s)\n")
 
     n = len(records)
