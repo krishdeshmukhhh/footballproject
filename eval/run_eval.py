@@ -8,6 +8,7 @@ Metrics per dataset:
   spec_acc       canonical spec equals the expected one (player names compared after resolution)
   exec_acc       executing it returns the same rows as the expected spec (ties order-insensitive)
   latency        p50/p95 of single sequential requests (on up to --latency-n questions)
+  weights_gib    model weight memory, from the vLLM server log (--serve-log)
 Results merge into eval/results.json under results[system][dataset].
 
 Usage: python -m eval.run_eval --system teacher --data data/test.jsonl eval/dev_hard.jsonl --gpu 4
@@ -15,6 +16,7 @@ Usage: python -m eval.run_eval --system teacher --data data/test.jsonl eval/dev_
 import argparse
 import asyncio
 import json
+import re
 import statistics
 import subprocess
 import time
@@ -34,6 +36,15 @@ SYSTEMS = {  # name: (backend url key, few-shot prompt?)
     "sft": ("student", False),
     "grpo": ("student", False),
 }
+
+
+def weights_gib(serve_log: str | None) -> float | None:
+    """Model weight memory from the vLLM server log. (nvidia-smi is useless here: vLLM pre-allocates
+    --gpu-memory-utilization of the card for KV cache whatever the model size.)"""
+    if not serve_log or not Path(serve_log).exists():
+        return None
+    hits = re.findall(r"Model loading took ([0-9.]+) GiB", Path(serve_log).read_text())
+    return float(hits[-1]) if hits else None
 
 
 def gpu_memory_mib(gpu: int | None) -> int | None:
@@ -92,7 +103,8 @@ def main():
     parser.add_argument("--system", required=True, choices=SYSTEMS)
     parser.add_argument("--data", nargs="+", required=True)
     parser.add_argument("--tag", default="", help="suffix for the system name, e.g. -pilot")
-    parser.add_argument("--gpu", type=int, help="GPU the system is served on, to record memory use")
+    parser.add_argument("--gpu", type=int, help="GPU the system is served on, to record total memory reserved")
+    parser.add_argument("--serve-log", help="vLLM log of the served system, to record model weight memory")
     parser.add_argument("--concurrency", type=int, default=48)
     parser.add_argument("--latency-n", type=int, default=50)
     args = parser.parse_args()
@@ -108,6 +120,7 @@ def main():
         summary, recs = asyncio.run(score(args.system, rows, args.concurrency))
         summary |= latency(args.system, [r["question"] for r in rows[: args.latency_n]])
         summary["gpu_memory_mib"] = gpu_memory_mib(args.gpu)
+        summary["weights_gib"] = weights_gib(args.serve_log)
         out[Path(path).stem] = summary
         errors = [r for r in recs if not r["exec_ok"]]
         Path(f"logs/eval_{name}_{Path(path).stem}.json").write_text(json.dumps(errors, indent=1, ensure_ascii=False))

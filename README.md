@@ -89,3 +89,35 @@ tmux new -s teacher 'GPU=4 scripts/serve_teacher.sh'      # Qwen3-32B on port 80
 
 Teacher on the manual set: 18/18 valid, 17/18 correct specs, ~1.5 s each. Known miss: "Croatian midfielders"
 becomes `[CM]` and silently drops Brozović (DM). Similar phrasings that were not tuned on work.
+
+Every executed spec also returns an **interpretation echo** (`query/describe.py`): a deterministic plain-English
+reading of what was actually run, e.g. "The 5 players with the most passes completed under pressure, among
+central midfielders (CM), playing for Croatia, World Cup 2022." Answers will show it, so a misread question is
+visible.
+
+## Phase 2.5: fine-tuned 8B student for NL to query
+
+```bash
+python data/gen_specs.py --n 2000                 # sample + execute specs; split = hash(spec) 80/10/10
+GPU=4 scripts/serve_teacher.sh                    # in tmux
+python data/gen_questions.py --specs 880          # template + 4 paraphrases per spec, drift filter (48 parallel)
+python data/build_dataset.py                      # -> data/{train,val,test}.jsonl
+# stop the teacher, then (one GPU):
+CUDA_VISIBLE_DEVICES=4 python train/sft.py --out models/sft-v1 --epochs 3
+python train/merge.py models/sft-v1 models/sft-v1-merged
+GPU=4 scripts/serve_student.sh models/sft-v1-merged   # in tmux
+python -m eval.run_eval --system sft --data data/test.jsonl data/val.jsonl eval/dev_hard.jsonl \
+    --serve-log logs/student.log
+python -m eval.make_table
+```
+
+- **Held out from all generated data:** the 18 dev/hard questions (`eval/dev_hard.jsonl`) and the 10 few-shot
+  examples. Their specs are excluded at sampling time.
+- **Split by spec:** a spec's split is a hash of its canonical form, so paraphrases never straddle splits, and the
+  pilot was a strict subset of the full set with the same splits.
+- **Hand-written test set:** `eval/handwritten_test.jsonl` is an empty placeholder for 50-100 questions written by
+  hand (see `eval/HANDWRITTEN.md`). It is the unbiased teacher-vs-student benchmark.
+- **Known bias:** the drift filter keeps only paraphrases the teacher round-trips correctly, so the teacher's
+  accuracy on the generated splits is inflated by construction. Compare systems on dev/hard and hand-written.
+
+Results are in `eval/README.md`.
