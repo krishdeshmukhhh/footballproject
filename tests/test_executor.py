@@ -73,3 +73,24 @@ def test_interpretation_echo():
     r = run(metric="pass_completion_pct", sort="asc", limit=1)
     assert r["interpretation"] == ("The player with the lowest pass completion %, "
                                    "with at least 270 minutes (default threshold), World Cup 2022.")
+
+
+@pytest.mark.parametrize("typo, suggestion", [
+    ("Theo Hernédez", "Theo Hernández"), ("Mbape", "Kylian Mbappé"), ("De Bruyn", "Kevin De Bruyne"),
+    ("Lewandowsky", "Robert Lewandowski"), ("Firas Albirkan", "Firas Albirakan"),
+])
+def test_typo_gets_did_you_mean_never_a_substitution(typo, suggestion):
+    from query.executor import NameNotResolved
+    _, players = load_tables()
+    with pytest.raises(NameNotResolved) as e:
+        resolve_player(typo, players)
+    assert not e.value.ambiguous and e.value.suggestions[0][0] == suggestion
+    assert f"Did you mean {suggestion}" in str(e.value)
+
+
+def test_ambiguous_name_lists_all_candidates():
+    from query.executor import NameNotResolved
+    _, players = load_tables()
+    with pytest.raises(NameNotResolved) as e:
+        resolve_player("Hernández", players)
+    assert e.value.ambiguous and {p for p, _ in e.value.suggestions} == {"Lucas Hernandez", "Theo Hernández"}

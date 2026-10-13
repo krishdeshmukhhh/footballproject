@@ -4,6 +4,7 @@ Everything aggregates from player_match.parquet, so stage / opponent filters sim
 matches before summing. A player's position group is always their tournament-wide primary group.
 """
 import unicodedata
+from difflib import SequenceMatcher
 from functools import lru_cache
 from pathlib import Path
 
@@ -40,11 +41,43 @@ def _norm(s: str) -> str:
     return " ".join(s.lower().replace("-", " ").replace(".", " ").split())
 
 
+# Minimum difflib similarity for a "Did you mean" suggestion, and how many to offer.
+SUGGEST_CUTOFF = 0.75
+MAX_SUGGESTIONS = 3
+
+
+class NameNotResolved(ExecutionError):
+    """A player name matched nobody, or several players. Never guessed: the caller shows a
+    "Did you mean ...?" with `suggestions` (display name, team) instead of answering."""
+
+    def __init__(self, name: str, suggestions: list[tuple[str, str]], ambiguous: bool):
+        self.name, self.suggestions, self.ambiguous = name, suggestions, ambiguous
+        super().__init__(did_you_mean_message(name, suggestions, ambiguous))
+
+
+def did_you_mean_message(name: str, suggestions: list[tuple[str, str]], ambiguous: bool) -> str:
+    options = [f"{p} ({t})" for p, t in suggestions]
+    if not options:
+        return f"No player matches '{name}'."
+    joined = options[0] if len(options) == 1 else ", ".join(options[:-1]) + " or " + options[-1]
+    return f"'{name}' could be several players. Did you mean {joined}?" if ambiguous \
+        else f"No player matches '{name}'. Did you mean {joined}?"
+
+
+def _similar(q: str, display: str) -> float:
+    """Best difflib ratio of the query against the whole display name or any run of as many of its
+    tokens as the query has ("de bruyn" vs "de bruyne", "mbape" vs "mbappe")."""
+    words, k = display.split(), len(q.split())
+    candidates = [display] + [" ".join(words[i:i + k]) for i in range(len(words) - k + 1)]
+    return max(SequenceMatcher(None, q, c).ratio() for c in candidates)
+
+
 def resolve_player(name: str, players: pd.DataFrame) -> int:
     """Map a user-written name to one player_id: exact name, then all tokens, then surname.
 
-    Fuzzy steps only look at display names ("Lionel Messi"); full legal names ("Lionel Andrés Messi
+    Token steps only look at display names ("Lionel Messi"); full legal names ("Lionel Andrés Messi
     Cuccittini") must match exactly, or a stray token like "Pele" would silently pick the wrong player.
+    Anything else raises NameNotResolved with fuzzy "Did you mean" suggestions; it never substitutes.
     """
     q = _norm(name)
     display = players["player"].map(_norm)
@@ -62,9 +95,11 @@ def resolve_player(name: str, players: pd.DataFrame) -> int:
         if len(hits) == 1:
             return int(hits["player_id"].iloc[0])
         if len(hits) > 1:
-            options = ", ".join(f"{r.player} ({r.team})" for r in hits.head(6).itertuples())
-            raise ExecutionError(f"'{name}' is ambiguous: {options}")
-    raise ExecutionError(f"No player matches '{name}'")
+            raise NameNotResolved(name, [(r.player, r.team) for r in hits.head(6).itertuples()], ambiguous=True)
+
+    scores = pd.Series([_similar(q, d) for d in display], index=players.index)
+    best = scores[scores >= SUGGEST_CUTOFF].sort_values(ascending=False).head(MAX_SUGGESTIONS)
+    raise NameNotResolved(name, [(players.at[i, "player"], players.at[i, "team"]) for i in best.index], ambiguous=False)
 
 
 # ---------------------------------------------------------------- execution
