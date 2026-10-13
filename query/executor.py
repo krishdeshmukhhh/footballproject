@@ -10,6 +10,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from query.describe import describe
 from query.schema import METRICS, QuerySpec
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
@@ -87,8 +88,11 @@ def execute(spec: QuerySpec) -> dict:
         rows = rows[rows["team"].isin(f.teams)]
     if f.position_groups:
         rows = rows[rows["position_group"].isin(f.position_groups)]
+    resolved_names = None
     if f.players:
-        rows = rows[rows["player_id"].isin([resolve_player(n, players) for n in f.players])]
+        ids = [resolve_player(n, players) for n in f.players]
+        resolved_names = players.set_index("player_id").loc[ids, "player"].tolist()
+        rows = rows[rows["player_id"].isin(ids)]
 
     sums = {"count": [spec.metric], "rate": list(meta.get("parts", ())), "minutes": []}[meta["kind"]]
     if spec.group_by == "player":
@@ -140,6 +144,7 @@ def execute(spec: QuerySpec) -> dict:
     return {
         "spec": spec.canonical(),
         "metric_label": meta["label"] + (" per 90" if per90 else ""),
+        "interpretation": describe(spec, min_minutes, resolved_names),
         "min_minutes_applied": min_minutes,
         "n_matching": n_matching,
         "rows": out.to_dict(orient="records"),

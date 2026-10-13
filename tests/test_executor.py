@@ -60,3 +60,16 @@ def test_schema_rejects_unknown_metric_and_team():
         parse_spec('{"metric": "dribbles"}')
     with pytest.raises(ValidationError):
         parse_spec('{"metric": "goals", "filters": {"teams": ["Italy"]}}')
+
+
+def test_interpretation_echo():
+    r = run(metric="pressured_passes_completed", filters={"teams": ["Croatia"], "position_groups": ["CM"]})
+    assert r["interpretation"] == ("The 5 players with the most passes completed under pressure, "
+                                   "among central midfielders (CM), playing for Croatia, World Cup 2022.")
+    r = run(metric="xt_added", per90=True, filters={"players": ["mbappe"], "stages": ["Round of 16", "Quarter-finals",
+                                                                                   "Semi-finals", "3rd Place Final", "Final"]})
+    assert r["interpretation"] == ("Expected threat (xT) added per 90 for Kylian Mbappé, in the knockout rounds, "
+                                   "World Cup 2022.")
+    r = run(metric="pass_completion_pct", sort="asc", limit=1)
+    assert r["interpretation"] == ("The player with the lowest pass completion %, "
+                                   "with at least 270 minutes (default threshold), World Cup 2022.")
