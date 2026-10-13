@@ -18,6 +18,7 @@ Usage: python data/gen_questions.py --specs 350 [--concurrency 48]   -> data/que
 """
 import argparse
 import asyncio
+import hashlib
 import json
 import random
 import sys
@@ -111,8 +112,12 @@ def template_question(spec: dict) -> str:
     high = spec["sort"] == "desc"
     order = ("highest" if high else "lowest") if m in RATES else ("most" if high else "fewest")
     n = spec["limit"]
+    # Half of the limit-5 specs leave the number out ("Which players had the most ..."), which is what
+    # teaches the default of 5 for plural questions. Deterministic per spec.
+    digest = int(hashlib.sha256(json.dumps(spec, sort_keys=True).encode()).hexdigest(), 16)
+    count = "" if n == 5 and digest % 2 == 0 else f"{n} "
     if spec["group_by"] == "team":
-        subject = "team" if n == 1 else f"{n} teams"
+        subject = "team" if n == 1 else f"{count}teams"
         whose = f" from their {_positions(f['position_groups'])}" if f["position_groups"] else ""
         return f"Which {subject} had the {order} {metric}{whose}{_context(f)}?"
 
@@ -121,7 +126,7 @@ def template_question(spec: dict) -> str:
         who = _positions(f["position_groups"], singular=True) if f["position_groups"] else "player"
         return f"Which {team}{who} had the {order} {metric}{_context(f)}?"
     who = _positions(f["position_groups"]) if f["position_groups"] else "players"
-    return f"Which {n} {team}{who} had the {order} {metric}{_context(f)}?"
+    return f"Which {count}{team}{who} had the {order} {metric}{_context(f)}?"
 
 
 async def paraphrase(client, model, question: str) -> list[str]:
