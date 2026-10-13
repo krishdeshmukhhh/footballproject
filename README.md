@@ -48,7 +48,7 @@ StatsBomb pitch is 120 x 80 yards, and every team attacks toward x = 120. Penalt
 | Metric | Definition |
 |---|---|
 | `minutes` | From the event stream (Starting XI, Substitution, red card / second yellow). Stoppage time is clamped into its period, so a full match is 90 (120 with extra time). Time off the pitch for treatment counts as played. |
-| `progressive_passes` | Completed open-play pass starting at x >= 48 (outside own 40%) that moves the ball >= 10 yards forward, or enters the penalty area from outside it. A simplified FBref definition (no "furthest point in last six passes" lookback). |
+| `progressive_passes` (labelled **"Progressive passes (simplified)"** everywhere it is shown) | Completed open-play pass starting at x >= 48 (outside own 40%) that moves the ball >= 10 yards forward, or enters the penalty area from outside it. A simplified FBref definition (no "furthest point in last six passes" lookback). |
 | `progressive_carries` | Carry ending at x >= 60 that moves >= 10 yards forward, or enters the penalty area from outside it. |
 | `pressures` | StatsBomb Pressure events. |
 | `pressured_passes_completed` / `_attempted` | Passes with `under_pressure = True`; also `pressured_pass_completion_pct`. |
@@ -62,5 +62,30 @@ StatsBomb pitch is 120 x 80 yards, and every team attacks toward x = 120. Penalt
   (`120:05` p4 to `81:37` p2) or give subbed-off players a phantom spell to the final whistle, and they don't
   end at red cards. Minutes therefore come from events. A match's position is the mode of the `position`
   field on the player's own events.
-- Age is **not** in StatsBomb open data (lineups have no birth dates), so an age filter needs an external source.
+- StatsBomb open data has no birth dates, so **age is deliberately out of scope** (no age filter in the query spec).
 - Two harmless orphans: an unused sub booked on the bench (events but no minutes) and a 94:52 sub with no events.
+
+## Phase 2: NL to structured query
+
+```bash
+tmux new -s teacher 'GPU=4 scripts/serve_teacher.sh'      # Qwen3-32B on port 8000
+./.venv/bin/python -m query.manual_test                     # 18 hand-checked questions -> logs/phase2_manual.json
+```
+
+- `query/schema.py`: the `QuerySpec` pydantic model. Its JSON schema drives vLLM guided decoding, and the same
+  model validates and canonicalises the output. Fields: `metric` (19, enum), `per90`, `group_by` (player | team),
+  `filters` (players, teams, position_groups, stages, opponents, min_minutes), `sort`, `limit` (1-20).
+  The LLM never writes pandas.
+- `query/executor.py`: plain pandas over `player_match.parquet`, so stage and opponent filters re-aggregate just
+  those matches. Rules worth knowing:
+  - Per-90 rankings, rate metrics and "fewest" sorts default to at least 270 minutes (90 under a stage or opponent
+    filter), unless the question names players or sets its own threshold.
+  - Descending count rankings drop zero values.
+  - Ties share a rank.
+  - Player names resolve accent-insensitively against display names. Ambiguous names ("Hernández", "de Jong")
+    raise an error rather than guess.
+- `query/prompt.py`: system prompt plus 10 hand-written few-shot examples (keep them out of any test split).
+- `query/llm.py`: `translate(question)`. `QUERY_BACKEND=teacher|student` switches between port 8000 and 8001.
+
+Teacher on the manual set: 18/18 valid, 17/18 correct specs, ~1.5 s each. Known miss: "Croatian midfielders"
+becomes `[CM]` and silently drops Brozović (DM). Similar phrasings that were not tuned on work.
