@@ -10,3 +10,8 @@ node_modules/
 logs/
 *.npy
 !eval/*.jsonl
+# Generated question sets (need the teacher on a GPU to rebuild); eval.report reads them
+!data/train.jsonl
+!data/val.jsonl
+!data/test.jsonl
+!data/questions_raw.jsonl

@@ -36,6 +36,9 @@
    "right_kind_rate": 100.0
   }
  },
+ "misses": 0,
+ "misses_with_injected_number_in_question": 0,
+ "miss_examples": [],
  "overall": {
   "n": 2030,
   "catch_rate": 100.0,

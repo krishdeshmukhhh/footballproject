@@ -30,6 +30,8 @@ from query.executor import ExecutionError, execute
 from query.schema import parse_spec
 
 RESULTS = Path(__file__).parent / "results.json"
+RUNS = Path(__file__).parent / "runs"  # per-question misses, eval_<system>_<dataset>.json
+CONCURRENCY = 48
 SYSTEMS = {  # name: (backend url key, few-shot prompt?)
     "teacher": ("teacher", True),
     "base8b": ("student", True),
@@ -105,7 +107,7 @@ def main():
     parser.add_argument("--tag", default="", help="suffix for the system name, e.g. -pilot")
     parser.add_argument("--gpu", type=int, help="GPU the system is served on, to record total memory reserved")
     parser.add_argument("--serve-log", help="vLLM log of the served system, to record model weight memory")
-    parser.add_argument("--concurrency", type=int, default=48)
+    parser.add_argument("--concurrency", type=int, default=CONCURRENCY)
     parser.add_argument("--latency-n", type=int, default=50)
     args = parser.parse_args()
 
@@ -123,7 +125,7 @@ def main():
         summary["weights_gib"] = weights_gib(args.serve_log)
         out[Path(path).stem] = summary
         errors = [r for r in recs if not r["exec_ok"]]
-        Path(f"logs/eval_{name}_{Path(path).stem}.json").write_text(json.dumps(errors, indent=1, ensure_ascii=False))
+        (RUNS / f"eval_{name}_{Path(path).stem}.json").write_text(json.dumps(errors, indent=1, ensure_ascii=False))
         print(f"{name:14} {Path(path).stem:12} {json.dumps(summary)}")
     RESULTS.write_text(json.dumps(results, indent=1))
 

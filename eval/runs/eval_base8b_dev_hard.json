@@ -1,0 +1,9 @@
+[
+ {
+  "question": "lowest pass completion % among strikers",
+  "raw": "{\"metric\": \"pass_completion_pct\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]

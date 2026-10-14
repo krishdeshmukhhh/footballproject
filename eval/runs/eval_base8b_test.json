@@ -1,0 +1,100 @@
+[
+ {
+  "question": "Which forward had the most assists per 90 (minimum 200 minutes)?",
+  "raw": "{\"metric\": \"assists\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"W\", \"ST\"], \"stages\": null, \"opponents\": null, \"min_minutes\": 200}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "looking for the top 3 cm's with the highest pass completion % in qatar 2022",
+  "raw": "{\"metric\": \"pass_completion_pct\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CM\"], \"stages\": [\"Group Stage\", \"Round of 16\", \"Quarter-finals\", \"Semi-finals\", \"3rd Place Final\", \"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "10 def mids with most xG in qatar wc (450+ mins)?",
+  "raw": "{\"metric\": \"xg\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"DM\"], \"stages\": [\"Group Stage\"], \"opponents\": null, \"min_minutes\": 450}, \"sort\": \"desc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "In the 2022 World Cup, which player created the most chances, measured by xG per 90 minutes?",
+  "raw": "{\"metric\": \"xt_added\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which five American players created the highest expected goal value during the 2022 World Cup?",
+  "raw": "{\"metric\": \"xg\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"United States\"], \"teams\": null, \"position_groups\": [\"AM\", \"CM\", \"DM\", \"W\", \"ST\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "whic five usa playrs had the most xg in the 2022 world cup?",
+  "raw": "{\"metric\": \"xg\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"United States\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "2. Quick—3 players with most passes under pressure in the quarters?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": [\"Quarter-finals\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "which serbia center back had the most passes under pressure at the world cup 2022?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Serbia\"], \"position_groups\": [\"CB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which forward had the highest goal total in the 2022 World Cup?",
+  "raw": "{\"metric\": \"goals\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\", \"W\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the highest number of shot-creating actions among Aaron Mooy, Joshua Kimmich, and Hakim Ziyech in the 2022 World Cup?",
+  "raw": "{\"metric\": \"shot_creating_actions\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Aaron Mooy\", \"Joshua Kimmich\", \"Hakim Ziyech\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Compare Aaron Mooy, Joshu kimmich, and ziyechs shot creatin actions from the 2022 world cup",
+  "raw": "{\"metric\": \"shot_creating_actions\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Aaron Mooy\", \"Joshu kimmich\", \"ziyechs\"], \"teams\": null, \"position_groups\": null, \"stages\": [\"Group Stage\", \"Round of 16\", \"Quarter-finals\", \"Semi-finals\", \"3rd Place Final\", \"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the 3 full-backs with the least progressive carries in the 2022 World Cup?",
+  "raw": "{\"metric\": \"progressive_carries\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"FB\"], \"stages\": [\"Group Stage\", \"Round of 16\", \"Quarter-finals\", \"Semi-finals\", \"3rd Place Final\", \"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "which three full-backs had the lowest progressive carries in the 2022 world cup?",
+  "raw": "{\"metric\": \"progressive_carries\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"FB\"], \"stages\": [\"Group Stage\", \"Round of 16\", \"Quarter-finals\", \"Semi-finals\", \"3rd Place Final\", \"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "top 3 morroco center backs with most progressve passes (min 90 mins) in world cup 2022?",
+  "raw": "{\"metric\": \"progressive_passes\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Morocco\"], \"position_groups\": [\"CB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": 90}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]

@@ -131,6 +131,10 @@ SHARE=1 GPU=4 GPU_MEM=0.25 scripts/serve_student.sh models/sft-v1-merged
 python -m query.answer "Which Croatian midfielders completed the most passes under pressure?"
 python -m eval.hallucination            # naive vs pipeline, hallucinated-number rate
 python -m eval.verifier_injection --seed 2   # error-injection catch rate (no GPU needed)
+
+# No GPU: regenerate every number in eval/README.md (and eval/examples.md) from the saved outputs in eval/runs/
+python -m eval.report
+python -m eval.audit_sample --score     # after marking eval/audit_sample.md by hand
 ```
 
 - `query/answer.py` runs the whole flow:
@@ -146,6 +150,8 @@ python -m eval.verifier_injection --seed 2   # error-injection catch rate (no GP
 
 Results (details in `eval/README.md`):
 
-- **Hallucinated numbers:** the naive Qwen3-32B with the stats table in context put one in about a third of answers.
-  The pipeline put none in 460 answers.
+- **Hallucinated numbers:** the naive Qwen3-32B with the stats table in context put one in about a third of answers,
+  and about four in five had some verified error (mostly naming the wrong players). The pipeline put no false number
+  in any of its 460 answers.
+- **Real catches:** `eval/examples.md`. **Blind hand audit** of 100 naive answers: `eval/audit_sample.md`.
 - **Verifier on held-out injected errors:** it caught 99.9% with 0 false positives.

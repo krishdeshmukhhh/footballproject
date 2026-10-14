@@ -1,0 +1,23 @@
+{
+ "_about": "Numbers in eval/README.md that cannot be recomputed from saved outputs, because they come from superseded development runs or from a manual judgement. eval.report renders them from here, marked with a dagger, and lists them when it runs.",
+ "my_audit": {
+  "source": "My hand audit of randomly sampled flagged numbers in naive answers, done between development runs (before the final run). Superseded by eval/audit_sample.md once it is marked and scored.",
+  "n": 15,
+  "real": 13,
+  "truncation": 1,
+  "unclear": 1,
+  "truncation_example": "\"271 minutes\" for 271.7",
+  "unclear_example": "correct arithmetic, \"135/153 = 88.23%\", for an unidentified player"
+ },
+ "audit_trail": {
+  "source": "Verifier and scorer bugs found during development, described with the inputs that exposed them. The development-run catches are archived in logs/verifier_catches.dev_runs.jsonl.",
+  "injection_bugs": [
+   "Decimal claims matched integer truths (\"1.5\" counted as rank 2).",
+   "Sums and differences of row values were accepted anywhere (\"Netherlands – 8\" when 8 = 5 + 3).",
+   "\"followed by\" counted as comparison wording.",
+   "\"World Cup\" blocked attributing a number to the player before it."
+  ],
+  "scorer_rounding_example": "\"65.38%\"",
+  "scorer_rounding_inflated_rate": 41.9
+ }
+}

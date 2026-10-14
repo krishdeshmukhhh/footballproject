@@ -1,0 +1,23 @@
+[
+ {
+  "question": "Which Croatian midfielders completed the most passes under pressure?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Croatia\"], \"position_groups\": [\"AM\", \"CM\", \"DM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "lowest pass completion % among strikers",
+  "raw": "{\"metric\": \"pass_completion_pct\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the most aggressive pressers among defenders per 90, at least 200 minutes?",
+  "raw": "{\"metric\": \"pressures\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CB\", \"FB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": 200}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]

@@ -8,6 +8,7 @@ Run on ONE GPU from 4-7, with the teacher stopped:
 """
 import argparse
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -77,7 +78,15 @@ def main():
     metrics = trainer.evaluate()
     print("final eval:", metrics)
     (Path(args.out) / "train_summary.json").write_text(json.dumps(
-        {"args": vars(args), "final_eval": metrics, "log_history": trainer.state.log_history}, indent=1))
+        {"args": vars(args), "n_train": len(train), "n_val": len(val), "final_eval": metrics,
+         "log_history": trainer.state.log_history}, indent=1))
+    # Small copy of the run's record under eval/runs/<name>/, so eval.report can regenerate the README from git.
+    runs = ROOT / "eval" / "runs" / Path(args.out).name
+    runs.mkdir(parents=True, exist_ok=True)
+    shutil.copy(Path(args.out) / "train_summary.json", runs)
+    shutil.copy(Path(args.out) / "adapter_config.json", runs)
+    (runs / "training_args.json").write_text(json.dumps(
+        {k: v for k, v in config.to_dict().items() if isinstance(v, (int, float, str, bool, type(None)))}, indent=1))
 
 
 if __name__ == "__main__":

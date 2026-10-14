@@ -1,0 +1,191 @@
+[
+ {
+  "question": "Against England, which national sides managed the most successful passes under pressure?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"England\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which teams were most active in creating shots during the 2022 World Cup?",
+  "raw": "{\"metric\": \"key_passes\", \"per90\": false, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "which atta mids had the most non-penalty goals per 90 in the 2022 world cup if they played min 270 mins?",
+  "raw": "{\"metric\": \"non_penalty_goals\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CM\", \"AM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": 270}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "firas albirakan progressive passes vs poland?",
+  "raw": "{\"metric\": \"progressive_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"firas albirkan\"], \"teams\": null, \"position_groups\": null, \"stages\": [\"Group Stage\"], \"opponents\": [\"Poland\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "how many progressve passes did firas albirakan have aginst poland?",
+  "raw": "{\"metric\": \"progressive_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"firas albirkan\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"Poland\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "In the 2022 World Cup, which nation's forwards recorded the highest shot count compared to other teams' strikers?",
+  "raw": "{\"metric\": \"shots\", \"per90\": false, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\", \"W\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which 10 teams had the fewest passes completed under pressure per 90?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "List the 10 teams with the lowest number of completed passes under pressure per 90.",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Tell me the 10 teams that completed the least passes under pressure per 90.",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "which 10 teems had the fewest pases compelted under presure per 90?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which of Axel Witsel, Morteza Pouraliganji, or Sosa had the highest number of completed passes?",
+  "raw": "{\"metric\": \"passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Axel Witsel\", \"Morteza Pouraliganji\", \"Sosa\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which top 10 teams had their forwards create the most shots per 90 when playing Uruguay?",
+  "raw": "{\"metric\": \"shot_creating_actions\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": [\"Uruguay\"], \"position_groups\": [\"W\", \"ST\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which United States players had the highest number of shots during the 2022 World Cup?",
+  "raw": "{\"metric\": \"shots\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"United States\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "whcih us players had the most shot's in the 2022 world cup?",
+  "raw": "{\"metric\": \"shots\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"United States\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "whos the top players for most passes under pressure in the 2022 wc, min 450 mins played?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": 450}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which 3 teams had the most passes completed under pressure per 90?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the top 3 teams in passes completed under pressure per 90 during the World Cup?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "In the 2022 World Cup, which three squads had the most completed passes under pressure on a per-90 basis?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "which 3 teams had the most passes completed under pressure per 90 in the 2022 world cup?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": [\"Round of 16\", \"Quarter-finals\", \"Semi-finals\", \"3rd Place Final\", \"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which teams had the most passes completed under pressure per 90?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the top teams in terms of passes completed under pressure per 90 in the 2022 World Cup?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which three teams applied the most pressure during the 2022 World Cup?",
+  "raw": "{\"metric\": \"pressures\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "which 3 teams put the most pressure in the 2022 wc?",
+  "raw": "{\"metric\": \"pressures\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which attacking midfielder completed the lowest number of passes per 90 minutes in the 2022 World Cup?",
+  "raw": "{\"metric\": \"passes_completed\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"AM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the lowest number of completed passes under pressure in the 2022 World Cup?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "what was rodris pass attempts per 90 at the 2022 world cup?",
+  "raw": "{\"metric\": \"passes_attempted\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": [\"rodris\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "which 10 denmark def mids had mose passes done under pressure in the 2022 world cup?",
+  "raw": "{\"metric\": \"pressured_passes_attempted\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Denmark\"], \"position_groups\": [\"DM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]

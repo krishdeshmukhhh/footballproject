@@ -1,0 +1,9 @@
+[
+ {
+  "question": "Which forward had the highest goal total in the 2022 World Cup?",
+  "raw": "{\"metric\": \"goals\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\", \"W\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]

@@ -1,0 +1,9 @@
+[
+ {
+  "question": "Which Croatian midfielders completed the most passes under pressure?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Croatia\"], \"position_groups\": [\"CM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]

@@ -1,0 +1,9 @@
+[
+ {
+  "question": "Which forward had the most assists per 90 (minimum 200 minutes)?",
+  "raw": "{\"metric\": \"assists\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\"], \"stages\": null, \"opponents\": null, \"min_minutes\": 200}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]

@@ -36,6 +36,20 @@
    "right_kind_rate": 100.0
   }
  },
+ "misses": 2,
+ "misses_with_injected_number_in_question": 2,
+ "miss_examples": [
+  {
+   "type": "fabricated_stat",
+   "question": "who r the 10 def midz wiht most xg in wc 22, plz 450 min cutof",
+   "change": "Jong also recorded 22 pressures."
+  },
+  {
+   "type": "fabricated_stat",
+   "question": "Which attacking midfielder had the most xT added in the round of 16?",
+   "change": "Gakpo also recorded 16 key passes."
+  }
+ ],
  "overall": {
   "n": 2036,
   "catch_rate": 99.9,

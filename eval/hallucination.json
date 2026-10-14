@@ -3,7 +3,32 @@
  "n_naive_answerable": 290,
  "naive": {
   "hallucinated_number_rate": 33.1,
-  "any_issue_rate": 78.6
+  "any_issue_rate": 78.6,
+  "breakdown": {
+   "n": 290,
+   "hallucinated_number": {
+    "count": 96,
+    "rate": 33.1
+   },
+   "wrong_entity": {
+    "count": 201,
+    "rate": 69.3
+   },
+   "order": {
+    "count": 24,
+    "rate": 8.3
+   },
+   "any_issue": {
+    "count": 228,
+    "rate": 78.6
+   },
+   "issue_without_hallucinated_number": {
+    "count": 132,
+    "rate": 45.5,
+    "with_wrong_entity": 132,
+    "order_only": 0
+   }
+  }
  },
  "pipeline_on_subset": {
   "answered": 289,
@@ -13,7 +38,51 @@
   "raw_hallucinated_number_rate_when_spec_correct": 0.0,
   "final_hallucinated_number_rate": 0.0,
   "final_unflagged_hallucination_rate": 0.0,
-  "self_check_flag_rate": 0.0
+  "self_check_flag_rate": 0.0,
+  "breakdown": {
+   "n": 289,
+   "hallucinated_number": {
+    "count": 0,
+    "rate": 0.0
+   },
+   "wrong_entity": {
+    "count": 1,
+    "rate": 0.3
+   },
+   "order": {
+    "count": 0,
+    "rate": 0.0
+   },
+   "any_issue": {
+    "count": 1,
+    "rate": 0.3
+   },
+   "issue_without_hallucinated_number": {
+    "count": 1,
+    "rate": 0.3,
+    "with_wrong_entity": 1,
+    "order_only": 0
+   }
+  },
+  "issues_vs_ground_truth": [
+   {
+    "question": "Which forward had the highest goal total in the 2022 World Cup?",
+    "spec_correct": false,
+    "answer": "Kylian Mbappé had the highest goal total in the 2022 World Cup with 8 goals.",
+    "issues": [
+     {
+      "kind": "name",
+      "claim": "Kylian Mbappé",
+      "detail": "Kylian Mbappé is not in the verified result",
+      "span": [
+       0,
+       13
+      ],
+      "expected": null
+     }
+    ]
+   }
+  ]
  },
  "pipeline_all_questions": {
   "answered": 460,

@@ -15,6 +15,7 @@ whose ground-truth players all have 90+ minutes.
 Requires the teacher on :8000 with MAX_LEN=32768 and the student on :8001 (they can share one GPU).
 Usage: python -m eval.hallucination            (generate answers + score)
        python -m eval.hallucination --rescore  (re-score saved answers with the current verifier)
+Per-question answers and scores are saved to eval/runs/hallucination_records.json.
 """
 import asyncio
 import json
@@ -32,7 +33,9 @@ from query.verify import correct, verify
 ROOT = Path(__file__).resolve().parents[1]
 DATASETS = [ROOT / "data" / "test.jsonl", ROOT / "eval" / "dev_hard.jsonl"]
 OUT = ROOT / "eval" / "hallucination.json"
+RECORDS = ROOT / "eval" / "runs" / "hallucination_records.json"
 TABLE_MIN_MINUTES = 90
+NAIVE_TEMPERATURE = 0.7
 COLUMNS = ["player", "team", "position_group", "matches", "minutes", "goals", "non_penalty_goals", "assists", "shots",
            "xg", "npxg", "key_passes", "passes_attempted", "passes_completed", "progressive_passes",
            "progressive_carries", "pressures", "pressured_passes_attempted", "pressured_passes_completed",
@@ -94,7 +97,7 @@ async def run_naive(rows, client, sem, system):
     async def one(r):
         async with sem:
             resp = await client.chat.completions.create(
-                model=llm._model("teacher"), temperature=0.7, max_tokens=400, seed=0,
+                model=llm._model("teacher"), temperature=NAIVE_TEMPERATURE, max_tokens=400, seed=0,
                 messages=[{"role": "system", "content": system}, {"role": "user", "content": r["question"]}],
                 extra_body={"chat_template_kwargs": {"enable_thinking": False}})
         return resp.choices[0].message.content.strip()
@@ -135,8 +138,9 @@ async def generate(rows, subset):
     return saved
 
 
-def score_all(rows, gold, subset, saved):
-    """Score saved answers against ground truth; log naive catches. Pure function of the saved answers."""
+def score_all(rows, gold, subset, saved, log: bool = True):
+    """Score saved answers against ground truth; log naive catches unless `log` is off. Pure function of the
+    saved answers."""
     records = []
     for i, (r, g, s) in enumerate(zip(rows, gold, saved)):
         rec = {"question": r["question"], "in_subset": i in subset, "gold_rows": g["rows"], **s}
@@ -153,12 +157,35 @@ def score_all(rows, gold, subset, saved):
         if "naive" in s:
             v = score(s["naive"], g, r["question"])
             rec |= {"naive_halluc": v.hallucinated_number, "naive_issues": [x.__dict__ for x in v.issues]}
-            if not v.ok:
+            if log and not v.ok:
                 log_catch({"source": "naive_baseline", "question": r["question"], "spec": g["spec"],
                            "interpretation": g["interpretation"], "rows": g["rows"], "raw_answer": s["naive"],
                            "issues": [x.__dict__ for x in v.issues], "corrected_answer": correct(s["naive"], v, g)})
         records.append(rec)
     return records
+
+
+# Verifier issue kinds, grouped into the columns of the comparison table.
+ISSUE_GROUPS = {"hallucinated_number": ("number", "attribution"), "wrong_entity": ("name", "team"), "order": ("order",)}
+
+
+def breakdown(issue_lists: list[list[dict]]) -> dict:
+    """Answers with at least one issue in each group, and in any group, as count and % of answers."""
+    n = len(issue_lists)
+    kinds = [{i["kind"] for i in issues} for issues in issue_lists]
+    out = {"n": n}
+    for group, members in ISSUE_GROUPS.items():
+        k = sum(bool(ks & set(members)) for ks in kinds)
+        out[group] = {"count": k, "rate": rate([True] * k + [False] * (n - k))}
+    any_ = sum(bool(ks) for ks in kinds)
+    out["any_issue"] = {"count": any_, "rate": rate([True] * any_ + [False] * (n - any_))}
+    # Answers flagged for something other than a false number: the gap between the two headline rates.
+    no_num = [ks for ks in kinds if ks and not ks & set(ISSUE_GROUPS["hallucinated_number"])]
+    out["issue_without_hallucinated_number"] = {
+        "count": len(no_num), "rate": rate([True] * len(no_num) + [False] * (n - len(no_num))),
+        "with_wrong_entity": sum(bool(ks & {"name", "team"}) for ks in no_num),
+        "order_only": sum(ks == {"order"} for ks in no_num)}
+    return out
 
 
 def summarise(rows, subset, records):
@@ -168,7 +195,8 @@ def summarise(rows, subset, records):
     return {
         "n_questions": len(rows), "n_naive_answerable": len(subset),
         "naive": {"hallucinated_number_rate": rate(r["naive_halluc"] for r in sub),
-                  "any_issue_rate": rate(bool(r["naive_issues"]) for r in sub)},
+                  "any_issue_rate": rate(bool(r["naive_issues"]) for r in sub),
+                  "breakdown": breakdown([r["naive_issues"] for r in sub])},
         "pipeline_on_subset": {
             "answered": len(answered), "did_you_mean_or_error": len(sub) - len(answered),
             "spec_correct_rate": rate(r["spec_correct"] for r in answered),
@@ -178,7 +206,11 @@ def summarise(rows, subset, records):
             "final_hallucinated_number_rate": rate(r["pipeline_final_halluc"] for r in answered),
             "final_unflagged_hallucination_rate": rate(
                 r["pipeline_final_halluc"] and not r["pipeline_final_flagged"] for r in answered),
-            "self_check_flag_rate": rate(not r["pipeline_self_check_ok"] for r in answered)},
+            "self_check_flag_rate": rate(not r["pipeline_self_check_ok"] for r in answered),
+            "breakdown": breakdown([r["pipeline_raw_issues"] for r in answered]),
+            "issues_vs_ground_truth": [{"question": r["question"], "spec_correct": r["spec_correct"],
+                                        "answer": r["pipeline_raw"], "issues": r["pipeline_raw_issues"]}
+                                       for r in answered if r["pipeline_raw_issues"]]},
         "pipeline_all_questions": {
             "answered": len(everyone),
             "spec_correct_rate": rate(r["spec_correct"] for r in everyone),
@@ -191,25 +223,28 @@ def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--rescore", action="store_true",
-                        help="re-score the answers saved in logs/hallucination_records.json instead of regenerating")
+                        help="re-score the answers saved in eval/runs/hallucination_records.json instead of regenerating")
+    parser.add_argument("--no-log", action="store_true", help="do not append catches to logs/verifier_catches.jsonl")
     args = parser.parse_args()
+    print(json.dumps(run(rescore=args.rescore, log=not args.no_log), indent=1, ensure_ascii=False))
 
+
+def run(rescore: bool, log: bool = True) -> dict:
     rows = [json.loads(line) for p in DATASETS for line in p.read_text().splitlines() if line.strip()]
     gold = [execute(parse_spec(r["spec"])) for r in rows]
     subset = [i for i, (r, g) in enumerate(zip(rows, gold)) if naive_answerable(g["spec"], g["rows"])]
     print(f"{len(rows)} questions, {len(subset)} answerable from the naive model's table")
-    records_path = ROOT / "logs" / "hallucination_records.json"
-    if args.rescore:
+    if rescore:
         keep = ("question", "pipeline_type", "pipeline_raw", "pipeline_final", "pipeline_spec", "pipeline_message", "naive")
-        saved = [{k: r[k] for k in keep if k in r} for r in json.loads(records_path.read_text())]
+        saved = [{k: r[k] for k in keep if k in r} for r in json.loads(RECORDS.read_text())]
         assert [s["question"] for s in saved] == [r["question"] for r in rows], "saved answers do not match questions"
     else:
         saved = asyncio.run(generate(rows, subset))
-    records = score_all(rows, gold, subset, saved)
+    records = score_all(rows, gold, subset, saved, log=log)
     summary = summarise(rows, subset, records)
-    OUT.write_text(json.dumps(summary, indent=1))
-    records_path.write_text(json.dumps(records, indent=1, ensure_ascii=False))
-    print(json.dumps(summary, indent=1))
+    OUT.write_text(json.dumps(summary, indent=1, ensure_ascii=False))
+    RECORDS.write_text(json.dumps(records, indent=1, ensure_ascii=False))
+    return summary
 
 
 if __name__ == "__main__":

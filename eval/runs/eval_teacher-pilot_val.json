@@ -1,0 +1,9 @@
+[
+ {
+  "question": "Which team had the most progressive carries per 90 from their forwards?",
+  "raw": "{\"metric\": \"progressive_carries\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]

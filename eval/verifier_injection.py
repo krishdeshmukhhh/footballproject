@@ -1,7 +1,7 @@
 """Phase 3 step 4: error-injection test for the verifier.
 
 Base answers: the pipeline's answers from eval/hallucination.py whose spec was correct and that verify clean
-against ground truth (logs/hallucination_records.json). Into each, inject one error of every applicable type,
+against ground truth (eval/runs/hallucination_records.json). Into each, inject one error of every applicable type,
 then run the runtime verifier (no extra truth) and measure:
 
   caught        the verifier reports any issue
@@ -16,9 +16,10 @@ Types:
   order_swap       in a numbered list, the contents of two adjacent lines swapped
   fabricated_stat  an extra sentence giving a row player a number that is not in the result
 
-Every catch is appended to logs/verifier_catches.jsonl with source "error_injection".
-Usage: python -m eval.verifier_injection
+Every catch is appended to logs/verifier_catches.jsonl with source "error_injection" (unless --no-log).
+Usage: python -m eval.verifier_injection --seed N
 """
+import difflib
 import json
 import random
 import re
@@ -30,8 +31,10 @@ from query.executor import load_tables
 from query.schema import TEAMS
 from query.verify import LIST_MARKER_RE, NUMBER_RE, _matches, correct, find_entities, verify
 
+HELD_OUT_SEED = 2  # seeds 0 and 1 were used while fixing the verifier
+
 ROOT = Path(__file__).resolve().parents[1]
-RECORDS = ROOT / "logs" / "hallucination_records.json"
+RECORDS = ROOT / "eval" / "runs" / "hallucination_records.json"
 OUT = Path(__file__).parent / "verifier_injection.json"
 EXPECTED_KIND = {"number_perturb": {"number", "attribution"}, "value_swap": {"attribution"}, "name_swap": {"name"},
                  "team_swap": {"team"}, "order_swap": {"order"}, "fabricated_stat": {"number", "attribution"}}
@@ -143,18 +146,34 @@ def inject(kind: str, answer: str, rows: list[dict], spec: dict, rng: random.Ran
     raise ValueError(kind)
 
 
+def inserted_text(original: str, injected: str) -> str:
+    """Words of `injected` that are not in `original` (inserted or replaced), joined by spaces."""
+    a, b = original.split(), injected.split()
+    ops = difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes()
+    return " ".join(" ".join(b[j1:j2]) for op, _, _, j1, j2 in ops if op in ("insert", "replace"))
+
+
+def numbers_in(text: str) -> set[str]:
+    return {m.group(1) for m in NUMBER_RE.finditer(text)}
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=0, help="seed 0 was used while refining the verifier; "
-                                                            "report a fresh seed as the held-out run")
+                                                            f"seed {HELD_OUT_SEED} is the held-out run")
+    parser.add_argument("--no-log", action="store_true", help="do not append catches to logs/verifier_catches.jsonl")
     args = parser.parse_args()
+    print(json.dumps(run(args.seed, log=not args.no_log), indent=1))
+
+
+def run(seed: int, log: bool = True) -> dict:
     records = json.loads(RECORDS.read_text())
     base = [r for r in records if r["pipeline_type"] == "answer" and r["spec_correct"] and not r["pipeline_raw_issues"]]
     gold = {json.loads(line)["question"]: json.loads(line)["spec"]
             for p in [ROOT / "data" / "test.jsonl", ROOT / "eval" / "dev_hard.jsonl"] for line in p.read_text().splitlines()}
     _, players = load_tables()
-    rng = random.Random(args.seed)
+    rng = random.Random(seed)
     from query.executor import execute
     from query.schema import parse_spec
 
@@ -181,8 +200,11 @@ def main():
                     unrestored.append({"type": kind, "original": r["pipeline_raw"], "injected": bad, "fixed": fixed,
                                        "issues": [(i.kind, i.detail, bool(i.expected)) for i in v.issues]})
             if v.ok:
-                misses.append({"type": kind, "question": r["question"], "original": r["pipeline_raw"], "injected": bad})
-            else:
+                misses.append({"type": kind, "question": r["question"], "original": r["pipeline_raw"], "injected": bad,
+                               "change": inserted_text(r["pipeline_raw"], bad),
+                               "new_number_in_question": bool(numbers_in(inserted_text(r["pipeline_raw"], bad))
+                                                              & numbers_in(r["question"]))})
+            elif log:
                 log_catch({"source": "error_injection", "injection": kind, "question": r["question"],
                            "spec": result["spec"], "interpretation": result["interpretation"], "rows": result["rows"],
                            "raw_answer": bad, "issues": [i.__dict__ for i in v.issues],
@@ -190,7 +212,10 @@ def main():
 
     def pct(a, b):
         return round(100 * a / b, 1) if b else None
-    summary = {"seed": args.seed, "base_answers": len(base), "false_positives_on_clean": clean_flags, "by_type": {}}
+    summary = {"seed": seed, "base_answers": len(base), "false_positives_on_clean": clean_flags, "by_type": {},
+               "misses": len(misses), "misses_with_injected_number_in_question": sum(m["new_number_in_question"]
+                                                                                      for m in misses),
+               "miss_examples": [{"type": m["type"], "question": m["question"], "change": m["change"]} for m in misses]}
     tot = defaultdict(int)
     for kind, s in stats.items():
         summary["by_type"][kind] = {"n": s["n"], "catch_rate": pct(s["caught"], s["n"]),
@@ -201,11 +226,12 @@ def main():
             tot[k] += s[k]
     summary["overall"] = {"n": tot["n"], "catch_rate": pct(tot["caught"], tot["n"]),
                           "right_kind_rate": pct(tot["right_kind"], tot["n"])}
-    out = OUT if args.seed == 0 else OUT.with_name(f"verifier_injection_seed{args.seed}.json")
+    out = OUT if seed == 0 else OUT.with_name(f"verifier_injection_seed{seed}.json")
     out.write_text(json.dumps(summary, indent=1))
-    (ROOT / "logs" / "injection_unrestored.json").write_text(json.dumps(unrestored, indent=1, ensure_ascii=False))
-    (ROOT / "logs" / "injection_misses.json").write_text(json.dumps(misses, indent=1, ensure_ascii=False))
-    print(json.dumps(summary, indent=1))
+    (ROOT / "logs").mkdir(exist_ok=True)
+    (ROOT / "logs" / f"injection_unrestored_seed{seed}.json").write_text(json.dumps(unrestored, indent=1, ensure_ascii=False))
+    (ROOT / "logs" / f"injection_misses_seed{seed}.json").write_text(json.dumps(misses, indent=1, ensure_ascii=False))
+    return summary
 
 
 if __name__ == "__main__":

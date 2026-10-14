@@ -1,0 +1,23 @@
+[
+ {
+  "question": "Which nation netted the most goals from open play in the 2022 World Cup?",
+  "raw": "{\"metric\": \"goals\", \"per90\": false, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "how many progrssive pass did firas albirakan have againt poland?",
+  "raw": "{\"metric\": \"progressive_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Firas Al-Birkan\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"Poland\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "In the 2022 World Cup, which 10 squads completed the least passes under pressure on a per-90 basis?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]

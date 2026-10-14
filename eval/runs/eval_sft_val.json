@@ -1,0 +1,51 @@
+[
+ {
+  "question": "4. What were the mins for Bellingham, Kim Moon-Hwan, and Theo Hernández?",
+  "raw": "{\"metric\": \"minutes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Bellingham\", \"Kim Moon-Hwan\", \"Theo Hern\\u00e9dez\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "how many progressve passes did firas albirakan have aginst poland?",
+  "raw": "{\"metric\": \"progressive_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Firas Albirkan\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"Poland\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "In the 2022 World Cup, which nation's forwards recorded the highest shot count compared to other teams' strikers?",
+  "raw": "{\"metric\": \"shots\", \"per90\": false, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\", \"W\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which national sides managed the most passes under pressure per 90 during the 2022 World Cup?",
+  "raw": "{\"metric\": \"pressured_passes_attempted\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Looking for a comparison of Achraf Hakimi, Junya Ito and Yann Sommer's shot involvements on a per-90-minute basis in the 2022 World Cup.",
+  "raw": "{\"metric\": \"shot_creating_actions\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": [\"Achraf Hakimi\", \"Junya Ito\", \"Yann Sommer\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which 10 goalkeepers completed the highest number of passes attempted during the 2022 World Cup?",
+  "raw": "{\"metric\": \"passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"GK\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the lowest number of completed passes under pressure in the 2022 World Cup?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]
