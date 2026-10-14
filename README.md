@@ -121,3 +121,31 @@ python -m eval.make_table
   accuracy on the generated splits is inflated by construction. Compare systems on dev/hard and hand-written.
 
 Results are in `eval/README.md`.
+
+## Phase 3: answers, verification, and the naive baseline
+
+```bash
+# Teacher (answers) and student (specs) share ONE GPU. Start the teacher first and wait until it is up.
+GPU=4 GPU_MEM=0.60 MAX_LEN=32768 scripts/serve_teacher.sh            # tmux; 32k context for the naive baseline
+SHARE=1 GPU=4 GPU_MEM=0.25 scripts/serve_student.sh models/sft-v1-merged
+python -m query.answer "Which Croatian midfielders completed the most passes under pressure?"
+python -m eval.hallucination            # naive vs pipeline, hallucinated-number rate
+python -m eval.verifier_injection --seed 2   # error-injection catch rate (no GPU needed)
+```
+
+- `query/answer.py` runs the whole flow:
+  1. Question to spec (`QUERY_BACKEND=student|teacher`).
+  2. Execute the spec. An unknown or ambiguous name returns "Did you mean X (Team)?" and never guesses.
+  3. Qwen3-32B writes the answer from the rows.
+  4. `query/verify.py` checks it, corrects what it can, and flags the rest.
+
+  The response leads with the interpretation echo. Every catch goes to `logs/verifier_catches.jsonl`.
+- `query/verify.py` checks every number against the result (tied to the nearest player or team mention, so a
+  correct value on the wrong player is caught), every player or team named, and ranking order and ordinals. It
+  rewrites only numbers it can safely attribute to a known row; everything else is flagged with the verified rows.
+
+Results (details in `eval/README.md`):
+
+- **Hallucinated numbers:** the naive Qwen3-32B with the stats table in context put one in about a third of answers.
+  The pipeline put none in 460 answers.
+- **Verifier on held-out injected errors:** it caught 99.9% with 0 false positives.

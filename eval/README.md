@@ -8,14 +8,14 @@ Regenerate the table with `python -m eval.make_table`; raw numbers are in `resul
 |---|---|---|---|---|---|---|---|
 | Qwen3-32B few-shot (teacher) | 100.0 | 99.8 (n=443) | 94.4 (n=18) | pending | not measured | 1.473 / 1.571 | 61.03 |
 | Base Qwen3-8B few-shot | 100.0 | 96.8 (n=443) | 94.4 (n=18) | pending | not measured | 0.439 / 0.469 | 15.27 |
-| SFT Qwen3-8B (LoRA) | 100.0 | 99.8 (n=443) | 100.0 (n=18) | pending | 0.0% (n=461) | 0.433 / 0.461 | 15.27 |
+| SFT Qwen3-8B (LoRA) | 100.0 | 99.8 (n=443) | 100.0 (n=18) | pending | 0.0% (n=460) | 0.433 / 0.461 | 15.27 |
 | SFT + GRPO Qwen3-8B | not run | not run | not run | not run | not run | not run | not run |
 
 Naive vs pipeline, same 290 player questions:
 
 | System | Hallucinated-number rate | Any verified error |
 |---|---|---|
-| Naive: Qwen3-32B + full stats table in context | 14.1% | 72.8% |
+| Naive: Qwen3-32B + full stats table in context | 33.1% | 78.6% |
 | Pipeline: SFT 8B query + Qwen3-32B answer, raw | 0.0% | 0.0% |
 
 Validation split (n=386): teacher 98.7, base 8B 93.0, SFT 98.2. Throughput at 48 concurrent requests: teacher
@@ -52,50 +52,89 @@ Brozović question.
 
 ## Hallucinated numbers: naive LLM vs the pipeline (Phase 3)
 
-`python -m eval.hallucination` (results in `hallucination.json`; per-question records in
-`logs/hallucination_records.json`).
+Run with `python -m eval.hallucination`. Results are in `hallucination.json`, per-question records in
+`logs/hallucination_records.json`. `--rescore` re-scores the saved answers with the current verifier.
 
 - **Naive:** Qwen3-32B with the whole player table in its context (players with 90+ minutes, about 31k tokens of
   CSV) and the pipeline's conventions in its prompt, answering directly.
 - **Pipeline:** SFT 8B spec, then executed result, then Qwen3-32B answer from the rows, then the verifier.
-- **Scoring:** both are checked against the ground-truth result with the same verifier (`query/verify.py`).
-- **Questions:** the generated test split plus dev/hard (never the hand-written set). The comparison uses the 290
-  player questions the naive model can fairly answer: no stage or opponent filter, and every ground-truth player
-  is in its table. Team questions are excluded because the table omits players under 90 minutes, so a team sum could
-  be short through no fault of the model.
+- **Scoring:** both are checked against the ground-truth result with the same frozen verifier (`query/verify.py`).
+- **Questions:** the generated test split plus dev/hard (never the hand-written set). The comparison uses the
+  290 player questions the naive model can fairly answer: no stage or opponent filter, and every
+  ground-truth player is in its table. Team questions are excluded because the table omits players under 90 minutes.
 
 | | Hallucinated-number rate | Any verified error (numbers, wrong players/teams, order) |
 |---|---|---|
-| Naive Qwen3-32B | **14.1%** | 72.8% |
+| Naive Qwen3-32B | **33.1%** | 78.6% |
 | Pipeline (raw LLM answer, before correction) | **0.0%** | 0.0% |
 
-Over all 461 questions the pipeline's answers had 0 hallucinated numbers (specs correct 99.8%).
+Over all 461 questions the pipeline answered 460 with 0
+hallucinated numbers (specs correct 99.8%). The other one is a
+"Did you mean Hakim Ziyech (Morocco)?" for "ziyechs".
 
-The hallucinated-number rate is a **lower bound**. A number only counts as hallucinated if it is not *any* true
-stat of the player it is attached to, so wrong numbers that happen to equal another true stat slip through.
-Examples from the final run:
+**How much to trust the naive number:**
 
-- "Mbappé – 8" shot-creating actions (true: 41) passes, because 8 is his goal total. The answer is still caught for
-  listing the wrong players.
-- Veljković's 7 progressive passes in 221.8 minutes given as "2.89 per 90" (true: 2.84) passes, because another of
-  his per-90 stats rounds to 2.89.
+- **Precision (hand audit):** of 15 randomly sampled flagged naive numbers, 13 are clear hallucinations, 1 was
+  truncation ("271 minutes" for 271.7; now accepted), and 1 is unclear (correct arithmetic, "135/153 = 88.23%",
+  for an unidentified player).
+- **A lower bound in another sense:** a number only counts as hallucinated if it is not *any* true stat of the
+  player it is attached to, so a wrong number that equals another of his true stats slips through.
+- **Unknown names:** names outside the dataset (e.g. "Péter Gulácsi (Hungary)", who was not at the tournament) are
+  invisible to the name check. Their invented numbers are still flagged.
+- **Sensitivity:** naive answers are sampled at temperature 0.7, and the rate moved between development runs as the
+  verifier was fixed (see the audit trail below). Treat it as "roughly a third of naive answers contain a false
+  number, and about four in five contain some verified error", not as a precise figure.
 
-Naive catches from the final run (all 211 naive catches are in `logs/verifier_catches.jsonl` with
-`source: naive_baseline`):
+Naive catches from the final run (in `logs/verifier_catches.jsonl` with `source: naive_baseline`):
 
-- **Invented numbers:** "Modrić had 115 pressures, while Schmeichel had **35**". The goalkeeper's true count is 0.
-  Similarly, "Costa completed **53** progressive passes"; Diogo Costa's true count is 0.
-- **Arithmetic:** "Varane … **99.64%** pass completion (251 out of 280)". The model's own fraction is 89.6%, and
-  the true leader is Marquinhos at 96.1%.
-- **Wrong rows:** Wales' Joe Allen and Joe Rodon listed among "Canada players with the fewest shots per 90".
+- **Wrong numbers:** "Robert Lewandowski … 92.4% pass completion" (true 71.4%).
+- **Inconsistent fractions:** "Rodri … 98.3% (644/655)" (true 644/679 = 94.8%); "Varane … 99.64% (251/252)"
+  (true 251/280).
+- **Arithmetic:** "Pulisic, 44 pressures in 315 minutes = 12.98 per 90" (correct: 12.57).
+- **Invented players:** "Péter Gulácsi (Hungary)" listed as a top central midfielder; Hungary did not qualify.
 
-**Scorer audit.** Two scorer bugs surfaced during development and were fixed before the reported run:
+## Verifier error-injection test
 
-- **Precision:** true percentages were stored rounded, so a correctly computed "65.38%" was counted wrong. This
-  inflated the naive rate to 41.9%.
-- **Team questions:** these were counted at first; see the scope note above.
+Run with `python -m eval.verifier_injection --seed N`. Results are in `verifier_injection*.json`.
 
-Samples of the remaining catches were checked by hand.
+- **Base answers:** the pipeline's 459 answers that are correct and verify clean against ground
+  truth.
+- **Method:** one programmatic error of each applicable type is injected into each answer, and the runtime verifier
+  (no extra truth) is run on the result.
+- **Logging:** every catch is logged with `source: error_injection`.
+
+Seed 0 (and seed 1) were used while fixing the verifier, so the held-out figures below are **seed 2**, run once on
+the final answers with the verifier frozen.
+
+| Injected error | n | Caught % | Right issue kind % | Restored exactly by auto-correction % |
+|---|---|---|---|---|
+| number_perturb | 400 | 100.0 | 100.0 | 97.8 |
+| value_swap | 236 | 100.0 | 100.0 | 97.5 |
+| name_swap | 400 | 100.0 | 100.0 | n/a |
+| team_swap | 373 | 100.0 | 100.0 | n/a |
+| order_swap | 227 | 100.0 | 100.0 | n/a |
+| fabricated_stat | 400 | 99.5 | 99.5 | n/a |
+| **Overall** | 2036 | **99.9** | 99.9 | |
+
+- **False positives:** 0 of the 459 clean answers were flagged.
+  Seed 0 gives 100.0% caught and 0 false positives.
+- **The 2 held-out misses** are fabricated stats whose number also appears in the question ("Gakpo also recorded
+  16 key passes" on a Round-of-16 question). Numbers quoted from the question are allowed by design.
+- **When the correction fails to restore the original text,** the number is still flagged; it just is not
+  rewritten. This happens when the verifier cannot safely tell which player the number belongs to.
+
+**Audit trail.** The injection test found real verifier bugs, all fixed before the held-out run:
+
+- Decimal claims matched integer truths ("1.5" counted as rank 2).
+- Sums and differences of row values were accepted anywhere ("Netherlands – 8" when 8 = 5 + 3).
+- "followed by" counted as comparison wording.
+- "World Cup" blocked attributing a number to the player before it.
+
+The naive-baseline scorer had two more bugs:
+
+- **Rounding:** rounded stored truths made correct "65.38%" claims count as wrong, which inflated an early run to
+  41.9%.
+- **Team questions:** these were included at first.
 
 ## Training
 

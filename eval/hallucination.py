@@ -13,7 +13,8 @@ to what the naive model can fairly answer from its table: player questions with 
 whose ground-truth players all have 90+ minutes.
 
 Requires the teacher on :8000 with MAX_LEN=32768 and the student on :8001 (they can share one GPU).
-Usage: python -m eval.hallucination
+Usage: python -m eval.hallucination            (generate answers + score)
+       python -m eval.hallucination --rescore  (re-score saved answers with the current verifier)
 """
 import asyncio
 import json
@@ -74,6 +75,7 @@ def extra_truth(answer_entities: list[str]) -> dict:
         if kind == "player" and name in by_name.index:
             p = by_name.loc[name]
             exact = [float(p[c]) for c in COLUMNS[3:]]  # stored totals
+            exact.append(float(int(p["minutes"])))  # "271 minutes" for 271.7 is truncation, not a hallucination
             exact += [float(p[c]) / p["minutes"] * 90 for c in COLUMNS[5:] if p["minutes"] > 0]  # unrounded per-90
             for num, den in [("passes_completed", "passes_attempted"),
                              ("pressured_passes_completed", "pressured_passes_attempted")]:
@@ -115,45 +117,55 @@ def rate(flags) -> float:
     return round(100 * sum(flags) / len(flags), 1) if flags else None
 
 
-async def main_async():
-    rows = [json.loads(line) for p in DATASETS for line in p.read_text().splitlines() if line.strip()]
-    gold = [execute(parse_spec(r["spec"])) for r in rows]
-    subset = [i for i, (r, g) in enumerate(zip(rows, gold)) if naive_answerable(g["spec"], g["rows"])]
-    print(f"{len(rows)} questions, {len(subset)} answerable from the naive model's table")
-
+async def generate(rows, subset):
     sem = asyncio.Semaphore(48)
     client = AsyncOpenAI(base_url=ANSWER_URL, api_key="local", timeout=600)
     naive_answers = await run_naive([rows[i] for i in subset], client, sem, naive_system_prompt())
     pipeline_out = await run_pipeline(rows, sem)
-
-    records = []
-    for i, (r, g, p) in enumerate(zip(rows, gold, pipeline_out)):
-        rec = {"question": r["question"], "in_subset": i in subset, "gold_rows": g["rows"], "pipeline_type": p["type"]}
+    saved = []
+    for i, (r, p) in enumerate(zip(rows, pipeline_out)):
+        rec = {"question": r["question"], "pipeline_type": p["type"]}
         if p["type"] == "answer":
-            raw_gold = score(p["raw_answer"], g, r["question"])
-            body = p["answer"].split("\n\n⚠ Verification")[0]  # corrected text, without the flag note
-            final_gold = score(body, g, r["question"])
-            rec |= {"pipeline_raw": p["raw_answer"], "pipeline_final": p["answer"],
-                    "spec_correct": spec_key(p["spec"]) == spec_key(r["spec"]),
-                    "pipeline_self_check_ok": p["verification"]["ok"],
-                    "pipeline_raw_halluc": raw_gold.hallucinated_number,
-                    "pipeline_raw_issues": [i.__dict__ for i in raw_gold.issues],
-                    "pipeline_final_halluc": final_gold.hallucinated_number,
-                    "pipeline_final_flagged": "⚠ Verification" in p["answer"]}
+            rec |= {"pipeline_raw": p["raw_answer"], "pipeline_final": p["answer"], "pipeline_spec": p["spec"]}
         else:
             rec["pipeline_message"] = p.get("message")
-        records.append(rec)
+        saved.append(rec)
     for i, ans in zip(subset, naive_answers):
-        v = score(ans, gold[i], rows[i]["question"])
-        records[i] |= {"naive": ans, "naive_halluc": v.hallucinated_number, "naive_issues": [x.__dict__ for x in v.issues]}
-        if not v.ok:
-            log_catch({"source": "naive_baseline", "question": rows[i]["question"], "spec": gold[i]["spec"],
-                       "interpretation": gold[i]["interpretation"], "rows": gold[i]["rows"], "raw_answer": ans,
-                       "issues": [x.__dict__ for x in v.issues], "corrected_answer": correct(ans, v, gold[i])})
+        saved[i]["naive"] = ans
+    return saved
 
+
+def score_all(rows, gold, subset, saved):
+    """Score saved answers against ground truth; log naive catches. Pure function of the saved answers."""
+    records = []
+    for i, (r, g, s) in enumerate(zip(rows, gold, saved)):
+        rec = {"question": r["question"], "in_subset": i in subset, "gold_rows": g["rows"], **s}
+        if s["pipeline_type"] == "answer":
+            own = execute(parse_spec(s["pipeline_spec"]))
+            raw_gold = score(s["pipeline_raw"], g, r["question"])
+            final_gold = score(s["pipeline_final"].split("\n\n⚠ Verification")[0], g, r["question"])
+            rec |= {"spec_correct": spec_key(s["pipeline_spec"]) == spec_key(r["spec"]),
+                    "pipeline_self_check_ok": verify(s["pipeline_raw"], own, r["question"]).ok,
+                    "pipeline_raw_halluc": raw_gold.hallucinated_number,
+                    "pipeline_raw_issues": [x.__dict__ for x in raw_gold.issues],
+                    "pipeline_final_halluc": final_gold.hallucinated_number,
+                    "pipeline_final_flagged": "⚠ Verification" in s["pipeline_final"]}
+        if "naive" in s:
+            v = score(s["naive"], g, r["question"])
+            rec |= {"naive_halluc": v.hallucinated_number, "naive_issues": [x.__dict__ for x in v.issues]}
+            if not v.ok:
+                log_catch({"source": "naive_baseline", "question": r["question"], "spec": g["spec"],
+                           "interpretation": g["interpretation"], "rows": g["rows"], "raw_answer": s["naive"],
+                           "issues": [x.__dict__ for x in v.issues], "corrected_answer": correct(s["naive"], v, g)})
+        records.append(rec)
+    return records
+
+
+def summarise(rows, subset, records):
     sub = [records[i] for i in subset]
     answered = [r for r in sub if r["pipeline_type"] == "answer"]
-    summary = {
+    everyone = [r for r in records if r["pipeline_type"] == "answer"]
+    return {
         "n_questions": len(rows), "n_naive_answerable": len(subset),
         "naive": {"hallucinated_number_rate": rate(r["naive_halluc"] for r in sub),
                   "any_issue_rate": rate(bool(r["naive_issues"]) for r in sub)},
@@ -168,15 +180,37 @@ async def main_async():
                 r["pipeline_final_halluc"] and not r["pipeline_final_flagged"] for r in answered),
             "self_check_flag_rate": rate(not r["pipeline_self_check_ok"] for r in answered)},
         "pipeline_all_questions": {
-            "answered": sum(r["pipeline_type"] == "answer" for r in records),
-            "spec_correct_rate": rate(r["spec_correct"] for r in records if r["pipeline_type"] == "answer"),
-            "raw_hallucinated_number_rate": rate(r["pipeline_raw_halluc"] for r in records if r["pipeline_type"] == "answer"),
-            "self_check_flag_rate": rate(not r["pipeline_self_check_ok"] for r in records if r["pipeline_type"] == "answer")},
+            "answered": len(everyone),
+            "spec_correct_rate": rate(r["spec_correct"] for r in everyone),
+            "raw_hallucinated_number_rate": rate(r["pipeline_raw_halluc"] for r in everyone),
+            "self_check_flag_rate": rate(not r["pipeline_self_check_ok"] for r in everyone)},
     }
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--rescore", action="store_true",
+                        help="re-score the answers saved in logs/hallucination_records.json instead of regenerating")
+    args = parser.parse_args()
+
+    rows = [json.loads(line) for p in DATASETS for line in p.read_text().splitlines() if line.strip()]
+    gold = [execute(parse_spec(r["spec"])) for r in rows]
+    subset = [i for i, (r, g) in enumerate(zip(rows, gold)) if naive_answerable(g["spec"], g["rows"])]
+    print(f"{len(rows)} questions, {len(subset)} answerable from the naive model's table")
+    records_path = ROOT / "logs" / "hallucination_records.json"
+    if args.rescore:
+        keep = ("question", "pipeline_type", "pipeline_raw", "pipeline_final", "pipeline_spec", "pipeline_message", "naive")
+        saved = [{k: r[k] for k in keep if k in r} for r in json.loads(records_path.read_text())]
+        assert [s["question"] for s in saved] == [r["question"] for r in rows], "saved answers do not match questions"
+    else:
+        saved = asyncio.run(generate(rows, subset))
+    records = score_all(rows, gold, subset, saved)
+    summary = summarise(rows, subset, records)
     OUT.write_text(json.dumps(summary, indent=1))
-    (ROOT / "logs" / "hallucination_records.json").write_text(json.dumps(records, indent=1, ensure_ascii=False))
+    records_path.write_text(json.dumps(records, indent=1, ensure_ascii=False))
     print(json.dumps(summary, indent=1))
 
 
 if __name__ == "__main__":
-    asyncio.run(main_async())
+    main()
