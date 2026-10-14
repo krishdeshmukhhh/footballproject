@@ -94,3 +94,8 @@ def test_ambiguous_name_lists_all_candidates():
     with pytest.raises(NameNotResolved) as e:
         resolve_player("Hernández", players)
     assert e.value.ambiguous and {p for p, _ in e.value.suggestions} == {"Lucas Hernandez", "Theo Hernández"}
+
+
+def test_possessive_names_resolve():
+    _, players = load_tables()
+    assert players.set_index("player_id").loc[resolve_player("Ziyech's", players), "player"] == "Hakim Ziyech"

@@ -3,6 +3,7 @@
 Everything aggregates from player_match.parquet, so stage / opponent filters simply restrict the
 matches before summing. A player's position group is always their tournament-wide primary group.
 """
+import re
 import unicodedata
 from difflib import SequenceMatcher
 from functools import lru_cache
@@ -38,6 +39,7 @@ def load_tables():
 
 def _norm(s: str) -> str:
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    s = re.sub(r"['’]s\b", "", s)  # possessive: "Ziyech's" -> "Ziyech"
     return " ".join(s.lower().replace("-", " ").replace(".", " ").split())
 
 
