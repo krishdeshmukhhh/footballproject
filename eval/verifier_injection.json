@@ -1,0 +1,44 @@
+{
+ "seed": 0,
+ "base_answers": 459,
+ "false_positives_on_clean": 0,
+ "by_type": {
+  "number_perturb": {
+   "n": 394,
+   "catch_rate": 100.0,
+   "right_kind_rate": 100.0,
+   "restored_by_correction": 98.5
+  },
+  "name_swap": {
+   "n": 400,
+   "catch_rate": 100.0,
+   "right_kind_rate": 100.0
+  },
+  "team_swap": {
+   "n": 373,
+   "catch_rate": 100.0,
+   "right_kind_rate": 100.0
+  },
+  "fabricated_stat": {
+   "n": 400,
+   "catch_rate": 100.0,
+   "right_kind_rate": 100.0
+  },
+  "value_swap": {
+   "n": 236,
+   "catch_rate": 100.0,
+   "right_kind_rate": 100.0,
+   "restored_by_correction": 97.0
+  },
+  "order_swap": {
+   "n": 227,
+   "catch_rate": 100.0,
+   "right_kind_rate": 100.0
+  }
+ },
+ "overall": {
+  "n": 2030,
+  "catch_rate": 100.0,
+  "right_kind_rate": 100.0
+ }
+}

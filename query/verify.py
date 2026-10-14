@@ -13,6 +13,7 @@ verified rows for everything else. No LLM involved.
 """
 import re
 import unicodedata
+from decimal import ROUND_HALF_EVEN, ROUND_HALF_UP, Decimal
 from dataclasses import asdict, dataclass, field
 from functools import lru_cache
 from itertools import combinations
@@ -40,6 +41,11 @@ NUMBER_RE = re.compile(r"(?<![\w.])(\d+(?:,\d{3})*(?:\.\d+)?)(?:\s?(%|percent))?
 ORDINAL_RE = re.compile(r"\b(\d+)(?:st|nd|rd|th)\b|\b(" + "|".join(ORDINALS) + r")\b", re.I)
 WORD_NUMBER_RE = re.compile(r"\b(" + "|".join(WORD_NUMBERS) + r")\b", re.I)
 LIST_MARKER_RE = re.compile(r"^\s*(\d+)[.)]\s", re.M)
+# Capitalised words that are not names, so they do not block attributing a number to a player.
+NOT_NAMES = {"World", "Cup", "FIFA", "Round", "Group", "Stage", "Final", "Finals", "Quarter", "Semi", "Third", "Place",
+             "Knockout", "Qatar", "The", "In", "At", "With", "Per", "Total", "Top", "Overall", "He", "His", "They"}
+COMPARISON_RE = re.compile(r"\b(more|less|fewer|than|ahead|behind|difference|gap|margin|combined|together|edged|"
+                           r"lead of)\b", re.I)
 
 
 @dataclass
@@ -94,16 +100,22 @@ def _fmt(value) -> str:
 
 
 def _decimals(x: float) -> int:
-    text = repr(float(x))
-    return 0 if text.endswith(".0") else len(text.split(".")[1])
+    """Decimals in the shortest representation of x (8.0 -> 0, 10.55 -> 2, 1e20 -> 0)."""
+    return max(0, -Decimal(repr(float(x))).normalize().as_tuple().exponent)
 
 
 def _matches(claim: float, decimals: int, truth: float) -> bool:
-    """True if `claim`, written with `decimals` decimals, is `truth` rounded to that precision. A claim more
-    precise than the stored truth (10.554 vs a stored 10.55) is compared at the truth's precision."""
+    """True if `claim`, written with `decimals` decimals, is `truth` rounded to that precision (half-up or
+    half-even, so 1.5 -> 2 but never 1). A claim more precise than the stored truth (10.554 vs a stored 10.55)
+    is compared at the truth's precision."""
     if decimals > _decimals(truth):
+        if _decimals(truth) == 0:  # integer truths (counts, ranks, matches) are exact: 1.5 is not "2"
+            return abs(claim - truth) <= 1e-9
         return abs(round(claim, _decimals(truth)) - truth) <= 1e-9
-    return abs(claim - truth) <= 0.5 * 10 ** -decimals + 1e-9
+    q = Decimal(1).scaleb(-decimals)
+    t = Decimal(repr(float(truth)))
+    c = Decimal(repr(float(claim))).quantize(q)
+    return c in (t.quantize(q, ROUND_HALF_UP), t.quantize(q, ROUND_HALF_EVEN))
 
 
 # ---------------------------------------------------------------- entity index
@@ -168,7 +180,7 @@ def _unrecognised_name_between(text, mentions, owner, number) -> bool:
     covered = {i for a, b, _ in mentions for i in range(a, b)}
     for m in re.finditer(r"\b[A-ZÀ-Ý][\wÀ-ÿ'-]+", text[lo:hi]):
         start = lo + m.start()
-        if start in covered:
+        if start in covered or m.group(0).split("-")[0] in NOT_NAMES:
             continue
         prev = text[:start].rstrip()
         if not prev or prev[-1] in ".!?:\n(":
@@ -192,8 +204,9 @@ def verify(answer: str, result: dict, question: str = "", extra_truth: dict | No
     values = [r["value"] for r in rows]
     generic = [90, 2022, spec["limit"], len(rows), result["min_minutes_applied"], *range(1, len(rows) + 1),
                DEFAULT_MIN_MINUTES, DEFAULT_MIN_MINUTES_SUBSET]  # quoting a threshold convention is not a stat
-    generic += [round(abs(a - b), 3) for a, b in combinations(values, 2)]
-    generic += [round(a + b, 3) for a, b in combinations(values, 2)]
+    # Differences and sums of row values are only accepted next to comparison wording ("3 more than").
+    derived = [round(abs(a - b), 3) for a, b in combinations(values, 2)]
+    derived += [round(a + b, 3) for a, b in combinations(values, 2)]
     generic += [float(n.replace(",", "")) for n, _ in NUMBER_RE.findall(question)]
     generic += [WORD_NUMBERS[w.lower()] for w in WORD_NUMBER_RE.findall(question)]
 
@@ -232,10 +245,14 @@ def verify(answer: str, result: dict, question: str = "", extra_truth: dict | No
             owner = None  # never guess who the number belongs to
         if owner and any(_matches(claim, decimals, t) for t in own[owner[2]]):
             continue
-        if any(_matches(claim, decimals, t) for t in generic):
-            continue
-        # Attribution means the number is another result row's value (not its minutes or match count).
+        # Attribution means the number is another result row's value (not its minutes or match count). Checked
+        # before the generic numbers, so "Morita – 10" is caught even when 10 is also the question's "top 10".
         others = [k for k, r in by_key.items() if owner and k != owner[2] and _matches(claim, decimals, r["value"])]
+        if not others and any(_matches(claim, decimals, t) for t in generic):
+            continue
+        if not others and COMPARISON_RE.search(answer[max(0, a - 30):b + 30]) and \
+                any(_matches(claim, decimals, t) for t in derived):
+            continue
         if owner and others:
             issues.append(Issue("attribution", answer[a:b],
                                 f"{answer[a:b]} belongs to {others[0].split(':', 1)[1]}, not {owner[2].split(':', 1)[1]} "

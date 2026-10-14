@@ -59,3 +59,19 @@ def test_team_rankings():
     assert verify("Japan led with 159.69 per 90, ahead of Iran (150.67) and Morocco (147.95).", team).ok
     v = verify("Japan led with 150.67, then Iran (159.69) and Morocco (147.95).", team)
     assert {i.kind for i in v.issues} == {"attribution"}
+
+
+def test_rounding_rules():
+    from query.verify import _matches
+    assert _matches(2, 0, 1.5) and not _matches(1, 0, 1.5)          # 1.5 rounds to 2, never 1
+    assert _matches(10.6, 1, 10.55) and _matches(10.554, 3, 10.55)  # rounded claim / more precise claim
+    assert not _matches(1.5, 1, 2) and _matches(2.0, 1, 2)          # integer truths are exact
+
+
+def test_derived_numbers_need_comparison_wording():
+    team = execute(parse_spec({"metric": "non_penalty_goals", "group_by": "team",
+                               "filters": {"position_groups": ["AM", "CM", "DM"]}}))
+    top = team["rows"][0]
+    s = sum(r["value"] for r in team["rows"][:2])
+    assert not verify(f"{top['team']} - {s}", team).ok                  # a sum posing as a row value
+    assert verify(f"{top['team']} and {team['rows'][1]['team']} combined for {s}", team).ok
