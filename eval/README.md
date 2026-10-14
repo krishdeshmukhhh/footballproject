@@ -72,17 +72,22 @@ Brozović question.
 Over all 461 questions the pipeline's answers had 0 hallucinated numbers (specs correct 99.8%).
 
 The hallucinated-number rate is a **lower bound**. A number only counts as hallucinated if it is not *any* true
-stat of the player it is attached to. A true number in the wrong role is not counted: for example, Messi's xT
-*total* (1.759) quoted as his xT per 90 counts only as a wrong-player error.
+stat of the player it is attached to, so wrong numbers that happen to equal another true stat slip through.
+Examples from the final run:
 
-Typical naive catches (all logged in `logs/verifier_catches.jsonl` with `source: naive_baseline`):
+- "Mbappé – 8" shot-creating actions (true: 41) passes, because 8 is his goal total. The answer is still caught for
+  listing the wrong players.
+- Veljković's 7 progressive passes in 221.8 minutes given as "2.89 per 90" (true: 2.84) passes, because another of
+  his per-90 stats rounds to 2.89.
 
-- **Arithmetic:** Veljković made 7 progressive passes in 221.8 minutes, which is 2.84 per 90. The naive model said
-  2.89.
-- **Invented stat lines:** "Varane, 96.5% (251/260)" for best pass completion. The true leader is Marquinhos at
-  96.1%; neither 96.5 nor 260 is Varane's.
-- **Wrong rows entirely:** Wales' Joe Allen listed among "Canada players with the fewest shots per 90"; Mbappé's
-  41 shot-creating actions given as 8.
+Naive catches from the final run (all 211 naive catches are in `logs/verifier_catches.jsonl` with
+`source: naive_baseline`):
+
+- **Invented numbers:** "Modrić had 115 pressures, while Schmeichel had **35**". The goalkeeper's true count is 0.
+  Similarly, "Costa completed **53** progressive passes"; Diogo Costa's true count is 0.
+- **Arithmetic:** "Varane … **99.64%** pass completion (251 out of 280)". The model's own fraction is 89.6%, and
+  the true leader is Marquinhos at 96.1%.
+- **Wrong rows:** Wales' Joe Allen and Joe Rodon listed among "Canada players with the fewest shots per 90".
 
 **Scorer audit.** Two scorer bugs surfaced during development and were fixed before the reported run:
 
