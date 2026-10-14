@@ -1,0 +1,24 @@
+{
+ "n_questions": 461,
+ "n_naive_answerable": 290,
+ "naive": {
+  "hallucinated_number_rate": 14.1,
+  "any_issue_rate": 72.8
+ },
+ "pipeline_on_subset": {
+  "answered": 290,
+  "did_you_mean_or_error": 0,
+  "spec_correct_rate": 99.7,
+  "raw_hallucinated_number_rate": 0.0,
+  "raw_hallucinated_number_rate_when_spec_correct": 0.0,
+  "final_hallucinated_number_rate": 0.0,
+  "final_unflagged_hallucination_rate": 0.0,
+  "self_check_flag_rate": 0.0
+ },
+ "pipeline_all_questions": {
+  "answered": 461,
+  "spec_correct_rate": 99.8,
+  "raw_hallucinated_number_rate": 0.0,
+  "self_check_flag_rate": 0.0
+ }
+}

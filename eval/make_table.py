@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 RESULTS = Path(__file__).parent / "results.json"
+HALLUCINATION = Path(__file__).parent / "hallucination.json"
 ROWS = [("teacher", "Qwen3-32B few-shot (teacher)"), ("base8b", "Base Qwen3-8B few-shot"),
         ("sft", "SFT Qwen3-8B (LoRA)"), ("grpo", "SFT + GRPO Qwen3-8B")]
 DATASETS = [("test", "generated test"), ("dev_hard", "dev/hard"), ("handwritten_test", "hand-written")]
@@ -13,6 +14,10 @@ DATASETS = [("test", "generated test"), ("dev_hard", "dev/hard"), ("handwritten_
 
 def main():
     res = json.loads(RESULTS.read_text())
+    hall = json.loads(HALLUCINATION.read_text()) if HALLUCINATION.exists() else None
+    # End-to-end hallucination is measured for the deployed pipeline (SFT student + 32B answers + verifier).
+    halluc_col = {"sft": f"{hall['pipeline_all_questions']['raw_hallucinated_number_rate']}% "
+                         f"(n={hall['pipeline_all_questions']['answered']})"} if hall else {}
     head = ["System", "Valid JSON %"] + [f"Exec acc % ({label})" for _, label in DATASETS] + \
            ["Hallucinated-number rate", "Latency p50 / p95 (s)", "Weights in GPU memory (GiB)"]
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
@@ -25,7 +30,15 @@ def main():
         accs = [f"{r[d]['exec_acc']} (n={r[d]['n']})" if d in r else "pending" for d, _ in DATASETS]
         mem = main_ds.get("weights_gib") or "?"
         lines.append(f"| {label} | {main_ds['valid_json']} | " + " | ".join(accs) +
-                     f" | pending Phase 3 | {main_ds['latency_p50_s']} / {main_ds['latency_p95_s']} | {mem} |")
+                     f" | {halluc_col.get(key, 'not measured')} | {main_ds['latency_p50_s']} / {main_ds['latency_p95_s']} | {mem} |")
+    if hall:
+        sub = hall["pipeline_on_subset"]
+        lines += ["", f"Naive vs pipeline, same {hall['n_naive_answerable']} player questions:", "",
+                  "| System | Hallucinated-number rate | Any verified error |", "|---|---|---|",
+                  f"| Naive: Qwen3-32B + full stats table in context | {hall['naive']['hallucinated_number_rate']}% "
+                  f"| {hall['naive']['any_issue_rate']}% |",
+                  f"| Pipeline: SFT 8B query + Qwen3-32B answer, raw | {sub['raw_hallucinated_number_rate']}% "
+                  f"| {sub['self_check_flag_rate']}% |"]
     print("\n".join(lines))
 
 

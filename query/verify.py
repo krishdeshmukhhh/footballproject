@@ -17,7 +17,7 @@ from dataclasses import asdict, dataclass, field
 from functools import lru_cache
 from itertools import combinations
 
-from query.executor import load_tables
+from query.executor import DEFAULT_MIN_MINUTES, DEFAULT_MIN_MINUTES_SUBSET, load_tables
 from query.schema import TEAMS
 
 WORD_NUMBERS = {w: i for i, w in enumerate(
@@ -93,7 +93,16 @@ def _fmt(value) -> str:
     return f"{value:,}" if isinstance(value, int) else str(value)
 
 
+def _decimals(x: float) -> int:
+    text = repr(float(x))
+    return 0 if text.endswith(".0") else len(text.split(".")[1])
+
+
 def _matches(claim: float, decimals: int, truth: float) -> bool:
+    """True if `claim`, written with `decimals` decimals, is `truth` rounded to that precision. A claim more
+    precise than the stored truth (10.554 vs a stored 10.55) is compared at the truth's precision."""
+    if decimals > _decimals(truth):
+        return abs(round(claim, _decimals(truth)) - truth) <= 1e-9
     return abs(claim - truth) <= 0.5 * 10 ** -decimals + 1e-9
 
 
@@ -181,7 +190,8 @@ def verify(answer: str, result: dict, question: str = "", extra_truth: dict | No
     for k, extra in (extra_truth or {}).items():
         own.setdefault(k, []).extend(extra)
     values = [r["value"] for r in rows]
-    generic = [90, 2022, spec["limit"], len(rows), result["min_minutes_applied"], *range(1, len(rows) + 1)]
+    generic = [90, 2022, spec["limit"], len(rows), result["min_minutes_applied"], *range(1, len(rows) + 1),
+               DEFAULT_MIN_MINUTES, DEFAULT_MIN_MINUTES_SUBSET]  # quoting a threshold convention is not a stat
     generic += [round(abs(a - b), 3) for a, b in combinations(values, 2)]
     generic += [round(a + b, 3) for a, b in combinations(values, 2)]
     generic += [float(n.replace(",", "")) for n, _ in NUMBER_RE.findall(question)]
@@ -224,7 +234,8 @@ def verify(answer: str, result: dict, question: str = "", extra_truth: dict | No
             continue
         if any(_matches(claim, decimals, t) for t in generic):
             continue
-        others = [k for k, nums in own.items() if owner and k != owner[2] and any(_matches(claim, decimals, t) for t in nums)]
+        # Attribution means the number is another result row's value (not its minutes or match count).
+        others = [k for k, r in by_key.items() if owner and k != owner[2] and _matches(claim, decimals, r["value"])]
         if owner and others:
             issues.append(Issue("attribution", answer[a:b],
                                 f"{answer[a:b]} belongs to {others[0].split(':', 1)[1]}, not {owner[2].split(':', 1)[1]} "

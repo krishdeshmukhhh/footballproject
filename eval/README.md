@@ -6,10 +6,17 @@ Regenerate the table with `python -m eval.make_table`; raw numbers are in `resul
 
 | System | Valid JSON % | Exec acc % (generated test) | Exec acc % (dev/hard) | Exec acc % (hand-written) | Hallucinated-number rate | Latency p50 / p95 (s) | Weights in GPU memory (GiB) |
 |---|---|---|---|---|---|---|---|
-| Qwen3-32B few-shot (teacher) | 100.0 | 99.8 (n=443) | 94.4 (n=18) | pending | pending Phase 3 | 1.473 / 1.571 | 61.03 |
-| Base Qwen3-8B few-shot | 100.0 | 96.8 (n=443) | 94.4 (n=18) | pending | pending Phase 3 | 0.439 / 0.469 | 15.27 |
-| SFT Qwen3-8B (LoRA) | 100.0 | 99.8 (n=443) | 100.0 (n=18) | pending | pending Phase 3 | 0.433 / 0.461 | 15.27 |
+| Qwen3-32B few-shot (teacher) | 100.0 | 99.8 (n=443) | 94.4 (n=18) | pending | not measured | 1.473 / 1.571 | 61.03 |
+| Base Qwen3-8B few-shot | 100.0 | 96.8 (n=443) | 94.4 (n=18) | pending | not measured | 0.439 / 0.469 | 15.27 |
+| SFT Qwen3-8B (LoRA) | 100.0 | 99.8 (n=443) | 100.0 (n=18) | pending | 0.0% (n=461) | 0.433 / 0.461 | 15.27 |
 | SFT + GRPO Qwen3-8B | not run | not run | not run | not run | not run | not run | not run |
+
+Naive vs pipeline, same 290 player questions:
+
+| System | Hallucinated-number rate | Any verified error |
+|---|---|---|
+| Naive: Qwen3-32B + full stats table in context | 14.1% | 72.8% |
+| Pipeline: SFT 8B query + Qwen3-32B answer, raw | 0.0% | 0.0% |
 
 Validation split (n=386): teacher 98.7, base 8B 93.0, SFT 98.2. Throughput at 48 concurrent requests: teacher
 ~21 q/s, both 8B models ~40 q/s. Latency is single sequential requests.
@@ -42,6 +49,48 @@ Brozović question.
 - **Name copying.** The student sometimes "corrects" a misspelled or accented name instead of copying it
   ("Theo Hernédez", "Firas Albirkan"). Resolution then fails and the question errors out instead of answering.
 - **Ambiguous paraphrases** account for most of the rest (passes "managed" under pressure: attempted or completed?).
+
+## Hallucinated numbers: naive LLM vs the pipeline (Phase 3)
+
+`python -m eval.hallucination` (results in `hallucination.json`; per-question records in
+`logs/hallucination_records.json`).
+
+- **Naive:** Qwen3-32B with the whole player table in its context (players with 90+ minutes, about 31k tokens of
+  CSV) and the pipeline's conventions in its prompt, answering directly.
+- **Pipeline:** SFT 8B spec, then executed result, then Qwen3-32B answer from the rows, then the verifier.
+- **Scoring:** both are checked against the ground-truth result with the same verifier (`query/verify.py`).
+- **Questions:** the generated test split plus dev/hard (never the hand-written set). The comparison uses the 290
+  player questions the naive model can fairly answer: no stage or opponent filter, and every ground-truth player
+  is in its table. Team questions are excluded because the table omits players under 90 minutes, so a team sum could
+  be short through no fault of the model.
+
+| | Hallucinated-number rate | Any verified error (numbers, wrong players/teams, order) |
+|---|---|---|
+| Naive Qwen3-32B | **14.1%** | 72.8% |
+| Pipeline (raw LLM answer, before correction) | **0.0%** | 0.0% |
+
+Over all 461 questions the pipeline's answers had 0 hallucinated numbers (specs correct 99.8%).
+
+The hallucinated-number rate is a **lower bound**. A number only counts as hallucinated if it is not *any* true
+stat of the player it is attached to. A true number in the wrong role is not counted: for example, Messi's xT
+*total* (1.759) quoted as his xT per 90 counts only as a wrong-player error.
+
+Typical naive catches (all logged in `logs/verifier_catches.jsonl` with `source: naive_baseline`):
+
+- **Arithmetic:** Veljković made 7 progressive passes in 221.8 minutes, which is 2.84 per 90. The naive model said
+  2.89.
+- **Invented stat lines:** "Varane, 96.5% (251/260)" for best pass completion. The true leader is Marquinhos at
+  96.1%; neither 96.5 nor 260 is Varane's.
+- **Wrong rows entirely:** Wales' Joe Allen listed among "Canada players with the fewest shots per 90"; Mbappé's
+  41 shot-creating actions given as 8.
+
+**Scorer audit.** Two scorer bugs surfaced during development and were fixed before the reported run:
+
+- **Precision:** true percentages were stored rounded, so a correctly computed "65.38%" was counted wrong. This
+  inflated the naive rate to 41.9%.
+- **Team questions:** these were counted at first; see the scope note above.
+
+Samples of the remaining catches were checked by hand.
 
 ## Training
 
