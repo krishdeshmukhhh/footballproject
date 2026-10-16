@@ -1,0 +1,408 @@
+[
+ {
+  "question": "Who were the top full backs for passes attempted against Netherlands?",
+  "raw": "{\"metric\": \"passes_attempted\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"FB\"], \"stages\": null, \"opponents\": [\"Netherlands\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had da most pass attempts under preasure per 90 by cb's in the WC?",
+  "raw": "{\"metric\": \"passes_attempted\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which defensive midfielders scored the most non-penalty goals per 90 against Spain?",
+  "raw": "{\"metric\": \"non_penalty_goals\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"DM\"], \"stages\": null, \"opponents\": [\"Spain\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who created the most chances in the semi-finals? I wanna see the top 3 guys.",
+  "raw": "{\"metric\": \"key_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": [\"Semi-finals\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the highest xG in the 3rd place match?",
+  "raw": "{\"metric\": \"xg\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": [\"3rd Place Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the top 3 wingers with the mos key psses per 90 wrt than 200 mins played, in qrter?",
+  "raw": "{\"metric\": \"key_passes\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"W\"], \"stages\": [\"Quarter-finals\"], \"opponents\": null, \"min_minutes\": 200}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the top 5  pass masters per 90 against wales while all the preshure was on em, tryin to keep the ball under duress, y'know.",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"Wales\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who was the most annoying fullback for Mexico on the ball defense 2022 sides?",
+  "raw": "{\"metric\": \"pressured_passes_attempted\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"FB\"], \"stages\": null, \"opponents\": [\"Mexico\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "How many passes per 90 did Noppert complete while under pressure during the 2022 World Cup in Qatar?",
+  "raw": "{\"metric\": \"passes_completed\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": [\"Noppert\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who scored the most goals for South Korea at the 2022 World Cup?",
+  "raw": "{\"metric\": \"goals\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"South Korea\"], \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who are the top 5 teams in terms of their central midfielders setting up goals per 90 minutes?",
+  "raw": "{\"metric\": \"key_passes\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were da best wingers wiv the highest pass comp% under pressur from oppoents 2022 world cup",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"W\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who was the most prolific defensive midfielder in passing the ball around 90 minutes in Qatar?",
+  "raw": "{\"metric\": \"passes_completed\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"DM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the top 15 centre-backs and full-backs who attempted the most passes per 90 minutes, and which teams did they come from.",
+  "raw": "{\"metric\": \"passes_attempted\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CB\", \"FB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 15}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the most passes under preshure among center backs that played 180 mins +?",
+  "raw": "{\"metric\": \"pressured_passes_attempted\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": 180}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "I'm curious, who were the top 5 defenders  who made the most passes per 90 minutes in the semi-finals?",
+  "raw": "{\"metric\": \"passes_attempted\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CB\", \"FB\"], \"stages\": [\"Semi-finals\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who's been hustlin' n pressin' the most on the ball, checkin the top 10 forwards who've put in atleast 270 mins?",
+  "raw": "{\"metric\": \"pressures\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\", \"W\"], \"stages\": null, \"opponents\": null, \"min_minutes\": 270}, \"sort\": \"desc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "How accurate was Woo-Young Jun's passing  when he was under pressure in the knockout rounds?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Woo-Young Jun\"], \"teams\": null, \"position_groups\": null, \"stages\": [\"Round of 16\", \"Quarter-finals\", \"Semi-finals\", \"3rd Place Final\", \"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "How mnay xG does Rapinah expectd when he has 90 mins on the pitch, dont count the pens?",
+  "raw": "{\"metric\": \"npxg\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": [\"Rapinah\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which were the 5 teams that completed the fewest passes against Senegal?",
+  "raw": "{\"metric\": \"passes_completed\", \"per90\": false, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"Senegal\"], \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the two teams that created the most expected threat through passing and carrying the ball in their final 2022 FIFA World Cup match?",
+  "raw": "{\"metric\": \"xt_added\", \"per90\": false, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 2}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the top 5 players in terms of minutes played for Switzerland in the round of 16?",
+  "raw": "{\"metric\": \"minutes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Switzerland\"], \"position_groups\": null, \"stages\": [\"Round of 16\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who's had the most finnalz n all in the 2022 World Cup Qater from the midfield 5?",
+  "raw": "{\"metric\": \"assists\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"AM\", \"CM\", \"DM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who scored the most goals in the third place match?",
+  "raw": "{\"metric\": \"goals\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": [\"3rd Place Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had da most pass attempts under preasure per 90 by a tunisian?",
+  "raw": "{\"metric\": \"passes_attempted\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Tunisia\"], \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "So who had da most progressive carries agenst Ghana?",
+  "raw": "{\"metric\": \"progressive_carries\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"Ghana\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who was Netherlands' leading striker for pressures applied to opponents on the ball in 90s at the 2022 FIFA World Cup.",
+  "raw": "{\"metric\": \"pressures\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Netherlands\"], \"position_groups\": [\"ST\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which of those midfielders,  Gvardiol, De Jong or Xhaka, had the best xT in Qatar wrt adding it wiv passes n carries, fellas?",
+  "raw": "{\"metric\": \"xt_added\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Gvardiol\", \"De Jong\", \"Xhaka\"], \"teams\": null, \"position_groups\": [\"AM\", \"CM\", \"DM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the top 10 QB National Team defenders for 2022 Qatar World Cup by shots per 90?",
+  "raw": "{\"metric\": \"shots\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CB\", \"FB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 10}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who the hells been havin' the most shots? Give  us the top 5 atakin midfilders who've had a crack at goal n played at least 200 mins, dont care what part of the tournement it was, just give it to us straight.",
+  "raw": "{\"metric\": \"shots\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"AM\", \"CM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": 200}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the tops defenders when it came to rips of passes under pressrure durring knockout rounds, Top 6 crew?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CB\", \"FB\"], \"stages\": [\"Round of 16\", \"Quarter-finals\", \"Semi-finals\", \"3rd Place Final\", \"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 6}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who happened to be the forward with the highest pass completion percentage under pressure during the World Cup final?",
+  "raw": "{\"metric\": \"pressured_pass_completion_pct\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\"], \"stages\": [\"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which team's central midfielders applied the most pressures per game?",
+  "raw": "{\"metric\": \"pressures\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CM\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who scored the most goals ovr all in the 2022 World Cup? The top 6 teams 2gether plz",
+  "raw": "{\"metric\": \"goals\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 6}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the top three strikers who completed passes under pressure the most against Iran?  90 minutes minimum",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\"], \"stages\": null, \"opponents\": [\"Iran\"], \"min_minutes\": 90}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Oh mate, can you compare sides by side the xT added by Aziz Behich and Neymar Jr in the group stage of the 2022 World Cup?",
+  "raw": "{\"metric\": \"xt_added\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Aziz Behich\", \"Neymar Jr\"], \"teams\": null, \"position_groups\": null, \"stages\": [\"Group Stage\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 2}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which team attempted the most passes per 90 minutes in the third-place match.",
+  "raw": "{\"metric\": \"passes_attempted\", \"per90\": true, \"group_by\": \"team\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": [\"3rd Place Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who played least efficiently in the round of 16 of the 2022 World Cup in terms of  Non-penalty xG",
+  "raw": "{\"metric\": \"npxg\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": [\"Round of 16\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who made the most progressive passes among the full backs in the quarter-finals?",
+  "raw": "{\"metric\": \"progressive_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"FB\"], \"stages\": [\"Quarter-finals\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the most passes off Mexico in 2022 World Cup Matches?  Tells me top 3!",
+  "raw": "{\"metric\": \"passes_attempted\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Mexico\"], \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who was the most silky passin' lad under preshure with the ball?",
+  "raw": "{\"metric\": \"pressured_passes_completed\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Plz compare the xG for João Félix, Kieffer Moore and Rabman.",
+  "raw": "{\"metric\": \"xg\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"João Félix\", \"Kieffer Moore\", \"Rabman\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who are the top 20 goalkeepers in the 2022 World Cup quarter-finals, as ranked by most passes completed per 90 minutes.",
+  "raw": "{\"metric\": \"passes_completed\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"GK\"], \"stages\": [\"Quarter-finals\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 20}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who made the most key passes against Ghana?  just wanna see the top 3 teams who gave all the assists to others as they smashed shots at Ghana's goal.",
+  "raw": "{\"metric\": \"key_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"Ghana\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the five full-backs who completed the most passes per 90 minutes in the  2022 FIFA World Cup final?",
+  "raw": "{\"metric\": \"passes_completed\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"FB\"], \"stages\": [\"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "So who had da most progressive carries agenst poland?  Gonna list da top 15 national teams for me?",
+  "raw": "{\"metric\": \"progressive_carries\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"Poland\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 15}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the best midfielders in the final for xT 90 min?",
+  "raw": "{\"metric\": \"xt_added\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Argentina\", \"France\"], \"position_groups\": [\"CM\", \"DM\", \"AM\"], \"stages\": [\"Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the most key passes in the round of 16 games against Portugal?",
+  "raw": "{\"metric\": \"key_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": [\"Round of 16\"], \"opponents\": [\"Portugal\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who had the most progressive passes against Costa Rica in the 2022 world cup.",
+  "raw": "{\"metric\": \"progressive_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"Costa Rica\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the top 3 centre-backs and full-backs  from Cameroon with the highest pass completion rate per 90 minutes in the 2022 World Cup?",
+  "raw": "{\"metric\": \"pass_completion_pct\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": [\"Cameroon\"], \"position_groups\": [\"CB\", \"FB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which goalkeeper had the highest pass rate per 90?",
+  "raw": "{\"metric\": \"pass_completion_pct\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"GK\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the centre-backs that made the most passes under pressure per 90 minutes?  Let's see the top 5",
+  "raw": "{\"metric\": \"pressured_passes_attempted\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the  forwards scoring goals the most often per 90 minutes for their team?",
+  "raw": "{\"metric\": \"goals\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"ST\", \"W\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which 3 players had the least pressure passes per 90 mins in Qatar 2022?",
+  "raw": "{\"metric\": \"pressures\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which full-backs had the highest pass completion percentage under pressure at the World Cup? Don't you want the top 3 players.",
+  "raw": "{\"metric\": \"pass_completion_pct\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"FB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 3}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Which centre-back created the most chances per 90 minutes?",
+  "raw": "{\"metric\": \"key_passes\", \"per90\": true, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": [\"CB\"], \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who were the guys who passed least under pressure in the third-place match?",
+  "raw": "{\"metric\": \"pressured_passes_attempted\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": [\"3rd Place Final\"], \"opponents\": null, \"min_minutes\": null}, \"sort\": \"asc\", \"limit\": 5}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ },
+ {
+  "question": "Who scored the most goals against South Korea at the 2022 World Cup?",
+  "raw": "{\"metric\": \"goals\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": null, \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": [\"South Korea\"], \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false
+ }
+]
