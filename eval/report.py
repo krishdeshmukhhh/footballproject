@@ -19,7 +19,7 @@ from pathlib import Path
 
 from query.describe import FAMILIES
 
-from eval import examples, hallucination, verifier_injection
+from eval import audit_sample, examples, hallucination, verifier_injection
 from eval.make_table import INDEPENDENT_SYSTEMS, comparison_table, independent_table, injection_table, main_table
 from eval.run_eval import CONCURRENCY
 
@@ -233,8 +233,9 @@ def static_facts() -> dict:
                       f"about {audit.get('estimated_naive_error_rate')}% of naive answers contain an error. "
                       f"Earlier, {mine}")
     else:
-        audit_text = (f"{mine[0].upper()}{mine[1:]} A blind audit of 100 answers (50 flagged, 50 passed, verdicts "
-                      f"hidden) is in `audit_sample.md`, waiting to be marked.")
+        n = audit_sample.N_PER_STRATUM
+        audit_text = (f"{mine[0].upper()}{mine[1:]} A blind audit of {2 * n} answers ({n} flagged, {n} passed, "
+                      f"verdicts hidden) is in `audit_sample.md`, waiting to be marked.")
     return {"audit_text": audit_text,
             "audit_trail": "\n".join(f"- {b}{DAGGER}" for b in t["injection_bugs"]),
             "rounding_example": t["scorer_rounding_example"] + DAGGER,

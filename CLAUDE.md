@@ -33,6 +33,11 @@ number, name and ranking against the result. The goal is answers that never stat
   On the same 290 player questions, naive Qwen3-32B with the stats table in context: 33.1% hallucinated number,
   78.6% any verified error (the first is a subset of the second). Pipeline: 0.0% and 0.3% (1 answer, a
   contaminated label). Error injection, held-out seed 2: 99.9% caught, 0 false positives.
+- **Independent test set: done.** `eval/independent_test.jsonl` (297 questions by Mistral Small 24B from specs
+  sampled in code, no round-trip filter, 3 writer errors dropped before any run) and
+  `eval/independent_misspelled.jsonl` (20, scored separately). Exec accuracy teacher / base 8B / SFT 80.5 / 75.1 /
+  80.8; misspelled-name pass 90 / 90 / 90 (ceiling 19 of 20). 41 questions fail on all three systems, most of them
+  writer errors (`eval/runs/independent_all_failed.json`), left as labelled.
 - **Phase 4: not started.** Waiting on the open items below.
 
 ## Key commands and files
@@ -52,8 +57,8 @@ number, name and ranking against the result. The goal is answers that never stat
 
 - **Verifier (`query/verify.py`).** The injection result is a held-out number (seed 2, run once after the fix
   rounds on seeds 0 and 1). Any change needs a fresh unseen seed and a re-run of `eval.report`.
-- **Existing eval sets** (`data/{train,val,test}.jsonl`, `eval/dev_hard.jsonl`, the naive answers in
-  `eval/runs/hallucination_records.json`). The naive answers were sampled at temperature 0.7 and are under hand
+- **Existing eval sets** (`data/{train,val,test}.jsonl`, `eval/dev_hard.jsonl`, `eval/independent_*.jsonl`, the
+  naive answers in `eval/runs/hallucination_records.json`). The naive answers were sampled at temperature 0.7 and are under hand
   audit, so regenerating them would change what is being audited. Known label problems are reported, not relabelled.
 
 ## Known issues, not fixed
@@ -62,6 +67,8 @@ number, name and ranking against the result. The goal is answers that never stat
   ground-truth value in the eval sets is negative, so no score changed.
 - **First-name matching:** a first name unique in the dataset can match the wrong player ("Joshua" matched Kimmich,
   "Joakim" matched Maehle). The answer is still flagged, but the issue names the wrong player.
+- **Surname step picks the wrong player:** "Woo-Young Jun" resolves silently to Son Jun-Ho ("Jun" is a token unique
+  to him), which breaks the never-guess rule. "Neymar Jr" does not resolve. Found on the independent set, not fixed.
 - Contaminated labels: a few paraphrases say "forward" with label `[ST]` (teacher bias passed the round-trip).
 
 ## Decisions and why
@@ -78,10 +85,8 @@ number, name and ranking against the result. The goal is answers that never stat
 
 ## Open items (in order)
 
-1. **Independent-model test set:** questions written by a non-Qwen model, from specs sampled in code, with **no**
-   teacher round-trip filter, so it does not favor the teacher.
-2. **40-answer hand audit** by the user in `eval/audit_sample.md` (100 items are generated; `--score` uses only
-   the marked ones). Then `python -m eval.report` picks up `eval/audit_results.json`.
-3. **10 stress questions the user writes**, plus the hand-written set (`eval/HANDWRITTEN.md`). Do not draft them.
-4. **Phase 4:** a small demo (chat UI with preloaded example questions, interpretation echo and verifier flags).
-5. **GRPO only if the new test set shows a gap** between the SFT student and the teacher.
+1. **40-answer hand audit** by the user in `eval/audit_sample.md` (20 flagged, 20 passed; the old 100-item file is
+   `eval/audit_sample_100.md`, not scored). Then `python -m eval.report` picks up `eval/audit_results.json`.
+2. **10 stress questions the user writes**, plus the hand-written set (`eval/HANDWRITTEN.md`). Do not draft them.
+3. **Phase 4:** a small demo (chat UI with preloaded example questions, interpretation echo and verifier flags).
+4. **GRPO only if a test set shows a gap** between the SFT student and the teacher. The independent set shows none.

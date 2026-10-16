@@ -118,7 +118,8 @@ python -m eval.make_table
 - **Hand-written test set:** `eval/handwritten_test.jsonl` is an empty placeholder for 50-100 questions written by
   hand (see `eval/HANDWRITTEN.md`). It is the unbiased teacher-vs-student benchmark.
 - **Known bias:** the drift filter keeps only paraphrases the teacher round-trips correctly, so the teacher's
-  accuracy on the generated splits is inflated by construction. Compare systems on dev/hard and hand-written.
+  accuracy on the generated splits is inflated by construction. Compare systems on dev/hard, the independent set
+  and hand-written.
 
 Results are in `eval/README.md`.
 
@@ -153,5 +154,22 @@ Results (details in `eval/README.md`):
 - **Hallucinated numbers:** the naive Qwen3-32B with the stats table in context put one in about a third of answers,
   and about four in five had some verified error (mostly naming the wrong players). The pipeline put no false number
   in any of its 460 answers.
-- **Real catches:** `eval/examples.md`. **Blind hand audit** of 100 naive answers: `eval/audit_sample.md`.
+- **Real catches:** `eval/examples.md`. **Blind hand audit** of 40 naive answers (20 flagged, 20 passed):
+  `eval/audit_sample.md` (the earlier 100-item version is kept as `eval/audit_sample_100.md`).
 - **Verifier on held-out injected errors:** it caught 99.9% with 0 false positives.
+
+## Independent test set (non-Qwen question writer)
+
+```bash
+python -m eval.independent_specs                     # 300 new specs + 20 misspelled-name specs (CPU)
+GPU=6 scripts/serve_generator.sh                     # Mistral Small 24B Instruct on port 8002, in tmux
+python -m eval.independent_questions                 # one fan question per spec -> eval/independent_test.jsonl
+# stop the generator, then the name check (CPU) and the drops decided before any system was run:
+python -m eval.independent_name_check [--apply]
+# serve each system in turn (one GPU job at a time) and score it on both files:
+python -m eval.run_eval --system teacher --data eval/independent_test.jsonl eval/independent_misspelled.jsonl
+```
+
+Questions come from a different model family, from plain-English briefs (never the schema), with no teacher
+round-trip filter. The misspelled-name subset is scored on its own. How it was built, what was dropped and why,
+and the results are in `eval/README.md`.

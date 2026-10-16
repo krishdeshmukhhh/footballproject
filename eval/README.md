@@ -198,7 +198,7 @@ Against ground truth it is 0.3%, as in the table above.
 
 ### How much to trust the naive numbers
 
-- **Precision (hand audit):** Of 15† randomly sampled flagged naive numbers (my audit during development), 13† are clear hallucinations, 1† was truncation ("271 minutes" for 271.7; now accepted), and 1† is unclear (correct arithmetic, "135/153 = 88.23%", for an unidentified player). A blind audit of 100 answers (50 flagged, 50 passed, verdicts hidden) is in `audit_sample.md`, waiting to be marked.
+- **Precision (hand audit):** Of 15† randomly sampled flagged naive numbers (my audit during development), 13† are clear hallucinations, 1† was truncation ("271 minutes" for 271.7; now accepted), and 1† is unclear (correct arithmetic, "135/153 = 88.23%", for an unidentified player). A blind audit of 40 answers (20 flagged, 20 passed, verdicts hidden) is in `audit_sample.md`, waiting to be marked.
 - **A lower bound in another sense:** a number only counts as hallucinated if it is not *any* true stat of the
   player it is attached to, so a wrong number that equals another of his true stats slips through. For example,
   tournament totals presented as per-90 values pass (`examples.md`, example 8).

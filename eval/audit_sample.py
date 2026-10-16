@@ -1,5 +1,6 @@
-"""Hand-audit sample of naive-baseline answers: 50 the verifier flagged and 50 it passed, shuffled together,
-with the verifier's verdicts left out of the file.
+"""Hand-audit sample of naive-baseline answers: 20 the verifier flagged and 20 it passed, shuffled together,
+with the verifier's verdicts left out of the file. (An earlier 100-item version, 50 and 50, is kept unmarked as
+eval/audit_sample_100.md; --score reads only eval/audit_sample.md.)
 
 The verdicts are not stored anywhere else either: --score recomputes them from
 eval/runs/hallucination_records.json by question, after you have marked the file.
@@ -23,7 +24,7 @@ from eval.hallucination import COLUMNS, DATASETS, RECORDS, rate
 
 OUT = Path(__file__).parent / "audit_sample.md"
 RESULTS = Path(__file__).parent / "audit_results.json"
-N_PER_STRATUM = 50
+N_PER_STRATUM = 20
 SEED = 0
 BOXES = ["no error", "has an error", "wrong number", "wrong player or team", "wrong order"]
 INSTRUCTIONS = f"""# Hand audit: naive-baseline answers
