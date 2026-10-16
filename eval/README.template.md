@@ -56,6 +56,49 @@ including the Brozović question.
   guessing.
 - **Ambiguous paraphrases** account for most of the rest (passes "managed" under pressure: attempted or completed?).
 
+## Independent test set (non-Qwen question writer)
+
+Built to remove the teacher bias of the generated split: the questions come from a different model family, and no
+round-trip filter decides which ones survive. Files: `independent_test.jsonl` ({{ind_n}} questions),
+`independent_misspelled.jsonl` ({{mis_n}}), `independent_dropped.jsonl` ({{ind_dropped_n}}).
+
+**How it was built**
+
+- **Specs, sampled in code** (`independent_specs.py`, seed {{ind_seed}}). The sampler is the one behind the training
+  data, drawn from cycling decks so that every metric ({{ind_metrics}} of {{n_metrics}}), every position group and
+  family, every stage (the third-place match alone, which the training sampler never draws, included), every team as
+  an opponent and every team as a team filter appear. {{ind_team_q}} questions rank teams and {{ind_player_q}} name
+  players. A spec is excluded if it equals any of the {{ind_excluded}} specs already in use: every spec sampled for
+  the training data (`data/specs.jsonl`, including specs whose questions were all dropped), train, val, test,
+  dev/hard and the few-shot examples. Specs with an empty result, and player specs where a named player did not play
+  in the filtered matches, are dropped at sampling, before any model sees them.
+- **Questions, written by `{{ind_generator}}`** (`independent_questions.py`, served by
+  `scripts/serve_generator.sh`). The writer gets a plain-English brief of each spec (the statistic in everyday
+  words, the ranking, each filter) and never sees the schema, field names, position codes, the translation prompt or
+  any model's output. One casual fan question per spec, at temperature {{ind_temperature}}. {{ind_typos}} of the
+  {{ind_written}} briefs, chosen in code before generation, ask for typos and slang. Player names are to be written
+  exactly as given, because a misspelled name correctly ends in "Did you mean ...?" and could never count as right;
+  misspellings are tested in their own subset. There is **no teacher round-trip filter**.
+- **One prompt revision, before any system was run.** In the first generation the single-player brief read like a
+  ranking prompt, so several lookups came back as rankings with no player named. The single-player and comparison
+  briefs were made explicit and the whole set was generated again once. That second generation is final. The first
+  is kept in `logs/` (local only).
+- **Name check, before any system was run** (`independent_name_check.py`, deterministic). Every player and team the
+  question names is compared with the gold spec. Clear mismatches were dropped:
+{{ind_dropped_list}}
+  Kept despite a flag: a ranking question that ends with a guess at the answer ("someone like Messi or Neymar"),
+  since the ask itself is clear, and {{ind_fuzzy}} questions whose player or team names only match fuzzily because
+  the writer misspelled them anyway ("urugay", "Rapinah", "Rabman"). For a misspelled player name, a system that
+  copies it gets "Did you mean ...?", which counts as wrong here. The other questions are kept exactly as written, including loose phrasings.
+
+**Misspelled-name subset.** {{mis_n}} single-player questions ({{mis_kinds}}), on specs disjoint from everything
+above. The writer gets the correct name and the code then swaps in the planned misspelling, so each question carries
+exactly one controlled error. A question passes if the system's spec returns the right rows (it fixed the name), or
+stops at "Did you mean ...?" with the right player as the first suggestion. It is scored on its own and never mixed
+into the main accuracy. **The ceiling for copying the name verbatim is {{mis_ceiling}} of {{mis_n}}:**
+{{mis_ceiling_misses}} So a system that copies names exactly cannot pass every question; one that corrects the name
+itself still can.
+
 ## Hallucinated numbers: naive LLM vs the pipeline
 
 Run with `python -m eval.hallucination` (GPU). Results are in `hallucination.json`, per-question answers and scores

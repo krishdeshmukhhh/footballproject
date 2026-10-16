@@ -61,6 +61,51 @@ including the Brozović question.
   guessing.
 - **Ambiguous paraphrases** account for most of the rest (passes "managed" under pressure: attempted or completed?).
 
+## Independent test set (non-Qwen question writer)
+
+Built to remove the teacher bias of the generated split: the questions come from a different model family, and no
+round-trip filter decides which ones survive. Files: `independent_test.jsonl` (297 questions),
+`independent_misspelled.jsonl` (20), `independent_dropped.jsonl` (3).
+
+**How it was built**
+
+- **Specs, sampled in code** (`independent_specs.py`, seed 2026). The sampler is the one behind the training
+  data, drawn from cycling decks so that every metric (19 of 19), every position group and
+  family, every stage (the third-place match alone, which the training sampler never draws, included), every team as
+  an opponent and every team as a team filter appear. 60 questions rank teams and 72 name
+  players. A spec is excluded if it equals any of the 2028 specs already in use: every spec sampled for
+  the training data (`data/specs.jsonl`, including specs whose questions were all dropped), train, val, test,
+  dev/hard and the few-shot examples. Specs with an empty result, and player specs where a named player did not play
+  in the filtered matches, are dropped at sampling, before any model sees them.
+- **Questions, written by `mistralai/Mistral-Small-24B-Instruct-2501`** (`independent_questions.py`, served by
+  `scripts/serve_generator.sh`). The writer gets a plain-English brief of each spec (the statistic in everyday
+  words, the ranking, each filter) and never sees the schema, field names, position codes, the translation prompt or
+  any model's output. One casual fan question per spec, at temperature 0.8. 88 of the
+  300 briefs, chosen in code before generation, ask for typos and slang. Player names are to be written
+  exactly as given, because a misspelled name correctly ends in "Did you mean ...?" and could never count as right;
+  misspellings are tested in their own subset. There is **no teacher round-trip filter**.
+- **One prompt revision, before any system was run.** In the first generation the single-player brief read like a
+  ranking prompt, so several lookups came back as rankings with no player named. The single-player and comparison
+  briefs were made explicit and the whole set was generated again once. That second generation is final. The first
+  is kept in `logs/` (local only).
+- **Name check, before any system was run** (`independent_name_check.py`, deterministic). Every player and team the
+  question names is compared with the gold spec. Clear mismatches were dropped:
+  - "How does Cody Gakpo's and Darwin  Nunez's xT  by passing and carrying the ball compare in the knockout rounds, mate?": writer error: the spec compares Cody Gakpo and Achraf Dari (written "Dari"); the question names Darwin Núñez instead of Dari.
+  - "Who do you think pressed more? How many times did Christian Pulisic, Aaron Mooy and Goncalo Guedes press  opponents on the ball during the 2022 World Cup in Qatar?": writer error: the spec is about Diogo Costa, Riley McGree and Rodrigo De Paul (written "Costa", "McGree", "Paul"); the question names Christian Pulisic, Aaron Mooy and Gonçalo Guedes.
+  - "How many progressive passes 90 per game did Ederson Varela make in the 2022 World Cup Qatar?": writer error: the spec is about Guillermo Varela (written "Varela"); the question calls him "Ederson Varela", borrowing the first name of another player (Ederson, Brazil).
+  Kept despite a flag: a ranking question that ends with a guess at the answer ("someone like Messi or Neymar"),
+  since the ask itself is clear, and 5 questions whose player or team names only match fuzzily because
+  the writer misspelled them anyway ("urugay", "Rapinah", "Rabman"). For a misspelled player name, a system that
+  copies it gets "Did you mean ...?", which counts as wrong here. The other questions are kept exactly as written, including loose phrasings.
+
+**Misspelled-name subset.** 20 single-player questions (7 dropped letter, 7 swapped letters, 6 missing accent), on specs disjoint from everything
+above. The writer gets the correct name and the code then swaps in the planned misspelling, so each question carries
+exactly one controlled error. A question passes if the system's spec returns the right rows (it fixed the name), or
+stops at "Did you mean ...?" with the right player as the first suggestion. It is scored on its own and never mixed
+into the main accuracy. **The ceiling for copying the name verbatim is 19 of 20:**
+for "Thaigo Silva" (Thiago Silva) the first suggestion is Bernardo Silva. So a system that copies names exactly cannot pass every question; one that corrects the name
+itself still can.
+
 ## Hallucinated numbers: naive LLM vs the pipeline
 
 Run with `python -m eval.hallucination` (GPU). Results are in `hallucination.json`, per-question answers and scores

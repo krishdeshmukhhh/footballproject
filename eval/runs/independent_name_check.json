@@ -1,0 +1,3387 @@
+[
+ {
+  "spec_id": "5498794c2f48",
+  "question": "wot the top ten welsh wingers and strikers for shots taken?",
+  "gold_players": [],
+  "gold_teams": [
+   "Wales"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "44d20f76dc20",
+  "question": "Who was the midfielder who made the most progressive passes per 90 in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "289e48554536",
+  "question": "I'm curious, which teams rank as the top 10 for central midfielders creating shot-creating actions against Tunisia?",
+  "gold_players": [],
+  "gold_teams": [
+   "Tunisia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e3a05f03ea2d",
+  "question": "I wonder how many minutes my guys Alex Vega, Joel Campbell and Cesar Montes played all together in  the World Cup?",
+  "gold_players": [
+   "Alexis Vega",
+   "César Montes",
+   "Joel Campbell"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8f53c53afa53",
+  "question": "Whoz da top 10 goalies in the 2022 world cup for completin passes whil under pressr by oppenets?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "6ceae49c8089",
+  "question": "Who had the better pass comp % under pressure between  Hakimi and Varane?",
+  "gold_players": [
+   "Achraf Hakimi",
+   "Raphaël Varane"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "140bee17398e",
+  "question": "Who was the most accurate passer at the 2022 World Cup, with at least 200 minutes played?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "30be385197bd",
+  "question": "Which 10 players pressed opponents the most times in Qatar 2022?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "0106e8c1193d",
+  "question": "Who were the top 5 teams for passes completed by wingers?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "142c5513c877",
+  "question": "Who led the attacking midfielders with the most key passes in the final?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a2ba3dbe409c",
+  "question": "Who were the 10 countries that generated the most threat by passing and carrying the ball, as measured by xT per 90 minutes, in the third-place match?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d78478955d17",
+  "question": "Who were the top full backs for passes attempted against Netherlands?",
+  "gold_players": [],
+  "gold_teams": [
+   "Netherlands"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "ef0336e69d63",
+  "question": "Who were the top 3 players with the most progressive carries per 90 minutes in Qatar  2022?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "97af7aeacbf8",
+  "question": "Which defenders scored the most expected goals (xG)  against Morocco in the 2022 World Cup?  I'm curious to see the top 8.",
+  "gold_players": [],
+  "gold_teams": [
+   "Morocco"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "10476f154526",
+  "question": "Who had da most pass attempts under preasure per 90 by cb's in the WC?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a50b545758d6",
+  "question": "Which defensive midfielders scored the most non-penalty goals per 90 against Spain?",
+  "gold_players": [],
+  "gold_teams": [
+   "Spain"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f2ab490d6086",
+  "question": "Hey, u got any idea how many goalz Jordan Henderson scored in the 2022 World Cup?",
+  "gold_players": [
+   "Jordan Henderson"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d2d189838a2b",
+  "question": "How many assists did Endo get at the 2022 World Cup?",
+  "gold_players": [
+   "Wataru Endo"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "28efab48924f",
+  "question": "Which strikers had the lowest non-penalty xG per 90 in the group stage of the 2022 World Cup, minimum 180 minutes played?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "80c7d0b8a64d",
+  "question": "How much xT did Cristiano Ronaldo create in total in Qatar 2022?",
+  "gold_players": [
+   "Cristiano Ronaldo"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "3878f38dc228",
+  "question": "Which team scored the fewest goals from open play in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "913e3ae5d4e4",
+  "question": "Who created the most chances in the semi-finals? I wanna see the top 3 guys.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e79bca0b4201",
+  "question": "Who were the 3 guys with the fewest passes completd per 90, like the worst ball players in the whole tournament?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "650eb9282c1d",
+  "question": "Who were the top 10 goalers by non-penalty xG agenst Belgium during the 2022 World Cup in Qatar?",
+  "gold_players": [],
+  "gold_teams": [
+   "Belgium"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "3666ec8fce68",
+  "question": "How  many progressive passes per 90 did N'Koulou average at the 2022 World Cup in Qatar?",
+  "gold_players": [
+   "Nicolas N'Koulou"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "6a16d39509db",
+  "question": "Who were the top 5 central midfielders in pass completion percentage while under pressure during the quarter-finals?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "983a78372c76",
+  "question": "Who were the top 5 defensive midfielders for progressive carries in the knockout stages?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "aa960c5ee0da",
+  "question": "Who were the top 10 defenders (centre-backs and full-backs) in terms of most passes completed while under pressure?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "636b13a1ce26",
+  "question": "Which team scored the most goals against Poland?",
+  "gold_players": [],
+  "gold_teams": [
+   "Poland"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2710f14763ca",
+  "question": "Who were the top ten full backs with the highest pass comp % against south korea?  just those who went sides against south korea",
+  "gold_players": [],
+  "gold_teams": [
+   "South Korea"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c2fc2b88e4e3",
+  "question": "Which 5 teams took the fewest shots in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a4392727dc6c",
+  "question": "How many times did Rowles attempt to pass the ball?",
+  "gold_players": [
+   "Kye Rowles"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "98f9da6cfb6a",
+  "question": "Did you know how mnay times Patirce Epassy hass applied pressur to oppinents on the ball per 90 mins.  Bz he'll probly defenitly do it agin.",
+  "gold_players": [
+   "Devis Epassy"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "69c0f5f63684",
+  "question": "Who were the top 3 Swiss players with the most minutes played in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Switzerland"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "89a8d7babfa2",
+  "question": "Who had the best xG per 90 between Griezmann, Yamiq, and Lloris?",
+  "gold_players": [
+   "Antoine Griezmann",
+   "Hugo Lloris",
+   "Jawad El Yamiq"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "93629937dc02",
+  "question": "Which of Seung-Gyu and Otamendi had the most assists?",
+  "gold_players": [
+   "Nicolás Otamendi",
+   "Kim Seung-Gyu"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "5d89bbbbaed6",
+  "question": "Who were the top 3 forwards for key passes in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a6eafcfcdc61",
+  "question": "Who tried the most passes under preshure per 90 in the round of 16? Top 3 teams bro.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a82fc5cae7e4",
+  "question": "Who were the top 3 Brazil players with the most passes completed per 90 minutes in Qatar, given they played at least 200 minutes?",
+  "gold_players": [],
+  "gold_teams": [
+   "Brazil"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "823199ea7c39",
+  "question": "Which 5 Ghana players have the highest pass completion percentage under pressure?",
+  "gold_players": [],
+  "gold_teams": [
+   "Ghana"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "aa442d785946",
+  "question": "Who had the highest xG in the 3rd place match?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f2c012909c28",
+  "question": "How many progressive passes per 90 minutes does Neymar have so far?",
+  "gold_players": [
+   "Neymar"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "cb72daae658b",
+  "question": "Which 5 national teams scored the highest non-penalty xG per 90 during the 2022 World Cup in Qatar?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e899c25dd578",
+  "question": "Who were the five players who least added to their team’s threat against Costa Rica, in terms of xT added from passing and carrying?",
+  "gold_players": [],
+  "gold_teams": [
+   "Costa Rica"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "7c0063ca6674",
+  "question": "Who were the top 3 wingers with the mos key psses per 90 wrt than 200 mins played, in qrter?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "987648e67c14",
+  "question": "Who played the most minutes as a centre back against Croatia?",
+  "gold_players": [],
+  "gold_teams": [
+   "Croatia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "891cf76a8567",
+  "question": "How do Koundé and Przemysław Frankowski compare for pass completion percentage in  the World Cup?",
+  "gold_players": [
+   "Jules Koundé",
+   "Przemysław Frankowski"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "4cd790d854ed",
+  "question": "Who had the most progressive carries in the final?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "ac3b3759aa48",
+  "question": "Who was the attacking midfielder who took the most shots per 90 minutes played  during the quarter finals?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a8f007ffd4ac",
+  "question": "Which three national teams had the least assists in the round of 16 of the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "ae9a6a7f39dd",
+  "question": "hey can u show me messi vs rodrigo de pauls shot creatin actions stats for the 2022 world cup?",
+  "gold_players": [
+   "Lionel Messi",
+   "Rodrigo De Paul"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "53fdb8af8fb1",
+  "question": "Which national team's midfielders put their opponents under the most pressure when they had the ball in Qatar (rate per 90 minutes)?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "32ff5d1468b8",
+  "question": "Which 5 teams scored the least non-penalty goals against Brazil in the 2022 world cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Brazil"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a83ef0477d58",
+  "question": "Who were the top 10 strikers who completed the most passes per 90 minutes while under pressure?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "4fb94b78f27c",
+  "question": "How many goals did Tomiyasu bag at the World Cup?",
+  "gold_players": [
+   "Takehiro Tomiyasu"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "40c60cac1022",
+  "question": "How many passes did sofiane boufal  attmpt in the semi-final?",
+  "gold_players": [
+   "Sofiane Boufal"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "34babd035c85",
+  "question": "Who made the most passes whils under preasure in the group stage and who was it against?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1f7e25cb9571",
+  "question": "Who was the most useless player in terms of goal scoring for the tournament?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d215e529578a",
+  "question": "Who were the top 5  pass masters per 90 against wales while all the preshure was on em, tryin to keep the ball under duress, y'know.",
+  "gold_players": [],
+  "gold_teams": [
+   "Wales"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b5c60453cf65",
+  "question": "Who was the most annoying fullback for Mexico on the ball defense 2022 sides?",
+  "gold_players": [],
+  "gold_teams": [
+   "Mexico"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "0866bca4efab",
+  "question": "Who were the top 8 strikers with the most assists during the 2022 World Cup in Qatar?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f846c310c8fc",
+  "question": "Who were the 5 centre-backs that attmpted the fewest passes in the Qater World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1fa4f8ad5ce9",
+  "question": "How many progressive passes 90 per game did Hakimi average in the 2022 World Cup?",
+  "gold_players": [
+   "Achraf Hakimi"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e79aa73e3869",
+  "question": "Which defensive midfielders had the best pass completion percentage in the knockout rounds?  List the top 6.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "6b016cbc19c6",
+  "question": "Who had the best pass completion percentage while under pressure, in the 2022 World Cup, if we take into account  the guys who played at least 200 minutes? And what's the player with the top 3 highest rates?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f9426aea11cb",
+  "question": "wot the top 5 players wiv the most proggies carries in the final??",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8cf343c14446",
+  "question": "Who are the top 3 attacking midfielders with the most shots taken in the 2022 world Cup",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8b3642b07efc",
+  "question": "Hey, which top 3 teams created the most shot-creating actions against Australia?",
+  "gold_players": [],
+  "gold_teams": [
+   "Australia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "ac6a1b41a89b",
+  "question": "Who was the most clinical player in Qatar, based on xG, after 180 minutes?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a8d1ceec1b70",
+  "question": "Which 10 teams had the highest average passes completed by midfielders per 90 minutes?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f2d567f80437",
+  "question": "Who do you think led the tournament in completing passes under pressure,  among guys who played more than 270 minutes?  I'm guessing it was someone like Messi or Neymar.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [
+   "player Lionel Messi",
+   "player Neymar"
+  ],
+  "fuzzy": [],
+  "mismatch": true
+ },
+ {
+  "spec_id": "80b6104372b7",
+  "question": "Which team had the lowest xG from  centre backs and full backs?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e88dcf79a754",
+  "question": "I'm curious, how many key passes per 90 minutes did Amartey make compared to Castelletto?",
+  "gold_players": [
+   "Daniel Amartey",
+   "Jean-Charles Castelletto"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8f5899b98e94",
+  "question": "Who played the most minutes in the third place game?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d2e4915298e2",
+  "question": "Wich wingers scored the most goals w/out pens in the 2022 world cup?  just give me the top 10.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d3f3ee91c6ce",
+  "question": "How many passes per 90 did Noppert complete while under pressure during the 2022 World Cup in Qatar?",
+  "gold_players": [
+   "Andries Noppert"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "90abf25b9259",
+  "question": "Which 5 teams scored the most non-penalty goals against the USA in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "United States"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2e8d20990774",
+  "question": "Who scored the most goals for South Korea at the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "South Korea"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "4f3259999785",
+  "question": "Who had the better pass completion percentage between Raphaël Varane, Rodon and Saud Abdul Hamid?",
+  "gold_players": [
+   "Raphaël Varane",
+   "Joe Rodon",
+   "Saud Abdul Hamid"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "74cc707fd438",
+  "question": "Which goalkeepers completed the fewest passes in the quarter-finals? I wanna see the top 5 worst.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "5e1d1b0ac075",
+  "question": "how many min did Abdelkarim Hassan play?",
+  "gold_players": [
+   "Abdelkarim Hassan"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2df3d11012ef",
+  "question": "Which  5 teams were the most aggresive pressers all tournament?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "0c5dca532d5c",
+  "question": "Who were the top 3 forwrds who made the fewest shot creating actions in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e43e711d740b",
+  "question": "Who were the top 10 players in terms of xT per 90 during the 2022 World Cup semi-finals?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "3a29d8fe2373",
+  "question": "Who were the top 5 players for non-penalty xG per 90 minutes against Denmark during the 2022 World Cup in Qatar?",
+  "gold_players": [],
+  "gold_teams": [
+   "Denmark"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "81988965e4c5",
+  "question": "Who were the top 6 key pass masters in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "da2acccadf5e",
+  "question": "Who had the best expected goals (xG) among Emiliano Martínez, Grzegorz Krychowiak and  Olmo?",
+  "gold_players": [
+   "Emiliano Martínez",
+   "Grzegorz Krychowiak",
+   "Daniel Olmo"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "14108ec9ca5c",
+  "question": "Which of Pedro Miguel Correia and Saka took more shots in the 2022 World Cup?",
+  "gold_players": [
+   "Pedro Miguel Correia",
+   "Bukayo Saka"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a4c231409c2a",
+  "question": "Who are the top 5 teams in terms of their central midfielders setting up goals per 90 minutes?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d955c66b7934",
+  "question": "Who were da best wingers wiv the highest pass comp% under pressur from oppoents 2022 world cup",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c3a418c4541b",
+  "question": "Who were the top 6 players with the most progressive carries per 90 minutes in Qatar  2022?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2f334b1c299d",
+  "question": "Who were the top 5 Serbian players with the most passes attempted under pressure?",
+  "gold_players": [],
+  "gold_teams": [
+   "Serbia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "db1a27e00537",
+  "question": "Who were the top 5 attacking midfielders in terms of passes attempted  per 90 during the round of 16?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "0cbec6cd3b86",
+  "question": "How many progressive passes did Aurélien Tchouaméni,  Christian Pulisic and Romero make total in the tournament?",
+  "gold_players": [
+   "Aurélien Tchouaméni",
+   "Christian Pulisic",
+   "Cristian Romero"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "00157ec4b821",
+  "question": "Who was the most prolific defensive midfielder in passing the ball around 90 minutes in Qatar?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2609e55b5747",
+  "question": "Who played more minutes in the group stage, de Roon or Guerreiro?",
+  "gold_players": [
+   "Marten de Roon",
+   "Raphaël Guerreiro"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1f6294ca37b3",
+  "question": "Who scored the most goals against France via strikers in their Round 16 match? I'm curious who the top 10 teams are as a whole, and would love to see your list.",
+  "gold_players": [],
+  "gold_teams": [
+   "France"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "49f2b17ac729",
+  "question": "Who's had the best pass comp pce % amoung the wing backs?  Can u rank the top 5  full backs with the highest completion rates?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f9ab9747925d",
+  "question": "Which team had the fewest passes completed under pressure from their forwards in the games against Cameroon?",
+  "gold_players": [],
+  "gold_teams": [
+   "Cameroon"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "6330a1eeba86",
+  "question": "Who were da best 5 centre backs 4 assists durin the group stages?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "406fc08fab71",
+  "question": "Who was the top Polish player for pass completion percentage under pressure?",
+  "gold_players": [],
+  "gold_teams": [
+   "Poland"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "0c800d43ef21",
+  "question": "Who were the top 3 midfielders in terms of expected goals per 90 minutes at the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "7565de550c60",
+  "question": "Who had the top 15 centre-backs and full-backs who attempted the most passes per 90 minutes, and which teams did they come from.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f27cedc39ece",
+  "question": "What team had the highest progressive carries per 90 minutes.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "51ad4ce97a79",
+  "question": "Which 3 teams had their central midfielders make the most progressive passes.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "970d0662ad6f",
+  "question": "Who scored more goals per 90 minutes at the 2022 FIFA World Cup, Bernardo Silva or John Stones?",
+  "gold_players": [
+   "Bernardo Silva",
+   "John Stones"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "3bd9b25e1fac",
+  "question": "Who were the top 5 Japan players with the fewest key passes?",
+  "gold_players": [],
+  "gold_teams": [
+   "Japan"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "36524794715e",
+  "question": "Who wuz the top 5 playas who added the most xT by passing and carrying da ball against Argentina in the quarters?",
+  "gold_players": [],
+  "gold_teams": [
+   "Argentina"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "cd88600009f0",
+  "question": "Who had the most passes under preshure among center backs that played 180 mins +?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2df91b4d324b",
+  "question": "How many non-penalty xG did Theo Hernández create?",
+  "gold_players": [
+   "Theo Hernández"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c76f0905a39c",
+  "question": "Who had the most shots per 90 agenst  Canada? Top 3 only",
+  "gold_players": [],
+  "gold_teams": [
+   "Canada"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "3654769cdede",
+  "question": "Who were the top 4 German players for shot creating actions in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Germany"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "78e70c05defa",
+  "question": "I'm curious, who were the top 5 defenders  who made the most passes per 90 minutes in the semi-finals?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "583c5fbc749e",
+  "question": "Who had the most passes attempted in the World Cup Final?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "22906b71f061",
+  "question": "Which team adde the leass xT from passing and carryin the ball?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1bcf7f29b259",
+  "question": "How mnay prog carries does Kai Kamada avrage per 90mins?",
+  "gold_players": [
+   "Daichi Kamada"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "111c7215a1cc",
+  "question": "Who scored the most non-penalty goals out of the guys in goal scored by Dijk, Emiliano Martínez and  Grzegorz Krychowiak?",
+  "gold_players": [
+   "Virgil van Dijk",
+   "Emiliano Martínez",
+   "Grzegorz Krychowiak"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c9c9cb23c390",
+  "question": "Who were the three strikers who made the fewest key passes per 90 minutes.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "db7134d0924a",
+  "question": "Who scored more non pen xG?  Kamil Glik or Zieliński",
+  "gold_players": [
+   "Kamil Glik",
+   "Piotr Zieliński"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "77e73774e334",
+  "question": "Which players played the most minutes in the 2022 World Cup 3rd-place match? Don't just tell me one, give me the top three.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c50bc1154afe",
+  "question": "Who's been hustlin' n pressin' the most on the ball, checkin the top 10 forwards who've put in atleast 270 mins?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c5a587bc70c3",
+  "question": "Who scored more goals between Marquinhos and Nathan Aké?",
+  "gold_players": [
+   "Marquinhos",
+   "Nathan Aké"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e67fc2e44cec",
+  "question": "How accurate was Woo-Young Jun's passing  when he was under pressure in the knockout rounds?",
+  "gold_players": [
+   "Jung Woo-Young"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b0386d2f1ccb",
+  "question": "Who were the top 3 Uruguayan players who attempted the most passes under pressure in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Uruguay"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "9e0700d146e1",
+  "question": "Who were the top 5 lowest xG/90 players against England in the tournament?",
+  "gold_players": [],
+  "gold_teams": [
+   "England"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "7ec107d0f384",
+  "question": "Which fullback had the best pass completion percentage?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "251d1d295872",
+  "question": "Who had mae more prog passses during the 2022 World Cup in Qatar, between Dušan Tadić and Raphaël Guerreiro?",
+  "gold_players": [
+   "Dušan Tadić",
+   "Raphaël Guerreiro"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "df8e2ffad25d",
+  "question": "Whos da top 15 widemen pullin most assists per 90 mins when it really mattered rite thru da knock out rounds?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f6a297731740",
+  "question": "Who were the top 10 attacking midfielders for passes completed while under pressure in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b2579dc6c4a8",
+  "question": "Who were the top 3 central midfielders in terms of shot-creating actions per 90 minutes at the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b37e05975d18",
+  "question": "Which team had the most shots in the semi-finals?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8df6a01e9169",
+  "question": "Who had the most progressive carries per 90 minutes against Ecuador?  I'm curious to see the top 10 players.",
+  "gold_players": [],
+  "gold_teams": [
+   "Ecuador"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a36cf31816b9",
+  "question": "Who were the top 8 Denmark  midfielders in the 2022 World Cup based on their xG per 90 minutes?",
+  "gold_players": [],
+  "gold_teams": [
+   "Denmark"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1dca4daf9277",
+  "question": "How mnay xG does Rapinah expectd when he has 90 mins on the pitch, dont count the pens?",
+  "gold_players": [
+   "Raphinha"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [
+   "Raphinha"
+  ],
+  "mismatch": false
+ },
+ {
+  "spec_id": "44d076162ef7",
+  "question": "Wan see top 5 goal scorz aginst germany that scored the most non-penalty goals 2022 world cup",
+  "gold_players": [],
+  "gold_teams": [
+   "Germany"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "707c13a8c5fb",
+  "question": "Which were the 5 teams that completed the fewest passes against Senegal?",
+  "gold_players": [],
+  "gold_teams": [
+   "Senegal"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "5b71d69aa010",
+  "question": "Who were the two teams that created the most expected threat through passing and carrying the ball in their final 2022 FIFA World Cup match?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "872c7551a894",
+  "question": "Which 2 teams had their defensive midfielders create the most assists  per 90 during the 2022 World Cup in Qatar?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "fe1e6e595c3b",
+  "question": "Who were the top 15 teams with the most shot-creating actions per 90 minutes in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "5b6e3900ce08",
+  "question": "Who were the 3 wingers who set up the most goal scoring chances in the quarters",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "97ec14b004f8",
+  "question": "Who were the top 5 players in terms of minutes played for Switzerland in the round of 16?",
+  "gold_players": [],
+  "gold_teams": [
+   "Switzerland"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "11ae1823ab6f",
+  "question": "Who were the top 5 players who completed the most passes while under pressure during the third place match?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "155a59773222",
+  "question": "Who were the top 5 midfielders who took the most shots during the group stage?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "726d5d7d5f8a",
+  "question": "How many passes did Cristian Romero complete when Argentina were in the semis?",
+  "gold_players": [
+   "Cristian Romero"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e33e676601db",
+  "question": "Who's had the most finnalz n all in the 2022 World Cup Qater from the midfield 5?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "fd5cb05d295a",
+  "question": "Who were the top 2 guys who made the most progressive passes per 90 minutes  in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "0f68458763db",
+  "question": "Hey, I'm curious, Enzo Fernandez and Paquetá how many passes did they attempt under pressure from  the opposition during the sides' quarter-final games?",
+  "gold_players": [
+   "Enzo Fernandez",
+   "Lucas Paquetá"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8f13baf38422",
+  "question": "Which 10 teams were most accurate with their passing in the 2022 world Cup",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "61570afba3f2",
+  "question": "how good was Jude Bellinghams passing under pressure when it mattered n the knock out rounds? pass comp %",
+  "gold_players": [
+   "Jude Bellingham"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f247fe128dfe",
+  "question": "How many times did Otamendi hassle  the oppenents sides while they had the ball all tournament?",
+  "gold_players": [
+   "Nicolás Otamendi"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "3c1f657e9e7e",
+  "question": "Who happened to score the least amount goals against urugay, without including penaltys?",
+  "gold_players": [],
+  "gold_teams": [
+   "Uruguay"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [
+   "Uruguay"
+  ],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d97dc64c29db",
+  "question": "Which 10 teams created the most key passes per 90 minutes?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8e5547afb551",
+  "question": "Who was the top full back for progresive passes per 90 against Saudi Arabia?",
+  "gold_players": [],
+  "gold_teams": [
+   "Saudi Arabia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "22e6f04ac4ae",
+  "question": "How many passes per 90 did Lisandro Martínez complete while under pressure during the 2022 World Cup in Qatar?",
+  "gold_players": [
+   "Lisandro Martínez"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "13cab8355341",
+  "question": "Who were the top 6 players with the most non penalty xG at the World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1957400ad30b",
+  "question": "Who scored the most goals in the third place match?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "aa3c2e863c2c",
+  "question": "Who were the top 3 plsrs for pass comp % while unr presr  durin the final?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b9e60bf9ee92",
+  "question": "Who were the five teams that completed the most passes in the group stage via their defensive midfielders?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "dafed7810236",
+  "question": "Who had da most pass attempts under preasure per 90 by a tunisian?",
+  "gold_players": [],
+  "gold_teams": [
+   "Tunisia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "4641b1ca5c9c",
+  "question": "Who were the top ten attacking midfielders  who attempted the fewest passes per 90 mins in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "7978b48ff230",
+  "question": "Who were the 5 worst pasing forwards at the 2022 world cup 4 completions out of 10?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b8d8e61c76e8",
+  "question": "So who had da most progressive carries agenst Ghana?",
+  "gold_players": [],
+  "gold_teams": [
+   "Ghana"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d6bde3f56bfe",
+  "question": "Who had the better tournament?  Show me the xG for Giroud and Sabaly in Qatar 2022 - side by side.",
+  "gold_players": [
+   "Olivier Giroud",
+   "Youssouf Sabaly"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "860600ac1e0e",
+  "question": "Who were the top 5 assist providers per 90 in the round of 16?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "71f9ecd4b52d",
+  "question": "Who was Netherlands' leading striker for pressures applied to opponents on the ball in 90s at the 2022 FIFA World Cup.",
+  "gold_players": [],
+  "gold_teams": [
+   "Netherlands"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "5706538dbd9b",
+  "question": "Which of those midfielders,  Gvardiol, De Jong or Xhaka, had the best xT in Qatar wrt adding it wiv passes n carries, fellas?",
+  "gold_players": [
+   "Frenkie de Jong",
+   "Joško Gvardiol",
+   "Granit Xhaka"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "35aed0d56fb0",
+  "question": "Which Senegalese centre-backs played the most minutes at the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Senegal"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "93cbaf34091e",
+  "question": "How many shot-creating actions did Ousmane Dembélé have  in the final?",
+  "gold_players": [
+   "Ousmane Dembélé"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8f9af8472403",
+  "question": "Who were the top 10 QB National Team defenders for 2022 Qatar World Cup by shots per 90?",
+  "gold_players": [],
+  "gold_teams": [
+   "Qatar"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "7a9a0c4bbd68",
+  "question": "Which 3 strikers scored the fewest goals during the group stage?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "9eb5254850f1",
+  "question": "Which team had the best pass completion percentage in the third-place match?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "3d1df2180d15",
+  "question": "Who the hells been havin' the most shots? Give  us the top 5 atakin midfilders who've had a crack at goal n played at least 200 mins, dont care what part of the tournement it was, just give it to us straight.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "39deeaa98b73",
+  "question": "Which are top 5 teams that completed the most progressive carries against Mexico?",
+  "gold_players": [],
+  "gold_teams": [
+   "Mexico"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "674b3f7be7d6",
+  "question": "Who had the most shot creatin actions in the 16's? Top 3",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b517cfa9962b",
+  "question": "Which of Piotr Zieliński and Ángel Di María had the most assists?",
+  "gold_players": [
+   "Piotr Zieliński",
+   "Ángel Di María"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "315a1eb53821",
+  "question": "who be da top 3 cb's scorin non-pen goals per 90 min wit minimum of 450 min on the pitch?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "fc0ca740a629",
+  "question": "Hey, can you rank the top 10 teams with the most key passes only in their matches against Portugal?",
+  "gold_players": [],
+  "gold_teams": [
+   "Portugal"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d1bb951dd62a",
+  "question": "Who made the most progressive passes between Kevin De Bruyne and Ounahi?",
+  "gold_players": [
+   "Kevin De Bruyne",
+   "Azzedine Ounahi"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a1c476c6195c",
+  "question": "Who were Argentina's top 10 full-backs at completing passes per 90?",
+  "gold_players": [],
+  "gold_teams": [
+   "Argentina"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c9ad0e94c262",
+  "question": "Who were the top 3 wingers that attempted the most passes per 90 minutes in Qatar 2022, given a minimum of 90 minutes played, and who were they?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1a9475ce2d47",
+  "question": "Who played the most mintues fir there teamz in the qtr finals",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a5b56126eb62",
+  "question": "Which 3 teams had their defensive midfielders complete the most passes  under pressure during the semi-finals?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "5e6856663eaf",
+  "question": "Who were the top 5 players for xG/90 in matches against Qatar?",
+  "gold_players": [],
+  "gold_teams": [
+   "Qatar"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f7b95c461040",
+  "question": "Who had the tops defenders when it came to rips of passes under pressrure durring knockout rounds, Top 6 crew?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "694046bfb915",
+  "question": "How many non-penalty xG did olmo average per 90 minutes in the 2022 World Cup?",
+  "gold_players": [
+   "Daniel Olmo"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "89150c505918",
+  "question": "Who happened to be the forward with the highest pass completion percentage under pressure during the World Cup final?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "dcae0d1e94d9",
+  "question": "How much xT per 90 did Ream add?",
+  "gold_players": [
+   "Tim Ream"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "86367b57a9fa",
+  "question": "Which team's central midfielders applied the most pressures per game?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "45b90f6527ff",
+  "question": "Who were the top 3 guys from Ecuador dishin' out the key passes  4 their teammates 2 shoot 4 the whole tournament?",
+  "gold_players": [],
+  "gold_teams": [
+   "Ecuador"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "7fba4ba08477",
+  "question": "Who played the most minutes between Andrej Kramarić, Maeda and Matt Turner?",
+  "gold_players": [
+   "Andrej Kramarić",
+   "Daizen Maeda",
+   "Matt Turner"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "986748a836a5",
+  "question": "Who was the worst in xG per 90 among players who've played at least 360 minutes?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "366630234ef2",
+  "question": "Who scored the most non-penalty goals per 90 minutes for the United States?",
+  "gold_players": [],
+  "gold_teams": [
+   "United States"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f410ef0eea97",
+  "question": "Who scored the most goals ovr all in the 2022 World Cup? The top 6 teams 2gether plz",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8989a9a84e85",
+  "question": "Who had more passes attempted under pressur from oppoents  Noppert or leckie",
+  "gold_players": [
+   "Andries Noppert",
+   "Mathew Leckie"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "231c7eb5ef0c",
+  "question": "Who were the top 15 midfielders (in terms of assists) in the 2022 world cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2e30dfc4edc4",
+  "question": "Which 5 Saudi Arabian players made the most completd pases, in %ge.",
+  "gold_players": [],
+  "gold_teams": [
+   "Saudi Arabia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "085938426b16",
+  "question": "Who were the 8 Belgian players who were least involved in creating shots in Qatar 2022?",
+  "gold_players": [],
+  "gold_teams": [
+   "Belgium"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2fe8031c638a",
+  "question": "Which team made the most progressive carries against Japan?",
+  "gold_players": [],
+  "gold_teams": [
+   "Japan"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d26f4f741463",
+  "question": "Who were the top three strikers who completed passes under pressure the most against Iran?  90 minutes minimum",
+  "gold_players": [],
+  "gold_teams": [
+   "Iran"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d948cdd632d0",
+  "question": "How many passes per 90 did Paquetá complete against Serbia?",
+  "gold_players": [
+   "Lucas Paquetá"
+  ],
+  "gold_teams": [
+   "Serbia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a4ca3bd1d97c",
+  "question": "Whoz the wingers that completd the fewst passes under pressur? Top 20.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8506622538e1",
+  "question": "Who were the two  central midfielders that applied the most pressure per 90 on the ball during the knockout stages?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1f216de13964",
+  "question": "Oh mate, can you compare sides by side the xT added by Aziz Behich and Neymar Jr in the group stage of the 2022 World Cup?",
+  "gold_players": [
+   "Aziz Behich",
+   "Neymar"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b2a52317599a",
+  "question": "Which team attempted the most passes per 90 minutes in the third-place match.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "aa55a34adcf3",
+  "question": "Who were the 5 teams with the highest shots per 90 minutes from their forwards against Croatia?",
+  "gold_players": [],
+  "gold_teams": [
+   "Croatia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "6bb3d9bc772b",
+  "question": "Who played least efficiently in the round of 16 of the 2022 World Cup in terms of  Non-penalty xG",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "97e5080c2f0e",
+  "question": "Who made the most progressive passes among the full backs in the quarter-finals?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "afc2dab8d24f",
+  "question": "Hw many prgresive carries did noppert have?",
+  "gold_players": [
+   "Andries Noppert"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "ee1ff3b84f2d",
+  "question": "Who were the top 5 centre-backs who scored the most non-penalty goals per 90 minutes.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "5bcfbe0ead6f",
+  "question": "Who were the top 3 attacking midfielders with the most shot creating actions in the 2022 world cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "9a40899d902c",
+  "question": "Who scored more goals: Julian Alvarez vs Saleh Al Shehri?",
+  "gold_players": [
+   "Julián Álvarez",
+   "Saleh Al Shehri"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b611c9364137",
+  "question": "Hey, can you give me a comparison of  the number of passes attempted under pressure for Bereszyński  Milenkovic and Nahuel Molina?",
+  "gold_players": [
+   "Bartosz Bereszyński",
+   "Nikola Milenković",
+   "Nahuel Molina"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d27a7f507ea5",
+  "question": "Which are the top 5  teams with the best defensive midfielders who press a lot?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "fecae0ccfe9a",
+  "question": "Who had the most passes completed? Show me the top 10.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "4becba552adb",
+  "question": "Which Moroccan midfielder had the least shots in their semi-final match?",
+  "gold_players": [],
+  "gold_teams": [
+   "Morocco"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "3daabe36a410",
+  "question": "Who were the five Portuguese defenders that completed the fewest passes under pressure during the World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Portugal"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1975065e88d5",
+  "question": "Who were the top 10 Aussie players with the most minutes played in the 2022 World Cup - and yeah 200 minutes is the minimum.",
+  "gold_players": [],
+  "gold_teams": [
+   "Australia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e16263b3580b",
+  "question": "How many goals should john stones ha' scored from his xG  in the 2022 World Cup?",
+  "gold_players": [
+   "John Stones"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "dbc300cc4103",
+  "question": "Who are the  Costa Rica players with the fewest assists in this World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Costa Rica"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e8d82a4405ba",
+  "question": "Who made the most key passes in the semifinal matches?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d93f5d962fe0",
+  "question": "Who had the most passes off Mexico in 2022 World Cup Matches?  Tells me top 3!",
+  "gold_players": [],
+  "gold_teams": [
+   "Mexico"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "aa40f1f92acd",
+  "question": "Who had the best pas compleation % under preshure from oppenents  durin the groups sides?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "93df9fa6639e",
+  "question": "How much xT did Koundé  create in the round of 16?",
+  "gold_players": [
+   "Jules Koundé"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e98bdf1c5f67",
+  "question": "Who had the better pass completion percentage between Lisandro Martínez and Paredes?",
+  "gold_players": [
+   "Lisandro Martínez",
+   "Leandro Paredes"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f338988d98c1",
+  "question": "How many non-penalty xG per 90 minutes did Mitchell Duke manage?",
+  "gold_players": [
+   "Mitchell Duke"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c625b3d2ce29",
+  "question": "Who were the top 5  playas with the most proggresive passes in the 2022 World Cup Qatar, as long as they'd played at least 450 mins?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c20a74901b62",
+  "question": "Who was the most silky passin' lad under preshure with the ball?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e5da2840e6fc",
+  "question": "Who had the best pass comp pct from thair attackng midfilders during the 2022 World Cup in Qatar? I wanna see the top 8 teams who wern't dropping the ball",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2c30b2e6893c",
+  "question": "Who were the top three players with the fewest shot-creating actions per 90 minutes, all of whom played at least 90 minutes in Qatar?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "7fa79fc293f3",
+  "question": "Plz compare the xG for João Félix, Kieffer Moore and Rabman.",
+  "gold_players": [
+   "João Félix",
+   "Kieffer Moore",
+   "Baba Rahman"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [
+   "Baba Rahman"
+  ],
+  "mismatch": false
+ },
+ {
+  "spec_id": "161a1eafc975",
+  "question": "Who's had the most gametime amongst the DMs? Top 5 pls",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "88785688dbdf",
+  "question": "Who are the top 20 goalkeepers in the 2022 World Cup quarter-finals, as ranked by most passes completed per 90 minutes.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "79bc0ba0c7cf",
+  "question": "Who made the most key passes against Ghana?  just wanna see the top 3 teams who gave all the assists to others as they smashed shots at Ghana's goal.",
+  "gold_players": [],
+  "gold_teams": [
+   "Ghana"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "599c7d7a06b4",
+  "question": "Who was the highest goal scorer per 90 minutes for Spain in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Spain"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2ca607745ccc",
+  "question": "Who were the five full-backs who completed the most passes per 90 minutes in the  2022 FIFA World Cup final?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "0d61796ea7b6",
+  "question": "Who scored the most non-penalty goals among strikers in the 2022 world Cup",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "17badd3c2b3a",
+  "question": "So who had da most progressive carries agenst poland?  Gonna list da top 15 national teams for me?",
+  "gold_players": [],
+  "gold_teams": [
+   "Poland"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "19962f9e8a2c",
+  "question": "Which of Héctor Moreno and Mohammadi had more assists in the 2022 world Cup",
+  "gold_players": [
+   "Héctor Moreno",
+   "Milad Mohammadi"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "568c5da45762",
+  "question": "Which Iranian winger took the most shots in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Iran"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "63a16ec835e9",
+  "question": "Who scored the most non-penalty xG, and who was that?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f1b5a5a26861",
+  "question": "How many pressures per 90 was Theo Hernandez  applying on the ball during the 2022 World Cup in Qatar?",
+  "gold_players": [
+   "Theo Hernández"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b7c3df3a4112",
+  "question": "Who 2 the top 3 Croat forwards who attempted da most passes under pressure durin da 3rd place match?",
+  "gold_players": [],
+  "gold_teams": [
+   "Croatia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1d7f62703e4c",
+  "question": "Who were the canadas best passrs under preshure in the world cup? top 3 4eva",
+  "gold_players": [],
+  "gold_teams": [
+   "Canada"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [
+   "Canada"
+  ],
+  "mismatch": false
+ },
+ {
+  "spec_id": "6b901188ee47",
+  "question": "Who've been the top 10 defenders by xT created against England when driblling and passing?",
+  "gold_players": [],
+  "gold_teams": [
+   "England"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2e451595bbd7",
+  "question": "Hey, how many xG per 90 does Joao Felix have in the knockout stages?",
+  "gold_players": [
+   "João Félix"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "5158cac89a28",
+  "question": "Who were the top 15 teams in terms of non-penalty xG from their central midfielders throughout the whole tournament?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e7fe871e965d",
+  "question": "Who had the best midfielders in the final for xT 90 min?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "3553a195fabf",
+  "question": "Who had the most key passes in the round of 16 games against Portugal?",
+  "gold_players": [],
+  "gold_teams": [
+   "Portugal"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "48ec51353b28",
+  "question": "Which teams had the highest assist rate per 90 minutes in the third-place match.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "24a243be8878",
+  "question": "Who had da most progressive carries per 90 in da knock out rounds? Just wana know da top 3 teams",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "ed249a340604",
+  "question": "Who r the 3 centre backs who played the most mins in the 2022 world cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "7e82202799f3",
+  "question": "Who had mae more shit-cratng actins in the group stage, Mazraoui or Ampadu?",
+  "gold_players": [
+   "Ethan Ampadu",
+   "Noussair Mazraoui"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "76819c52caad",
+  "question": "Who was England's best paser under preasure in the world cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "England"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "560478a8321e",
+  "question": "Who were the top 6 wingers cranking out the most passes under pressure per 90 minutes in the quarter-finals?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "bdbafa35e634",
+  "question": "Who scored more goals per 90 minutes, Militão or Owais?",
+  "gold_players": [
+   "Éder Militão",
+   "Mohammed Al Owais"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "ee03bf89e28d",
+  "question": "Which attacking midfielder had the highest pass completion percentage in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "1fb846f175fb",
+  "question": "Who do you think were the top three defensive midfielders to complete the most passes under pressure during the semi-final matches?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "65fdb5437e51",
+  "question": "Who were the 10 forwards that scored the least non-penalty goals in qatar?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "bf7fee8e296c",
+  "question": "Who had the most progressive passes against Costa Rica in the 2022 world cup.",
+  "gold_players": [],
+  "gold_teams": [
+   "Costa Rica"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "af43a4f3dc67",
+  "question": "I'm curious, who were the top 10  full backs to apply the most pressures per 90 minutes during the 2022 Qatar World Cup quarter finals?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "195a868292e7",
+  "question": "Who were the top 3 centre-backs and full-backs  from Cameroon with the highest pass completion rate per 90 minutes in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "Cameroon"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "f6e324561694",
+  "question": "Which goalkeeper had the highest pass rate per 90?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "6ff624b3c150",
+  "question": "Who was top french striker in terms of the most shuts taken?",
+  "gold_players": [],
+  "gold_teams": [
+   "France"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c1de520bcb9b",
+  "question": "Hw was kim moon-hwans non-penalty xg for the tournament?",
+  "gold_players": [
+   "Kim Moon-Hwan"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "7e0d15cec0d1",
+  "question": "How many shots did Kalidou Koulibaly take at the 2022 World Cup?",
+  "gold_players": [
+   "Kalidou Koulibaly"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a21619ff684f",
+  "question": "Hey, can you give me the  progressive passes for Messi and Paquetá in the 2022 World Cup knockout rounds?",
+  "gold_players": [
+   "Lionel Messi",
+   "Lucas Paquetá"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2f639c1de866",
+  "question": "Who were the 5 best midfielders (in terms of pass completion) in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "c7cfef35b1fc",
+  "question": "Who was the highest passer per 90 minutes in the 2022 World Cup for Wales?",
+  "gold_players": [],
+  "gold_teams": [
+   "Wales"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a2207bb01193",
+  "question": "Who were the centre-backs that made the most passes under pressure per 90 minutes?  Let's see the top 5",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "bb8c69efd6cc",
+  "question": "Who were the 6 best central midfielders for progressive carries in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "119b50287714",
+  "question": "Who were the  forwards scoring goals the most often per 90 minutes for their team?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "d49d08f8c097",
+  "question": "How many assists per 90 has Sergej Milinković-Savić recorded during the 2022 World Cup in Qatar?",
+  "gold_players": [
+   "Sergej Milinković-Savić"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "a993b3904ddf",
+  "question": "Which 3 players had the least pressure passes per 90 mins in Qatar 2022?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "da11ad175467",
+  "question": "Who had the highest expected goals against Germany?",
+  "gold_players": [],
+  "gold_teams": [
+   "Germany"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e9cf26b0fd0e",
+  "question": "Can anyone quickly lay out the key passes made by Berghuis and Castelletto at the 2022 FIFA World Cup.",
+  "gold_players": [
+   "Steven Berghuis",
+   "Jean-Charles Castelletto"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2a31909be0c6",
+  "question": "Which full-backs had the highest pass completion percentage under pressure at the World Cup? Don't you want the top 3 players.",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "39ef8307cd39",
+  "question": "which teams where cranking out the most presures durin the semi finals?  Gonna tell me the top 5?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b08735f942aa",
+  "question": "Which centre backs and full-backs clocked the most minutes? Top 2!",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "74cc14a52888",
+  "question": "Who scored the most goals aginst Austalia?",
+  "gold_players": [],
+  "gold_teams": [
+   "Australia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [
+   "Australia"
+  ],
+  "mismatch": false
+ },
+ {
+  "spec_id": "5a4a9acabb14",
+  "question": "Who were the worst 3 centre mids in terms of xT per 90 during the 2022 World Cup in Qatar?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8ba19fd3db8e",
+  "question": "Which centre-back created the most chances per 90 minutes?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "87f7918cebb6",
+  "question": "Who had the most completed passes n all? Giv me the top 3 teams that mashed it out on the pitch like boss!",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "2c1358401f20",
+  "question": "How many xG did Hugo Lloris have?",
+  "gold_players": [
+   "Hugo Lloris"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "29cd87ab36e5",
+  "question": "Hey can you compare  Bergwijn, João Félix  and Silvan Widmer for me, like, what is their xT ratting from passin and carrying the ball, yeah?",
+  "gold_players": [
+   "Steven Bergwijn",
+   "João Félix",
+   "Silvan Widmer"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "fe101702d158",
+  "question": "Who led the tournament with the most progressive passes completed as a team in Qatar 2022?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "791b4798df95",
+  "question": "Who were the top 10 midfielders who completed the most passes per 90 minutes under pressure in the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "177692af3cff",
+  "question": "Who had more assists per 90 in Qatar 2022 - Hernán Galíndez or Pouraliganji?",
+  "gold_players": [
+   "Hernán Galíndez",
+   "Morteza Pouraliganji"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b24c79a92b9b",
+  "question": "Who was the top shot creator at the World Cup, who played at least 450 minutes?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "bc839a4ed8ef",
+  "question": "Who were the players with the lowest pass completion percentage in 2022 World Cup? Just curious who were the top 5 worst",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "b9f152464563",
+  "question": "how many presures per 90 did Raphaël Varane put on oppenents on the ball.?",
+  "gold_players": [
+   "Raphaël Varane"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "433c784848d8",
+  "question": "Which team had the highest non-penalty xG from their wingers in matches against Serbia?",
+  "gold_players": [],
+  "gold_teams": [
+   "Serbia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "e07e9cbb1de2",
+  "question": "Who had da most passes complete in da 2022 World Cup v Saudi Arabia?  Top 5 strikers plz",
+  "gold_players": [],
+  "gold_teams": [
+   "Saudi Arabia"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "08a0cc667bcd",
+  "question": "Who were the 3 teams that played most mins against brazil?",
+  "gold_players": [],
+  "gold_teams": [
+   "Brazil"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8770c1d0d4a8",
+  "question": "Who were the top 5 Uruguayan defensive midfielders for passes attempted?",
+  "gold_players": [],
+  "gold_teams": [
+   "Uruguay"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "ad3df7acc7cf",
+  "question": "Who were the guys who passed least under pressure in the third-place match?",
+  "gold_players": [],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "bf8b8ffe543a",
+  "question": "Who scored the most goals against South Korea at the 2022 World Cup?",
+  "gold_players": [],
+  "gold_teams": [
+   "South Korea"
+  ],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "ae5e628af3d2",
+  "question": "Hey whats Richarlison's rate of regulare goals per 90 mins, n't counting penalties.",
+  "gold_players": [
+   "Richarlison"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [],
+  "fuzzy": [],
+  "mismatch": false
+ },
+ {
+  "spec_id": "8bf22acf2d04",
+  "question": "How does Cody Gakpo's and Darwin  Nunez's xT  by passing and carrying the ball compare in the knockout rounds, mate?",
+  "gold_players": [
+   "Cody Gakpo",
+   "Achraf Dari"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [
+   "player Darwin Núñez"
+  ],
+  "fuzzy": [
+   "Achraf Dari"
+  ],
+  "mismatch": true
+ },
+ {
+  "spec_id": "22b9b9552ed6",
+  "question": "Who do you think pressed more? How many times did Christian Pulisic, Aaron Mooy and Goncalo Guedes press  opponents on the ball during the 2022 World Cup in Qatar?",
+  "gold_players": [
+   "Diogo Costa",
+   "Riley McGree",
+   "Rodrigo De Paul"
+  ],
+  "gold_teams": [],
+  "missing": [
+   "player Diogo Costa",
+   "player Riley McGree",
+   "player Rodrigo De Paul"
+  ],
+  "extra": [
+   "player Aaron Mooy",
+   "player Christian Pulisic",
+   "player Gonçalo Ramos"
+  ],
+  "fuzzy": [],
+  "mismatch": true
+ },
+ {
+  "spec_id": "ba1315cc8d45",
+  "question": "How many progressive passes 90 per game did Ederson Varela make in the 2022 World Cup Qatar?",
+  "gold_players": [
+   "Guillermo Varela"
+  ],
+  "gold_teams": [],
+  "missing": [],
+  "extra": [
+   "player Ederson Moraes"
+  ],
+  "fuzzy": [],
+  "mismatch": true
+ }
+]

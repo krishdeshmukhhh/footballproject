@@ -37,6 +37,7 @@ from query.schema import METRICS, STAGES, TEAMS, parse_spec
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "eval" / "independent_specs.jsonl"
 OUT_MISSPELLED = ROOT / "eval" / "independent_misspelled_specs.jsonl"
+SEED = 2026
 MISSPELLINGS = ["dropped_letter", "swapped_letters", "missing_accent"]
 STAGE_CHOICES = [[s] for s in STAGES] + [KNOCKOUT]
 POSITION_CHOICES = [[g] for g in SINGLE_GROUPS] + FAMILIES
@@ -200,7 +201,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--n", type=int, default=300)
     parser.add_argument("--misspelled", type=int, default=20)
-    parser.add_argument("--seed", type=int, default=2026)
+    parser.add_argument("--seed", type=int, default=SEED)
     args = parser.parse_args()
 
     rng = random.Random(args.seed)

@@ -53,6 +53,57 @@ def spec_facts(res: dict) -> dict:
     return f
 
 
+def independent_facts() -> dict:
+    """How the independent test set was built, recomputed from its files (no GPU, no model)."""
+    from query.schema import METRICS, parse_spec
+
+    from eval import independent_name_check, independent_questions, independent_specs
+    from eval.run_eval import top_suggestion
+    test = load_jsonl(HERE / "independent_test.jsonl")
+    dropped = load_jsonl(HERE / "independent_dropped.jsonl")
+    miss = load_jsonl(HERE / "independent_misspelled.jsonl")
+    written = test + dropped
+    checks = json.loads((RUNS / "independent_name_check.json").read_text())
+
+    # Ceiling: copy the misspelled name verbatim into the gold spec; does it resolve, or is the right player suggested?
+    ceiling_misses = []
+    for r in miss:
+        spec = json.loads(json.dumps(r["spec"]))
+        spec["filters"]["players"] = [r["misspelled_name"]]
+        spec = parse_spec(spec)
+        top = top_suggestion(spec)
+        if top is None:
+            ok = run_ok(spec)
+        else:
+            ok = top == r["player"]
+        if not ok:
+            ceiling_misses.append(f"for \"{r['misspelled_name']}\" ({r['player']}) the first suggestion is {top}.")
+    kinds = {k: sum(r["misspelling"] == k for r in miss) for k in independent_specs.MISSPELLINGS}
+    return {
+        "ind_n": len(test), "ind_written": len(written), "ind_dropped_n": len(dropped),
+        "ind_dropped_list": "\n".join(f"  - \"{r['question']}\": {r['drop_reason']}." for r in dropped),
+        "ind_seed": independent_specs.SEED,
+        "ind_metrics": len({r["spec"]["metric"] for r in written}), "n_metrics": len(METRICS),
+        "ind_team_q": sum(r["spec"]["group_by"] == "team" for r in test),
+        "ind_player_q": sum(bool(r["spec"]["filters"]["players"]) for r in test),
+        "ind_excluded": len(independent_specs.used_spec_keys()),
+        "ind_generator": written[0]["generator"], "ind_temperature": independent_questions.TEMPERATURE,
+        "ind_typos": sum(r["style"] == "typos_slang" for r in written),
+        "ind_fuzzy": sum(bool(c["fuzzy"]) and not c["mismatch"] for c in checks
+                         if c["spec_id"] not in independent_name_check.DROPS),
+        "mis_n": len(miss), "mis_kinds": ", ".join(f"{n} {k.replace('_', ' ')}" for k, n in kinds.items()),
+        "mis_ceiling": len(miss) - len(ceiling_misses), "mis_ceiling_misses": " ".join(ceiling_misses) or "none.",
+    }
+
+
+def run_ok(spec) -> bool:
+    from query.executor import ExecutionError, execute
+    try:
+        return bool(execute(spec)["rows"])
+    except ExecutionError:
+        return False
+
+
 def contaminated(pair: dict) -> bool:
     """A paraphrase that says "forward" while the label is strikers only (the teacher's round-trip accepted it)."""
     q = pair["question"].lower()
@@ -213,6 +264,7 @@ def main():
     inj0 = json.loads((HERE / "verifier_injection.json").read_text())
     inj = json.loads((HERE / f"verifier_injection_seed{verifier_injection.HELD_OUT_SEED}.json").read_text())
     facts = spec_facts(res) | data_facts() | training_facts() | static_facts() | injection_facts(inj0, inj)
+    facts |= independent_facts()
     facts |= hallucination_facts(hall, facts.pop("_contaminated_questions"))
     facts |= {"naive_prompt_ktokens": naive_prompt_ktokens(), "main_table": main_table(res, hall),
               "comparison_table": comparison_table(hall), "injection_table": injection_table(inj)}
