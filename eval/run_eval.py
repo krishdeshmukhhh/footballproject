@@ -9,6 +9,9 @@ Metrics per dataset:
   exec_acc       executing it returns the same rows as the expected spec (ties order-insensitive)
   latency        p50/p95 of single sequential requests (on up to --latency-n questions)
   weights_gib    model weight memory, from the vLLM server log (--serve-log)
+On a misspelled-name set (records carry `misspelled_name` and the correct `player`), also:
+  misspelling_pass  exec_ok, or the predicted spec stops at "Did you mean ...?" with the correct player as the
+                    top suggestion (scored on its own, never mixed into another set's accuracy)
 Results merge into eval/results.json under results[system][dataset].
 
 Usage: python -m eval.run_eval --system teacher --data data/test.jsonl eval/dev_hard.jsonl --gpu 4
@@ -26,7 +29,7 @@ from openai import AsyncOpenAI
 
 from query import llm
 from query.compare import results_match, spec_key
-from query.executor import ExecutionError, execute
+from query.executor import ExecutionError, NameNotResolved, execute
 from query.schema import parse_spec
 
 RESULTS = Path(__file__).parent / "results.json"
@@ -64,6 +67,17 @@ def run_rows(spec):
         return None
 
 
+def top_suggestion(spec) -> str | None:
+    """The first "Did you mean" suggestion when the spec's player name does not resolve, else None."""
+    try:
+        execute(spec)
+    except NameNotResolved as e:
+        return e.suggestions[0][0] if e.suggestions else None
+    except ExecutionError:
+        pass
+    return None
+
+
 async def score(system: str, rows: list[dict], concurrency: int) -> tuple[dict, list[dict]]:
     backend, few_shot = SYSTEMS[system]
     client = AsyncOpenAI(base_url=llm.BACKENDS[backend], api_key="local", timeout=300)
@@ -79,12 +93,20 @@ async def score(system: str, rows: list[dict], concurrency: int) -> tuple[dict, 
             rec["spec_ok"] = spec_key(t.spec) == spec_key(expected)
             got, want = run_rows(t.spec), run_rows(expected)
             rec["exec_ok"] = got is not None and want is not None and results_match(got, want)
+        if "misspelled_name" in r:
+            rec["did_you_mean_ok"] = t.spec is not None and top_suggestion(t.spec) == r["player"]
+            rec["misspelling_pass"] = rec["exec_ok"] or rec["did_you_mean_ok"]
         return rec
 
     start = time.time()
     recs = await asyncio.gather(*(one(r) for r in rows))
     n = len(recs)
-    return {
+    extra = {}
+    if any("misspelling_pass" in r for r in recs):
+        extra = {"misspelling_pass": round(100 * sum(r["misspelling_pass"] for r in recs) / n, 1),
+                 "resolved_correct": sum(r["exec_ok"] for r in recs),
+                 "did_you_mean_correct": sum(r["did_you_mean_ok"] for r in recs)}
+    return extra | {
         "n": n,
         "valid_json": round(100 * sum(r["valid"] for r in recs) / n, 1),
         "spec_acc": round(100 * sum(r["spec_ok"] for r in recs) / n, 1),
@@ -124,7 +146,7 @@ def main():
         summary["gpu_memory_mib"] = gpu_memory_mib(args.gpu)
         summary["weights_gib"] = weights_gib(args.serve_log)
         out[Path(path).stem] = summary
-        errors = [r for r in recs if not r["exec_ok"]]
+        errors = [r for r in recs if not r.get("misspelling_pass", r["exec_ok"])]
         (RUNS / f"eval_{name}_{Path(path).stem}.json").write_text(json.dumps(errors, indent=1, ensure_ascii=False))
         print(f"{name:14} {Path(path).stem:12} {json.dumps(summary)}")
     RESULTS.write_text(json.dumps(results, indent=1))
