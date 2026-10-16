@@ -43,6 +43,9 @@ def _norm(s: str) -> str:
     return " ".join(s.lower().replace("-", " ").replace(".", " ").split())
 
 
+# Common names that are not tokens of a display name, after _norm ("Neymar Jr." -> "neymar jr").
+NAME_ALIASES = {"neymar jr": "neymar", "neymar junior": "neymar", "neymar jnr": "neymar"}
+
 # Minimum difflib similarity for a "Did you mean" suggestion, and how many to offer.
 SUGGEST_CUTOFF = 0.75
 MAX_SUGGESTIONS = 3
@@ -68,10 +71,12 @@ def did_you_mean_message(name: str, suggestions: list[tuple[str, str]], ambiguou
 
 def _similar(q: str, display: str) -> float:
     """Best difflib ratio of the query against the whole display name or any run of as many of its
-    tokens as the query has ("de bruyn" vs "de bruyne", "mbape" vs "mbappe")."""
+    tokens as the query has ("de bruyn" vs "de bruyne", "mbape" vs "mbappe"), and of both with their
+    tokens sorted, for names written in the other order ("woo young jun" vs "jung woo young")."""
     words, k = display.split(), len(q.split())
     candidates = [display] + [" ".join(words[i:i + k]) for i in range(len(words) - k + 1)]
-    return max(SequenceMatcher(None, q, c).ratio() for c in candidates)
+    best = max(SequenceMatcher(None, q, c).ratio() for c in candidates)
+    return max(best, SequenceMatcher(None, " ".join(sorted(q.split())), " ".join(sorted(words))).ratio())
 
 
 def resolve_player(name: str, players: pd.DataFrame) -> int:
@@ -79,17 +84,29 @@ def resolve_player(name: str, players: pd.DataFrame) -> int:
 
     Token steps only look at display names ("Lionel Messi"); full legal names ("Lionel Andrés Messi
     Cuccittini") must match exactly, or a stray token like "Pele" would silently pick the wrong player.
+    The surname step ("Leo Messi") needs the query's last word to be the player's last display token. If
+    several players share it, the name is ambiguous. If one does, every other word must share its initial
+    with one of his names, else no match: so "Woo-Young Jun" is not Son Jun-Ho and "Ederson Varela" is not
+    Guillermo Varela. Initials only ever reject a match; they never choose between players.
     Anything else raises NameNotResolved with fuzzy "Did you mean" suggestions; it never substitutes.
     """
-    q = _norm(name)
+    q = NAME_ALIASES.get(_norm(name), _norm(name))
     display = players["player"].map(_norm)
     full = players["player_name"].map(_norm)
     tokens = [set(a.split()) for a in display]
 
+    def initials_fit(i: int) -> bool:
+        initials = {w[0] for w in display.iloc[i].split() + full.iloc[i].split()}
+        return all(w[0] in initials for w in q.split()[:-1])
+
+    surname = pd.Series([len(q.split()) > 1 and q.split()[-1] == d.split()[-1] for d in display], index=players.index)
+    if surname.sum() == 1 and not initials_fit(players.index.get_loc(surname.idxmax())):
+        surname[:] = False
+
     for match in (
         (display == q) | (full == q),
         pd.Series([set(q.split()) <= t for t in tokens], index=players.index),
-        pd.Series([q.split()[-1] in t for t in tokens], index=players.index) if q else None,
+        surname if q else None,
     ):
         if match is None:
             continue

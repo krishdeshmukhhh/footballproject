@@ -99,3 +99,39 @@ def test_ambiguous_name_lists_all_candidates():
 def test_possessive_names_resolve():
     _, players = load_tables()
     assert players.set_index("player_id").loc[resolve_player("Ziyech's", players), "player"] == "Hakim Ziyech"
+
+
+@pytest.mark.parametrize("name, wrong_player", [
+    ("Woo-Young Jun", "Son Jun-Ho"),        # "Jun" is a middle token of Son Jun-Ho, not a surname
+    ("Ederson Varela", "Guillermo Varela"),  # right surname, a first name that is not his
+    ("Luis Sosa", "Borna Sosa"),
+    ("Kevin Noppert", "Andries Noppert"),
+])
+def test_surname_step_never_guesses_a_wrong_player(name, wrong_player):
+    from query.executor import NameNotResolved
+    _, players = load_tables()
+    with pytest.raises(NameNotResolved):  # used to resolve silently to wrong_player
+        resolve_player(name, players)
+
+
+def test_reordered_name_gets_did_you_mean():
+    from query.executor import NameNotResolved
+    _, players = load_tables()
+    with pytest.raises(NameNotResolved) as e:
+        resolve_player("Woo-Young Jun", players)
+    assert not e.value.ambiguous and e.value.suggestions[0][0] == "Jung Woo-Young"
+    assert "Did you mean Jung Woo-Young" in str(e.value)
+
+
+@pytest.mark.parametrize("name", ["Neymar Jr", "Neymar Jr.", "neymar junior", "Neymar"])
+def test_neymar_aliases(name):
+    _, players = load_tables()
+    assert players.set_index("player_id").loc[resolve_player(name, players), "player"] == "Neymar"
+
+
+def test_initials_never_choose_between_players_with_one_surname():
+    from query.executor import NameNotResolved
+    _, players = load_tables()
+    with pytest.raises(NameNotResolved) as e:
+        resolve_player("Emi Martinez", players)
+    assert e.value.ambiguous and "Emiliano Martínez" in {p for p, _ in e.value.suggestions}
