@@ -1,0 +1,20 @@
+[
+ {
+  "question": "How many key passes did Aaron McGre make?",
+  "raw": "{\"metric\": \"key_passes\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Aaron McGre\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false,
+  "did_you_mean_ok": false,
+  "misspelling_pass": false
+ },
+ {
+  "question": "How many times did Thaigo Silva apply pressure to opponents on the ball?",
+  "raw": "{\"metric\": \"pressures\", \"per90\": false, \"group_by\": \"player\", \"filters\": {\"players\": [\"Thaigo Silva\"], \"teams\": null, \"position_groups\": null, \"stages\": null, \"opponents\": null, \"min_minutes\": null}, \"sort\": \"desc\", \"limit\": 1}",
+  "valid": true,
+  "spec_ok": false,
+  "exec_ok": false,
+  "did_you_mean_ok": false,
+  "misspelling_pass": false
+ }
+]

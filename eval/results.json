@@ -138,6 +138,31 @@
    "latency_p95_s": 0.573,
    "gpu_memory_mib": 121459,
    "weights_gib": 15.27
+  },
+  "independent_test": {
+   "n": 297,
+   "valid_json": 100.0,
+   "spec_acc": 68.4,
+   "exec_acc": 75.1,
+   "throughput_qps": 37.75,
+   "latency_p50_s": 0.455,
+   "latency_p95_s": 0.594,
+   "gpu_memory_mib": 121797,
+   "weights_gib": 15.27
+  },
+  "independent_misspelled": {
+   "misspelling_pass": 90.0,
+   "resolved_correct": 6,
+   "did_you_mean_correct": 12,
+   "n": 20,
+   "valid_json": 100.0,
+   "spec_acc": 30.0,
+   "exec_acc": 30.0,
+   "throughput_qps": 13.28,
+   "latency_p50_s": 0.455,
+   "latency_p95_s": 0.484,
+   "gpu_memory_mib": 121797,
+   "weights_gib": 15.27
   }
  },
  "sft": {
