@@ -1,0 +1,2111 @@
+{
+ "checker": "mistralai/Mistral-Small-24B-Instruct-2501",
+ "rule": "A question is validated if and only if the checker answers \"yes\": a careful analyst would turn the question into exactly the reading, under the conventions in the prompt. Anything ambiguous is \"no\". Decided before any question was checked; the subset is used as is.",
+ "prompt": "You check labels for a football statistics benchmark about the 2022 World Cup.\nYou get a fan's QUESTION and a READING: a plain-English description of exactly what the question is labelled as asking.\nDecide whether the question asks for exactly what the reading says. Answer \"yes\" only if a careful analyst would turn\nthe question into exactly this reading. If the question is ambiguous between this reading and another, answer \"no\".\n\nCheck each of these:\n1. Statistic: the same statistic. Synonyms are fine (\"chances created\" = key passes, \"pass accuracy\" = pass\n   completion %, \"pressing\" = pressures). Completed and attempted passes are different statistics. A percentage is\n   different from a count. \"(simplified)\" after progressive passes is only a label.\n2. Total or per 90: \"per 90\", \"per game\", \"per match\", \"on average\" and similar mean a per-90 rate. Without such a\n   word the question asks for a total.\n3. Direction: most / highest versus fewest / lowest.\n4. Players or teams: a reading about teams needs a question that ranks teams or countries as a whole. A reading\n   about players needs a question about individual players.\n5. How many: \"The N players (or teams) with ...\" needs a question asking for N of them. When N is 5 the question may\n   give no number, as long as it asks for several (plural). \"The player (or team) with ...\" needs a question asking\n   for a single one (\"who had the most ...\", \"which team ...\"). A reading of the form \"<statistic> for <named\n   players>\" asks for those players' own figures (a lookup, or a comparison when there are several): no count applies.\n6. Filters: the same positions, team (\"playing for X\" = the players' own team), opponent (\"against X\"), stage of the\n   tournament and minutes threshold. A threshold marked \"(default threshold)\" is applied automatically: the question\n   need not mention it. A question that adds or drops any other filter is a \"no\".\n7. Positions: GK goalkeepers, CB centre-backs, FB full-backs, DM defensive midfielders, CM central midfielders, AM\n   attacking midfielders, W wingers, ST strikers. \"Defenders\" = CB and FB; \"midfielders\" = DM, CM and AM;\n   \"forwards\" or \"attackers\" = ST and W. \"Counting only X\" in a team reading means the team's total from its X.\n8. Named players: the same players. A surname alone, a common short form, or a small misspelling is fine if it is\n   clearly the same person; a different person is a \"no\".\n9. Ignore \"World Cup 2022\", \"Qatar\", typos, slang and chatter: the whole dataset is that tournament.\n\nReply with JSON only: {\"reason\": \"<one short sentence>\", \"verdict\": \"yes\" or \"no\"}.",
+ "temperature": 0,
+ "seed": 2026,
+ "verdicts": [
+  {
+   "spec_id": "5498794c2f48",
+   "question": "wot the top ten welsh wingers and strikers for shots taken?",
+   "reading": "The 10 players with the most shots, among forwards (ST, W), playing for Wales, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top ten Welsh forwards for shots taken, which matches the reading."
+  },
+  {
+   "spec_id": "44d20f76dc20",
+   "question": "Who was the midfielder who made the most progressive passes per 90 in the 2022 World Cup?",
+   "reading": "The player with the highest progressive passes (simplified) per 90, among midfielders (AM, CM, DM), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a single player, and the reading asks for a single player."
+  },
+  {
+   "spec_id": "289e48554536",
+   "question": "I'm curious, which teams rank as the top 10 for central midfielders creating shot-creating actions against Tunisia?",
+   "reading": "The 10 teams with the most shot-creating actions, counting only central midfielders (CM), against Tunisia, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 10 teams, not the top 10 central midfielders."
+  },
+  {
+   "spec_id": "e3a05f03ea2d",
+   "question": "I wonder how many minutes my guys Alex Vega, Joel Campbell and Cesar Montes played all together in  the World Cup?",
+   "reading": "Minutes played for Alexis Vega, César Montes and Joel Campbell, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the total minutes played by the players, not their individual figures."
+  },
+  {
+   "spec_id": "8f53c53afa53",
+   "question": "Whoz da top 10 goalies in the 2022 world cup for completin passes whil under pressr by oppenets?",
+   "reading": "The 10 players with the most passes completed under pressure, among goalkeepers (GK), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 10 goalkeepers, but the reading asks for the top 10 players."
+  },
+  {
+   "spec_id": "6ceae49c8089",
+   "question": "Who had the better pass comp % under pressure between  Hakimi and Varane?",
+   "reading": "Pass completion % under pressure for Achraf Hakimi and Raphaël Varane, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison between two players, not just a lookup of their pass completion % under pressure."
+  },
+  {
+   "spec_id": "140bee17398e",
+   "question": "Who was the most accurate passer at the 2022 World Cup, with at least 200 minutes played?",
+   "reading": "The player with the highest pass completion %, with at least 200 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the player with the highest pass completion %, which matches the reading."
+  },
+  {
+   "spec_id": "30be385197bd",
+   "question": "Which 10 players pressed opponents the most times in Qatar 2022?",
+   "reading": "The 10 players with the most pressures, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 players by pressures, which matches the reading."
+  },
+  {
+   "spec_id": "0106e8c1193d",
+   "question": "Who were the top 5 teams for passes completed by wingers?",
+   "reading": "The 5 teams with the most passes completed, counting only wingers (W), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 teams, which matches the reading."
+  },
+  {
+   "spec_id": "142c5513c877",
+   "question": "Who led the attacking midfielders with the most key passes in the final?",
+   "reading": "The player with the most key passes, among attacking midfielders (AM), in the final, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the player with the most key passes, among attacking midfielders, in the final, which matches the reading exactly."
+  },
+  {
+   "spec_id": "a2ba3dbe409c",
+   "question": "Who were the 10 countries that generated the most threat by passing and carrying the ball, as measured by xT per 90 minutes, in the third-place match?",
+   "reading": "The 10 teams with the highest expected threat (xT) added per 90, in the 3rd place final, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the 10 teams with the highest xT per 90 in the third-place match, which matches the reading."
+  },
+  {
+   "spec_id": "d78478955d17",
+   "question": "Who were the top full backs for passes attempted against Netherlands?",
+   "reading": "The 10 players with the most passes attempted, among full-backs (FB), against Netherlands, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top full-backs, but does not specify a number."
+  },
+  {
+   "spec_id": "ef0336e69d63",
+   "question": "Who were the top 3 players with the most progressive carries per 90 minutes in Qatar  2022?",
+   "reading": "The 3 players with the highest progressive carries per 90, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 players, which matches the reading."
+  },
+  {
+   "spec_id": "97af7aeacbf8",
+   "question": "Which defenders scored the most expected goals (xG)  against Morocco in the 2022 World Cup?  I'm curious to see the top 8.",
+   "reading": "The 8 players with the most expected goals (xG), among defenders (CB, FB), against Morocco, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 8 defenders, but the reading specifies CB and FB, which are not the same as defenders."
+  },
+  {
+   "spec_id": "10476f154526",
+   "question": "Who had da most pass attempts under preasure per 90 by cb's in the WC?",
+   "reading": "The 10 players with the highest passes attempted under pressure per 90, among centre-backs (CB), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, not 10."
+  },
+  {
+   "spec_id": "a50b545758d6",
+   "question": "Which defensive midfielders scored the most non-penalty goals per 90 against Spain?",
+   "reading": "The 5 teams with the highest non-penalty goals per 90, counting only defensive midfielders (DM), against Spain, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for players, not teams."
+  },
+  {
+   "spec_id": "f2ab490d6086",
+   "question": "Hey, u got any idea how many goalz Jordan Henderson scored in the 2022 World Cup?",
+   "reading": "Goals for Jordan Henderson, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "d2d189838a2b",
+   "question": "How many assists did Endo get at the 2022 World Cup?",
+   "reading": "Assists for Wataru Endo, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "28efab48924f",
+   "question": "Which strikers had the lowest non-penalty xG per 90 in the group stage of the 2022 World Cup, minimum 180 minutes played?",
+   "reading": "The 5 players with the lowest non-penalty xG per 90, among strikers (ST), in the group stage, with at least 180 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the lowest non-penalty xG per 90, but the reading asks for the 5 players with the lowest non-penalty xG per 90."
+  },
+  {
+   "spec_id": "80c7d0b8a64d",
+   "question": "How much xT did Cristiano Ronaldo create in total in Qatar 2022?",
+   "reading": "Expected threat (xT) added for Cristiano Ronaldo, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a total, not a per-90 rate."
+  },
+  {
+   "spec_id": "3878f38dc228",
+   "question": "Which team scored the fewest goals from open play in the 2022 World Cup?",
+   "reading": "The team with the fewest non-penalty goals, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for goals from open play, which is the same as non-penalty goals."
+  },
+  {
+   "spec_id": "913e3ae5d4e4",
+   "question": "Who created the most chances in the semi-finals? I wanna see the top 3 guys.",
+   "reading": "The 3 players with the most shot-creating actions, in Semi-finals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, but the reading asks for the most shot-creating actions, not key passes."
+  },
+  {
+   "spec_id": "e79bca0b4201",
+   "question": "Who were the 3 guys with the fewest passes completd per 90, like the worst ball players in the whole tournament?",
+   "reading": "The 3 players with the lowest passes completed per 90, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the 3 players with the fewest passes completed per 90, which matches the reading."
+  },
+  {
+   "spec_id": "650eb9282c1d",
+   "question": "Who were the top 10 goalers by non-penalty xG agenst Belgium during the 2022 World Cup in Qatar?",
+   "reading": "The 10 players with the most non-penalty xG, against Belgium, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 players by non-penalty xG against Belgium, which matches the reading."
+  },
+  {
+   "spec_id": "3666ec8fce68",
+   "question": "How  many progressive passes per 90 did N'Koulou average at the 2022 World Cup in Qatar?",
+   "reading": "Progressive passes (simplified) per 90 for Nicolas N'Koulou, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, and the reading specifies the same statistic and player."
+  },
+  {
+   "spec_id": "6a16d39509db",
+   "question": "Who were the top 5 central midfielders in pass completion percentage while under pressure during the quarter-finals?",
+   "reading": "The 5 players with the highest pass completion % under pressure, among central midfielders (CM), in Quarter-finals, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players with the highest pass completion percentage."
+  },
+  {
+   "spec_id": "983a78372c76",
+   "question": "Who were the top 5 defensive midfielders for progressive carries in the knockout stages?",
+   "reading": "The 5 players with the most progressive carries, among defensive midfielders (DM), in the knockout rounds, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players with the most."
+  },
+  {
+   "spec_id": "aa960c5ee0da",
+   "question": "Who were the top 10 defenders (centre-backs and full-backs) in terms of most passes completed while under pressure?",
+   "reading": "The 10 players with the most passes completed under pressure, among defenders (CB, FB), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 defenders in terms of most passes completed under pressure, which matches the reading."
+  },
+  {
+   "spec_id": "636b13a1ce26",
+   "question": "Which team scored the most goals against Poland?",
+   "reading": "The team with the most goals, against Poland, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the team with the most goals against Poland, which matches the reading."
+  },
+  {
+   "spec_id": "2710f14763ca",
+   "question": "Who were the top ten full backs with the highest pass comp % against south korea?  just those who went sides against south korea",
+   "reading": "The 10 players with the highest pass completion %, among full-backs (FB), against South Korea, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top ten full-backs, but the reading specifies a default threshold of 90 minutes, which the question does not mention."
+  },
+  {
+   "spec_id": "c2fc2b88e4e3",
+   "question": "Which 5 teams took the fewest shots in the 2022 World Cup?",
+   "reading": "The 5 teams with the fewest shots, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the 5 teams with the fewest shots, which matches the reading exactly."
+  },
+  {
+   "spec_id": "a4392727dc6c",
+   "question": "How many times did Rowles attempt to pass the ball?",
+   "reading": "Passes attempted for Kye Rowles, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a total."
+  },
+  {
+   "spec_id": "98f9da6cfb6a",
+   "question": "Did you know how mnay times Patirce Epassy hass applied pressur to oppinents on the ball per 90 mins.  Bz he'll probly defenitly do it agin.",
+   "reading": "Pressures per 90 for Devis Epassy, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a per-90 rate, but the player's name is misspelled."
+  },
+  {
+   "spec_id": "69c0f5f63684",
+   "question": "Who were the top 3 Swiss players with the most minutes played in the 2022 World Cup?",
+   "reading": "The 3 players with the most minutes played, playing for Switzerland, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, the reading asks for the 3 players."
+  },
+  {
+   "spec_id": "89a8d7babfa2",
+   "question": "Who had the best xG per 90 between Griezmann, Yamiq, and Lloris?",
+   "reading": "Expected goals (xG) per 90 for Antoine Griezmann, Hugo Lloris and Jawad El Yamiq, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the highest xG per 90, but the reading asks for the xG per 90 without specifying the direction."
+  },
+  {
+   "spec_id": "93629937dc02",
+   "question": "Which of Seung-Gyu and Otamendi had the most assists?",
+   "reading": "Assists for Nicolás Otamendi and Kim Seung-Gyu, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison between two players, not a lookup of their own figures."
+  },
+  {
+   "spec_id": "5d89bbbbaed6",
+   "question": "Who were the top 3 forwards for key passes in the 2022 World Cup?",
+   "reading": "The 3 players with the most key passes, among forwards (ST, W), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 forwards for key passes, which matches the reading."
+  },
+  {
+   "spec_id": "a6eafcfcdc61",
+   "question": "Who tried the most passes under preshure per 90 in the round of 16? Top 3 teams bro.",
+   "reading": "The 3 teams with the highest passes attempted under pressure per 90, in Round of 16, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 teams, but the reading asks for the top 3 teams with the highest passes attempted under pressure per 90, which is not the same as the question."
+  },
+  {
+   "spec_id": "a82fc5cae7e4",
+   "question": "Who were the top 3 Brazil players with the most passes completed per 90 minutes in Qatar, given they played at least 200 minutes?",
+   "reading": "The 3 players with the highest passes completed per 90, playing for Brazil, with at least 200 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, the reading asks for the 3 players with the highest."
+  },
+  {
+   "spec_id": "823199ea7c39",
+   "question": "Which 5 Ghana players have the highest pass completion percentage under pressure?",
+   "reading": "The 5 players with the highest pass completion % under pressure, playing for Ghana, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 players, the reading asks for the top 5 players."
+  },
+  {
+   "spec_id": "aa442d785946",
+   "question": "Who had the highest xG in the 3rd place match?",
+   "reading": "The 3 players with the most expected goals (xG), in the 3rd place final, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, not three."
+  },
+  {
+   "spec_id": "f2c012909c28",
+   "question": "How many progressive passes per 90 minutes does Neymar have so far?",
+   "reading": "Progressive passes (simplified) per 90 for Neymar, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, and the reading specifies a per-90 rate."
+  },
+  {
+   "spec_id": "cb72daae658b",
+   "question": "Which 5 national teams scored the highest non-penalty xG per 90 during the 2022 World Cup in Qatar?",
+   "reading": "The 5 teams with the highest non-penalty xG per 90, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 teams, and the reading asks for the top 5 teams."
+  },
+  {
+   "spec_id": "e899c25dd578",
+   "question": "Who were the five players who least added to their team’s threat against Costa Rica, in terms of xT added from passing and carrying?",
+   "reading": "The 5 players with the fewest expected threat (xT) added, against Costa Rica, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the fewest players, but the reading asks for the fewest players with at least 90 minutes played."
+  },
+  {
+   "spec_id": "7c0063ca6674",
+   "question": "Who were the top 3 wingers with the mos key psses per 90 wrt than 200 mins played, in qrter?",
+   "reading": "The 3 players with the highest key passes per 90, among wingers (W), with at least 200 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 wingers with the most key passes per 90, with at least 200 minutes played, in the quarter-finals."
+  },
+  {
+   "spec_id": "987648e67c14",
+   "question": "Who played the most minutes as a centre back against Croatia?",
+   "reading": "The player with the most minutes played, among centre-backs (CB), against Croatia, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a single player, and the reading asks for a single player."
+  },
+  {
+   "spec_id": "891cf76a8567",
+   "question": "How do Koundé and Przemysław Frankowski compare for pass completion percentage in  the World Cup?",
+   "reading": "Pass completion % for Jules Koundé and Przemysław Frankowski, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison of pass completion percentages, not just a lookup of the figures."
+  },
+  {
+   "spec_id": "4cd790d854ed",
+   "question": "Who had the most progressive carries in the final?",
+   "reading": "The player with the most progressive carries, in the final, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a single player with the most progressive carries in the final, which matches the reading."
+  },
+  {
+   "spec_id": "ac3b3759aa48",
+   "question": "Who was the attacking midfielder who took the most shots per 90 minutes played  during the quarter finals?",
+   "reading": "The player with the highest shots per 90, among attacking midfielders (AM), in Quarter-finals, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, but the reading asks for the player with the highest shots per 90, not the most shots per 90."
+  },
+  {
+   "spec_id": "a8f007ffd4ac",
+   "question": "Which three national teams had the least assists in the round of 16 of the 2022 World Cup?",
+   "reading": "The 3 teams with the fewest assists, in Round of 16, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the fewest assists, which matches the reading."
+  },
+  {
+   "spec_id": "ae9a6a7f39dd",
+   "question": "hey can u show me messi vs rodrigo de pauls shot creatin actions stats for the 2022 world cup?",
+   "reading": "Shot-creating actions for Lionel Messi and Rodrigo De Paul, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison of shot-creating actions, which is a count, not a lookup."
+  },
+  {
+   "spec_id": "53fdb8af8fb1",
+   "question": "Which national team's midfielders put their opponents under the most pressure when they had the ball in Qatar (rate per 90 minutes)?",
+   "reading": "The team with the highest pressures per 90, counting only midfielders (AM, CM, DM), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the team with the highest pressures per 90, counting only midfielders."
+  },
+  {
+   "spec_id": "32ff5d1468b8",
+   "question": "Which 5 teams scored the least non-penalty goals against Brazil in the 2022 world cup?",
+   "reading": "The 5 teams with the fewest non-penalty goals, against Brazil, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the 5 teams with the fewest non-penalty goals against Brazil, which matches the reading exactly."
+  },
+  {
+   "spec_id": "a83ef0477d58",
+   "question": "Who were the top 10 strikers who completed the most passes per 90 minutes while under pressure?",
+   "reading": "The 10 players with the highest passes completed under pressure per 90, among strikers (ST), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 strikers, which matches the reading."
+  },
+  {
+   "spec_id": "4fb94b78f27c",
+   "question": "How many goals did Tomiyasu bag at the World Cup?",
+   "reading": "Goals for Takehiro Tomiyasu, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "40c60cac1022",
+   "question": "How many passes did sofiane boufal  attmpt in the semi-final?",
+   "reading": "Passes attempted for Sofiane Boufal, in Semi-finals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count of passes attempted, not a per-90 rate."
+  },
+  {
+   "spec_id": "34babd035c85",
+   "question": "Who made the most passes whils under preasure in the group stage and who was it against?",
+   "reading": "The player with the most passes attempted under pressure, in the group stage, with at least 90 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the opponent, which is not in the reading."
+  },
+  {
+   "spec_id": "1f7e25cb9571",
+   "question": "Who was the most useless player in terms of goal scoring for the tournament?",
+   "reading": "The player with the fewest goals, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the player with the fewest goals, but does not specify the minimum minutes played."
+  },
+  {
+   "spec_id": "d215e529578a",
+   "question": "Who were the top 5  pass masters per 90 against wales while all the preshure was on em, tryin to keep the ball under duress, y'know.",
+   "reading": "The 5 players with the highest passes attempted under pressure per 90, against Wales, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, but the reading asks for the highest passes attempted under pressure per 90, which is not the same as the question's 'pass masters' which is ambiguous."
+  },
+  {
+   "spec_id": "b5c60453cf65",
+   "question": "Who was the most annoying fullback for Mexico on the ball defense 2022 sides?",
+   "reading": "The player with the highest pressures per 90, among full-backs (FB), playing for Mexico, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the most annoying fullback, which is subjective and not the same as the highest pressures per 90."
+  },
+  {
+   "spec_id": "0866bca4efab",
+   "question": "Who were the top 8 strikers with the most assists during the 2022 World Cup in Qatar?",
+   "reading": "The 8 players with the most assists, among strikers (ST), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 8 strikers with the most assists, which matches the reading exactly."
+  },
+  {
+   "spec_id": "f846c310c8fc",
+   "question": "Who were the 5 centre-backs that attmpted the fewest passes in the Qater World Cup?",
+   "reading": "The 5 players with the fewest passes attempted, among centre-backs (CB), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for 5 players, but the reading asks for players with at least 270 minutes."
+  },
+  {
+   "spec_id": "1fa4f8ad5ce9",
+   "question": "How many progressive passes 90 per game did Hakimi average in the 2022 World Cup?",
+   "reading": "Progressive passes (simplified) per 90 for Achraf Hakimi, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a per-90 rate, but the reading is for a per-game rate."
+  },
+  {
+   "spec_id": "e79aa73e3869",
+   "question": "Which defensive midfielders had the best pass completion percentage in the knockout rounds?  List the top 6.",
+   "reading": "The 6 players with the highest pass completion %, among defensive midfielders (DM), in the knockout rounds, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 6 players, the reading asks for the 6 players with the highest pass completion %"
+  },
+  {
+   "spec_id": "6b016cbc19c6",
+   "question": "Who had the best pass completion percentage while under pressure, in the 2022 World Cup, if we take into account  the guys who played at least 200 minutes? And what's the player with the top 3 highest rates?",
+   "reading": "The 3 players with the highest pass completion % under pressure, with at least 200 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, but the reading asks for the 3 players with the highest pass completion % under pressure."
+  },
+  {
+   "spec_id": "f9426aea11cb",
+   "question": "wot the top 5 players wiv the most proggies carries in the final??",
+   "reading": "The 5 players with the most progressive carries, in the final, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 players with the most progressive carries in the final, which matches the reading exactly."
+  },
+  {
+   "spec_id": "8cf343c14446",
+   "question": "Who are the top 3 attacking midfielders with the most shots taken in the 2022 world Cup",
+   "reading": "The 3 players with the most shots, among attacking midfielders (AM), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 players, the reading asks for the 3 players with the most shots."
+  },
+  {
+   "spec_id": "8b3642b07efc",
+   "question": "Hey, which top 3 teams created the most shot-creating actions against Australia?",
+   "reading": "The 3 teams with the most shot-creating actions, against Australia, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 teams, which matches the reading."
+  },
+  {
+   "spec_id": "ac6a1b41a89b",
+   "question": "Who was the most clinical player in Qatar, based on xG, after 180 minutes?",
+   "reading": "The player with the most expected goals (xG), with at least 180 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the player with the most xG, but the reading asks for a total, not a per-90 rate."
+  },
+  {
+   "spec_id": "a8d1ceec1b70",
+   "question": "Which 10 teams had the highest average passes completed by midfielders per 90 minutes?",
+   "reading": "The 10 teams with the highest passes completed per 90, counting only midfielders (AM, CM, DM), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the highest average passes completed per 90 minutes, which matches the reading."
+  },
+  {
+   "spec_id": "f2d567f80437",
+   "question": "Who do you think led the tournament in completing passes under pressure,  among guys who played more than 270 minutes?  I'm guessing it was someone like Messi or Neymar.",
+   "reading": "The player with the most passes completed under pressure, with at least 270 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the player with the most passes completed under pressure, with at least 270 minutes, which matches the reading."
+  },
+  {
+   "spec_id": "80b6104372b7",
+   "question": "Which team had the lowest xG from  centre backs and full backs?",
+   "reading": "The team with the fewest non-penalty xG, counting only defenders (CB, FB), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question does not specify non-penalty xG."
+  },
+  {
+   "spec_id": "e88dcf79a754",
+   "question": "I'm curious, how many key passes per 90 minutes did Amartey make compared to Castelletto?",
+   "reading": "Key passes per 90 for Daniel Amartey and Jean-Charles Castelletto, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup."
+  },
+  {
+   "spec_id": "8f5899b98e94",
+   "question": "Who played the most minutes in the third place game?",
+   "reading": "The player with the most minutes played, in the 3rd place final, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a single player, and the reading asks for a single player."
+  },
+  {
+   "spec_id": "d2e4915298e2",
+   "question": "Wich wingers scored the most goals w/out pens in the 2022 world cup?  just give me the top 10.",
+   "reading": "The 10 players with the most non-penalty goals, among wingers (W), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 wingers, which matches the reading."
+  },
+  {
+   "spec_id": "d3f3ee91c6ce",
+   "question": "How many passes per 90 did Noppert complete while under pressure during the 2022 World Cup in Qatar?",
+   "reading": "Passes completed under pressure per 90 for Andries Noppert, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, the reading is for a per-90 rate, the question asks for a single player, the reading is for a single player, the question asks for a count, the reading is for a count, the question asks for a specific player, the reading is for a specific player, the question has"
+  },
+  {
+   "spec_id": "90abf25b9259",
+   "question": "Which 5 teams scored the most non-penalty goals against the USA in the 2022 World Cup?",
+   "reading": "The 5 teams with the most non-penalty goals, against United States, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 teams, the reading asks for the 5 teams."
+  },
+  {
+   "spec_id": "2e8d20990774",
+   "question": "Who scored the most goals for South Korea at the 2022 World Cup?",
+   "reading": "The 5 players with the most goals, playing for South Korea, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, not 5."
+  },
+  {
+   "spec_id": "4f3259999785",
+   "question": "Who had the better pass completion percentage between Raphaël Varane, Rodon and Saud Abdul Hamid?",
+   "reading": "Pass completion % for Raphaël Varane, Joe Rodon and Saud Abdul Hamid, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "74cc707fd438",
+   "question": "Which goalkeepers completed the fewest passes in the quarter-finals? I wanna see the top 5 worst.",
+   "reading": "The 5 players with the fewest passes completed, among goalkeepers (GK), in Quarter-finals, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the fewest passes completed, not the lowest pass completion percentage."
+  },
+  {
+   "spec_id": "5e1d1b0ac075",
+   "question": "how many min did Abdelkarim Hassan play?",
+   "reading": "Minutes played for Abdelkarim Hassan, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a total, not a per-90 rate."
+  },
+  {
+   "spec_id": "2df3d11012ef",
+   "question": "Which  5 teams were the most aggresive pressers all tournament?",
+   "reading": "The 5 teams with the highest pressures per 90, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the most aggressive pressers, which is a synonym for pressures."
+  },
+  {
+   "spec_id": "0c5dca532d5c",
+   "question": "Who were the top 3 forwrds who made the fewest shot creating actions in the 2022 World Cup?",
+   "reading": "The 3 players with the fewest shot-creating actions, among forwards (ST, W), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for forwards, not attackers."
+  },
+  {
+   "spec_id": "e43e711d740b",
+   "question": "Who were the top 10 players in terms of xT per 90 during the 2022 World Cup semi-finals?",
+   "reading": "The 10 players with the highest expected threat (xT) added per 90, in Semi-finals, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 players, the reading asks for the 10 players with the highest xT per 90."
+  },
+  {
+   "spec_id": "3a29d8fe2373",
+   "question": "Who were the top 5 players for non-penalty xG per 90 minutes against Denmark during the 2022 World Cup in Qatar?",
+   "reading": "The 5 players with the highest non-penalty xG per 90, against Denmark, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players with the highest statistic."
+  },
+  {
+   "spec_id": "81988965e4c5",
+   "question": "Who were the top 6 key pass masters in the 2022 World Cup?",
+   "reading": "The 6 players with the most key passes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 6 players by key passes, which matches the reading."
+  },
+  {
+   "spec_id": "da2acccadf5e",
+   "question": "Who had the best expected goals (xG) among Emiliano Martínez, Grzegorz Krychowiak and  Olmo?",
+   "reading": "Expected goals (xG) for Emiliano Martínez, Grzegorz Krychowiak and Daniel Olmo, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the best xG, not the xG for each player."
+  },
+  {
+   "spec_id": "14108ec9ca5c",
+   "question": "Which of Pedro Miguel Correia and Saka took more shots in the 2022 World Cup?",
+   "reading": "Shots for Pedro Miguel Correia and Bukayo Saka, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison between two players, not a lookup of their own figures."
+  },
+  {
+   "spec_id": "a4c231409c2a",
+   "question": "Who are the top 5 teams in terms of their central midfielders setting up goals per 90 minutes?",
+   "reading": "The 5 teams with the highest assists per 90, counting only central midfielders (CM), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 teams, which matches the reading."
+  },
+  {
+   "spec_id": "d955c66b7934",
+   "question": "Who were da best wingers wiv the highest pass comp% under pressur from oppoents 2022 world cup",
+   "reading": "The 3 players with the highest pass completion % under pressure, among wingers (W), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the best wingers, but does not specify a number."
+  },
+  {
+   "spec_id": "c3a418c4541b",
+   "question": "Who were the top 6 players with the most progressive carries per 90 minutes in Qatar  2022?",
+   "reading": "The 6 players with the highest progressive carries per 90, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 6 players with the most progressive carries per 90 minutes, which matches the reading exactly."
+  },
+  {
+   "spec_id": "2f334b1c299d",
+   "question": "Who were the top 5 Serbian players with the most passes attempted under pressure?",
+   "reading": "The 5 players with the most passes attempted under pressure, playing for Serbia, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players with the most."
+  },
+  {
+   "spec_id": "db1a27e00537",
+   "question": "Who were the top 5 attacking midfielders in terms of passes attempted  per 90 during the round of 16?",
+   "reading": "The 5 players with the highest passes attempted per 90, among attacking midfielders (AM), in Round of 16, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players with the highest value."
+  },
+  {
+   "spec_id": "0cbec6cd3b86",
+   "question": "How many progressive passes did Aurélien Tchouaméni,  Christian Pulisic and Romero make total in the tournament?",
+   "reading": "Progressive passes (simplified) for Aurélien Tchouaméni, Christian Pulisic and Cristian Romero, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a total, but the reading asks for individual figures."
+  },
+  {
+   "spec_id": "00157ec4b821",
+   "question": "Who was the most prolific defensive midfielder in passing the ball around 90 minutes in Qatar?",
+   "reading": "The player with the highest passes completed per 90, among defensive midfielders (DM), with at least 90 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the most prolific defensive midfielder in passing the ball around, which matches the reading of the highest passes completed per 90 among defensive midfielders."
+  },
+  {
+   "spec_id": "2609e55b5747",
+   "question": "Who played more minutes in the group stage, de Roon or Guerreiro?",
+   "reading": "Minutes played for Marten de Roon and Raphaël Guerreiro, in the group stage, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup of the players' own figures."
+  },
+  {
+   "spec_id": "1f6294ca37b3",
+   "question": "Who scored the most goals against France via strikers in their Round 16 match? I'm curious who the top 10 teams are as a whole, and would love to see your list.",
+   "reading": "The 10 teams with the most goals, counting only strikers (ST), in Round of 16, against France, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 10 teams, but the reading asks for the top 10 teams' goals scored by their strikers."
+  },
+  {
+   "spec_id": "49f2b17ac729",
+   "question": "Who's had the best pass comp pce % amoung the wing backs?  Can u rank the top 5  full backs with the highest completion rates?",
+   "reading": "The 5 players with the highest pass completion %, among full-backs (FB), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 full-backs, but the reading specifies wing-backs."
+  },
+  {
+   "spec_id": "f9ab9747925d",
+   "question": "Which team had the fewest passes completed under pressure from their forwards in the games against Cameroon?",
+   "reading": "The team with the fewest passes completed under pressure, counting only forwards (ST, W), against Cameroon, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the fewest passes completed under pressure from forwards, which matches the reading."
+  },
+  {
+   "spec_id": "6330a1eeba86",
+   "question": "Who were da best 5 centre backs 4 assists durin the group stages?",
+   "reading": "The 5 players with the most assists, among centre-backs (CB), in the group stage, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 centre-backs by assists, which matches the reading."
+  },
+  {
+   "spec_id": "406fc08fab71",
+   "question": "Who was the top Polish player for pass completion percentage under pressure?",
+   "reading": "The player with the highest pass completion % under pressure, playing for Poland, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top player, not the player with the highest pass completion percentage."
+  },
+  {
+   "spec_id": "0c800d43ef21",
+   "question": "Who were the top 3 midfielders in terms of expected goals per 90 minutes at the 2022 World Cup?",
+   "reading": "The 3 players with the highest expected goals (xG) per 90, among midfielders (AM, CM, DM), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 midfielders, which matches the reading."
+  },
+  {
+   "spec_id": "7565de550c60",
+   "question": "Who had the top 15 centre-backs and full-backs who attempted the most passes per 90 minutes, and which teams did they come from.",
+   "reading": "The 15 teams with the highest passes attempted per 90, counting only defenders (CB, FB), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for players, not teams."
+  },
+  {
+   "spec_id": "f27cedc39ece",
+   "question": "What team had the highest progressive carries per 90 minutes.",
+   "reading": "The team with the highest progressive carries per 90, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the team with the highest progressive carries per 90 minutes, which matches the reading."
+  },
+  {
+   "spec_id": "51ad4ce97a79",
+   "question": "Which 3 teams had their central midfielders make the most progressive passes.",
+   "reading": "The 3 teams with the most progressive passes (simplified), counting only central midfielders (CM), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 teams, not the top 3 central midfielders."
+  },
+  {
+   "spec_id": "970d0662ad6f",
+   "question": "Who scored more goals per 90 minutes at the 2022 FIFA World Cup, Bernardo Silva or John Stones?",
+   "reading": "Non-penalty goals per 90 for Bernardo Silva and John Stones, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison of goals per 90 minutes between two players, but does not specify non-penalty goals."
+  },
+  {
+   "spec_id": "3bd9b25e1fac",
+   "question": "Who were the top 5 Japan players with the fewest key passes?",
+   "reading": "The 5 players with the fewest key passes, playing for Japan, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 players with the fewest key passes, which matches the reading."
+  },
+  {
+   "spec_id": "36524794715e",
+   "question": "Who wuz the top 5 playas who added the most xT by passing and carrying da ball against Argentina in the quarters?",
+   "reading": "The 5 players with the most expected threat (xT) added, in Quarter-finals, against Argentina, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, but the reading does not specify the stage of the tournament."
+  },
+  {
+   "spec_id": "cd88600009f0",
+   "question": "Who had the most passes under preshure among center backs that played 180 mins +?",
+   "reading": "The player with the most passes attempted under pressure, among centre-backs (CB), with at least 180 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the player with the most passes attempted under pressure, among centre-backs, with at least 180 minutes, which matches the reading exactly."
+  },
+  {
+   "spec_id": "2df91b4d324b",
+   "question": "How many non-penalty xG did Theo Hernández create?",
+   "reading": "Non-penalty xG for Theo Hernández, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a specific statistic."
+  },
+  {
+   "spec_id": "c76f0905a39c",
+   "question": "Who had the most shots per 90 agenst  Canada? Top 3 only",
+   "reading": "The 3 players with the highest shots per 90, against Canada, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, but the reading specifies a default threshold of 90 minutes, which is not mentioned in the question."
+  },
+  {
+   "spec_id": "3654769cdede",
+   "question": "Who were the top 4 German players for shot creating actions in the 2022 World Cup?",
+   "reading": "The 4 players with the most shot-creating actions, playing for Germany, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 4 German players for shot-creating actions, which matches the reading."
+  },
+  {
+   "spec_id": "78e70c05defa",
+   "question": "I'm curious, who were the top 5 defenders  who made the most passes per 90 minutes in the semi-finals?",
+   "reading": "The 5 players with the highest passes completed per 90, among defenders (CB, FB), in Semi-finals, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 defenders, but the reading specifies defenders as CB and FB, which is not explicitly stated in the question."
+  },
+  {
+   "spec_id": "583c5fbc749e",
+   "question": "Who had the most passes attempted in the World Cup Final?",
+   "reading": "The player with the most passes attempted, in the final, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a single player with the most passes attempted in the final, which matches the reading."
+  },
+  {
+   "spec_id": "22906b71f061",
+   "question": "Which team adde the leass xT from passing and carryin the ball?",
+   "reading": "The team with the fewest expected threat (xT) added, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the fewest xT added, but does not specify that it is from passing and carrying the ball."
+  },
+  {
+   "spec_id": "1bcf7f29b259",
+   "question": "How mnay prog carries does Kai Kamada avrage per 90mins?",
+   "reading": "Progressive carries per 90 for Daichi Kamada, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, not a rate."
+  },
+  {
+   "spec_id": "111c7215a1cc",
+   "question": "Who scored the most non-penalty goals out of the guys in goal scored by Dijk, Emiliano Martínez and  Grzegorz Krychowiak?",
+   "reading": "Non-penalty goals for Virgil van Dijk, Emiliano Martínez and Grzegorz Krychowiak, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for goals scored by the named players, not goals scored against them."
+  },
+  {
+   "spec_id": "c9c9cb23c390",
+   "question": "Who were the three strikers who made the fewest key passes per 90 minutes.",
+   "reading": "The 3 players with the lowest key passes per 90, among strikers (ST), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the fewest key passes per 90, which matches the reading."
+  },
+  {
+   "spec_id": "db7134d0924a",
+   "question": "Who scored more non pen xG?  Kamil Glik or Zieliński",
+   "reading": "Non-penalty xG for Kamil Glik and Piotr Zieliński, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup."
+  },
+  {
+   "spec_id": "77e73774e334",
+   "question": "Which players played the most minutes in the 2022 World Cup 3rd-place match? Don't just tell me one, give me the top three.",
+   "reading": "The 3 players with the most minutes played, in the 3rd place final, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top three players with the most minutes played in the 3rd-place match, which matches the reading."
+  },
+  {
+   "spec_id": "c50bc1154afe",
+   "question": "Who's been hustlin' n pressin' the most on the ball, checkin the top 10 forwards who've put in atleast 270 mins?",
+   "reading": "The 10 players with the highest pressures per 90, among forwards (ST, W), with at least 270 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 forwards, which matches the reading."
+  },
+  {
+   "spec_id": "c5a587bc70c3",
+   "question": "Who scored more goals between Marquinhos and Nathan Aké?",
+   "reading": "Goals for Marquinhos and Nathan Aké, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison between two players, but the reading asks for the total goals for each player, not a comparison."
+  },
+  {
+   "spec_id": "e67fc2e44cec",
+   "question": "How accurate was Woo-Young Jun's passing  when he was under pressure in the knockout rounds?",
+   "reading": "Pass completion % under pressure for Jung Woo-Young, in the knockout rounds, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for pass completion % under pressure, but the reading asks for pass accuracy under pressure, which are different statistics."
+  },
+  {
+   "spec_id": "b0386d2f1ccb",
+   "question": "Who were the top 3 Uruguayan players who attempted the most passes under pressure in the 2022 World Cup?",
+   "reading": "The 3 players with the most passes attempted under pressure, playing for Uruguay, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, the reading asks for the 3 players with the most."
+  },
+  {
+   "spec_id": "9e0700d146e1",
+   "question": "Who were the top 5 lowest xG/90 players against England in the tournament?",
+   "reading": "The 5 players with the lowest expected goals (xG) per 90, against England, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, not the 5 players with the lowest xG/90."
+  },
+  {
+   "spec_id": "7ec107d0f384",
+   "question": "Which fullback had the best pass completion percentage?",
+   "reading": "The player with the highest pass completion %, among full-backs (FB), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the best pass completion percentage, which is a per-90 rate, but the reading asks for a total."
+  },
+  {
+   "spec_id": "251d1d295872",
+   "question": "Who had mae more prog passses during the 2022 World Cup in Qatar, between Dušan Tadić and Raphaël Guerreiro?",
+   "reading": "Progressive passes (simplified) for Dušan Tadić and Raphaël Guerreiro, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison between two players, not a count of them."
+  },
+  {
+   "spec_id": "df8e2ffad25d",
+   "question": "Whos da top 15 widemen pullin most assists per 90 mins when it really mattered rite thru da knock out rounds?",
+   "reading": "The 15 players with the highest assists per 90, among wingers (W), in the knockout rounds, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 15 wingers, but the reading specifies the highest assists per 90, which is not explicitly stated in the question."
+  },
+  {
+   "spec_id": "f6a297731740",
+   "question": "Who were the top 10 attacking midfielders for passes completed while under pressure in the 2022 World Cup?",
+   "reading": "The 10 players with the most passes completed under pressure, among attacking midfielders (AM), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 10 players, the reading asks for the 10 players with the most."
+  },
+  {
+   "spec_id": "b2579dc6c4a8",
+   "question": "Who were the top 3 central midfielders in terms of shot-creating actions per 90 minutes at the 2022 World Cup?",
+   "reading": "The 3 players with the highest shot-creating actions per 90, among central midfielders (CM), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 central midfielders, which matches the reading."
+  },
+  {
+   "spec_id": "b37e05975d18",
+   "question": "Which team had the most shots in the semi-finals?",
+   "reading": "The team with the most shots, in Semi-finals, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the team with the most shots in the semi-finals, which matches the reading exactly."
+  },
+  {
+   "spec_id": "8df6a01e9169",
+   "question": "Who had the most progressive carries per 90 minutes against Ecuador?  I'm curious to see the top 10 players.",
+   "reading": "The 10 players with the highest progressive carries per 90, against Ecuador, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 players, the reading asks for exactly 10 players."
+  },
+  {
+   "spec_id": "a36cf31816b9",
+   "question": "Who were the top 8 Denmark  midfielders in the 2022 World Cup based on their xG per 90 minutes?",
+   "reading": "The 8 players with the highest expected goals (xG) per 90, among midfielders (AM, CM, DM), playing for Denmark, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 8 midfielders, which matches the reading."
+  },
+  {
+   "spec_id": "1dca4daf9277",
+   "question": "How mnay xG does Rapinah expectd when he has 90 mins on the pitch, dont count the pens?",
+   "reading": "Non-penalty xG per 90 for Raphinha, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a rate, but does not specify per 90."
+  },
+  {
+   "spec_id": "44d076162ef7",
+   "question": "Wan see top 5 goal scorz aginst germany that scored the most non-penalty goals 2022 world cup",
+   "reading": "The 5 players with the most non-penalty goals, against Germany, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 goal scorers, which matches the reading."
+  },
+  {
+   "spec_id": "707c13a8c5fb",
+   "question": "Which were the 5 teams that completed the fewest passes against Senegal?",
+   "reading": "The 5 teams with the fewest passes attempted, against Senegal, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the fewest passes attempted, not completed."
+  },
+  {
+   "spec_id": "5b71d69aa010",
+   "question": "Who were the two teams that created the most expected threat through passing and carrying the ball in their final 2022 FIFA World Cup match?",
+   "reading": "The 2 teams with the most expected threat (xT) added, in the final, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the two teams with the most expected threat, but does not specify that it is through passing and carrying the ball."
+  },
+  {
+   "spec_id": "872c7551a894",
+   "question": "Which 2 teams had their defensive midfielders create the most assists  per 90 during the 2022 World Cup in Qatar?",
+   "reading": "The 2 teams with the highest assists per 90, counting only defensive midfielders (DM), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 2 teams, not the top 2 defensive midfielders."
+  },
+  {
+   "spec_id": "fe1e6e595c3b",
+   "question": "Who were the top 15 teams with the most shot-creating actions per 90 minutes in the 2022 World Cup?",
+   "reading": "The 15 teams with the highest shot-creating actions per 90, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 15 teams, which matches the reading."
+  },
+  {
+   "spec_id": "5b6e3900ce08",
+   "question": "Who were the 3 wingers who set up the most goal scoring chances in the quarters",
+   "reading": "The 3 players with the most key passes, among wingers (W), in Quarter-finals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 wingers, the reading asks for the top 3 players."
+  },
+  {
+   "spec_id": "97ec14b004f8",
+   "question": "Who were the top 5 players in terms of minutes played for Switzerland in the round of 16?",
+   "reading": "The 5 players with the most minutes played, in Round of 16, against Switzerland, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players for Switzerland, not against them."
+  },
+  {
+   "spec_id": "11ae1823ab6f",
+   "question": "Who were the top 5 players who completed the most passes while under pressure during the third place match?",
+   "reading": "The 5 players with the most passes completed under pressure, in the 3rd place final, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players with the most."
+  },
+  {
+   "spec_id": "155a59773222",
+   "question": "Who were the top 5 midfielders who took the most shots during the group stage?",
+   "reading": "The 5 players with the most shots, among midfielders (AM, CM, DM), in the group stage, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 midfielders, which matches the reading."
+  },
+  {
+   "spec_id": "726d5d7d5f8a",
+   "question": "How many passes did Cristian Romero complete when Argentina were in the semis?",
+   "reading": "Passes completed for Cristian Romero, in Semi-finals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a total, not a per-90 rate."
+  },
+  {
+   "spec_id": "e33e676601db",
+   "question": "Who's had the most finnalz n all in the 2022 World Cup Qater from the midfield 5?",
+   "reading": "The 5 players with the most goals, among central midfielders (CM), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the most goals, but the reading asks for the most goals in the final."
+  },
+  {
+   "spec_id": "fd5cb05d295a",
+   "question": "Who were the top 2 guys who made the most progressive passes per 90 minutes  in the 2022 World Cup?",
+   "reading": "The 2 players with the highest progressive passes (simplified) per 90, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 2 players, the reading asks for the 2 players with the highest progressive passes per 90."
+  },
+  {
+   "spec_id": "0f68458763db",
+   "question": "Hey, I'm curious, Enzo Fernandez and Paquetá how many passes did they attempt under pressure from  the opposition during the sides' quarter-final games?",
+   "reading": "Passes attempted under pressure for Enzo Fernandez and Lucas Paquetá, in Quarter-finals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the number of passes attempted under pressure, but the reading asks for the number of passes attempted under pressure per 90."
+  },
+  {
+   "spec_id": "8f13baf38422",
+   "question": "Which 10 teams were most accurate with their passing in the 2022 world Cup",
+   "reading": "The 10 teams with the highest pass completion %, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the 10 teams with the highest pass completion percentage, which matches the reading."
+  },
+  {
+   "spec_id": "61570afba3f2",
+   "question": "how good was Jude Bellinghams passing under pressure when it mattered n the knock out rounds? pass comp %",
+   "reading": "Pass completion % under pressure for Jude Bellingham, in the knockout rounds, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for pass completion % under pressure, but does not specify the direction (most/least)."
+  },
+  {
+   "spec_id": "f247fe128dfe",
+   "question": "How many times did Otamendi hassle  the oppenents sides while they had the ball all tournament?",
+   "reading": "Pressures for Nicolás Otamendi, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a total."
+  },
+  {
+   "spec_id": "3c1f657e9e7e",
+   "question": "Who happened to score the least amount goals against urugay, without including penaltys?",
+   "reading": "The player with the fewest non-penalty goals, against Uruguay, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question does not specify a minimum number of minutes played."
+  },
+  {
+   "spec_id": "d97dc64c29db",
+   "question": "Which 10 teams created the most key passes per 90 minutes?",
+   "reading": "The 10 teams with the highest key passes per 90, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 teams by key passes per 90, which matches the reading."
+  },
+  {
+   "spec_id": "8e5547afb551",
+   "question": "Who was the top full back for progresive passes per 90 against Saudi Arabia?",
+   "reading": "The player with the highest progressive passes (simplified) per 90, among full-backs (FB), against Saudi Arabia, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top full-back, not the player with the highest progressive passes per 90."
+  },
+  {
+   "spec_id": "22e6f04ac4ae",
+   "question": "How many passes per 90 did Lisandro Martínez complete while under pressure during the 2022 World Cup in Qatar?",
+   "reading": "Passes completed under pressure per 90 for Lisandro Martínez, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, and the reading specifies the same statistic and player."
+  },
+  {
+   "spec_id": "13cab8355341",
+   "question": "Who were the top 6 players with the most non penalty xG at the World Cup?",
+   "reading": "The 6 players with the most non-penalty xG, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 6 players with the most non-penalty xG, which matches the reading exactly."
+  },
+  {
+   "spec_id": "1957400ad30b",
+   "question": "Who scored the most goals in the third place match?",
+   "reading": "The 5 players with the most goals, in the 3rd place final, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, not 5."
+  },
+  {
+   "spec_id": "aa3c2e863c2c",
+   "question": "Who were the top 3 plsrs for pass comp % while unr presr  durin the final?",
+   "reading": "The 3 players with the highest pass completion % under pressure, in the final, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, but the reading specifies a default threshold of 90 minutes, which the question does not mention."
+  },
+  {
+   "spec_id": "b9e60bf9ee92",
+   "question": "Who were the five teams that completed the most passes in the group stage via their defensive midfielders?",
+   "reading": "The 5 teams with the most passes completed, counting only defensive midfielders (DM), in the group stage, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 teams, the reading asks for the 5 teams with the most."
+  },
+  {
+   "spec_id": "dafed7810236",
+   "question": "Who had da most pass attempts under preasure per 90 by a tunisian?",
+   "reading": "The player with the highest passes attempted under pressure per 90, playing for Tunisia, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the player with the highest number of pass attempts under pressure per 90, but the reading specifies 'passes attempted under pressure' which is not the same as 'pass attempts under pressure'."
+  },
+  {
+   "spec_id": "4641b1ca5c9c",
+   "question": "Who were the top ten attacking midfielders  who attempted the fewest passes per 90 mins in the 2022 World Cup?",
+   "reading": "The 10 players with the lowest passes attempted per 90, among attacking midfielders (AM), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top ten players, not the ten players with the lowest passes attempted per 90."
+  },
+  {
+   "spec_id": "7978b48ff230",
+   "question": "Who were the 5 worst pasing forwards at the 2022 world cup 4 completions out of 10?",
+   "reading": "The 5 players with the lowest pass completion %, among forwards (ST, W), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the 5 worst passing forwards, but the reading asks for the 5 players with the lowest pass completion % among forwards."
+  },
+  {
+   "spec_id": "b8d8e61c76e8",
+   "question": "So who had da most progressive carries agenst Ghana?",
+   "reading": "The team with the most progressive carries, against Ghana, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a team, but the reading asks for a player."
+  },
+  {
+   "spec_id": "d6bde3f56bfe",
+   "question": "Who had the better tournament?  Show me the xG for Giroud and Sabaly in Qatar 2022 - side by side.",
+   "reading": "Expected goals (xG) for Olivier Giroud and Youssouf Sabaly, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "860600ac1e0e",
+   "question": "Who were the top 5 assist providers per 90 in the round of 16?",
+   "reading": "The 5 players with the highest assists per 90, in Round of 16, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 assist providers per 90, which matches the reading."
+  },
+  {
+   "spec_id": "71f9ecd4b52d",
+   "question": "Who was Netherlands' leading striker for pressures applied to opponents on the ball in 90s at the 2022 FIFA World Cup.",
+   "reading": "The player with the most pressures, among strikers (ST), playing for Netherlands, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, but the reading asks for a player with the most pressures, not the leading striker."
+  },
+  {
+   "spec_id": "5706538dbd9b",
+   "question": "Which of those midfielders,  Gvardiol, De Jong or Xhaka, had the best xT in Qatar wrt adding it wiv passes n carries, fellas?",
+   "reading": "Expected threat (xT) added for Frenkie de Jong, Joško Gvardiol and Granit Xhaka, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup."
+  },
+  {
+   "spec_id": "35aed0d56fb0",
+   "question": "Which Senegalese centre-backs played the most minutes at the 2022 World Cup?",
+   "reading": "The 3 players with the most minutes played, among centre-backs (CB), playing for Senegal, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top Senegalese centre-backs, but the reading specifies 3 players, which is not explicitly stated in the question."
+  },
+  {
+   "spec_id": "93cbaf34091e",
+   "question": "How many shot-creating actions did Ousmane Dembélé have  in the final?",
+   "reading": "Shot-creating actions for Ousmane Dembélé, in the final, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "8f9af8472403",
+   "question": "Who were the top 10 QB National Team defenders for 2022 Qatar World Cup by shots per 90?",
+   "reading": "The 10 players with the highest shots per 90, among defenders (CB, FB), playing for Qatar, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question does not specify the position of the defenders, only the national team."
+  },
+  {
+   "spec_id": "7a9a0c4bbd68",
+   "question": "Which 3 strikers scored the fewest goals during the group stage?",
+   "reading": "The 3 players with the fewest goals, among strikers (ST), in the group stage, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the fewest goals, not the lowest goal rate per 90."
+  },
+  {
+   "spec_id": "9eb5254850f1",
+   "question": "Which team had the best pass completion percentage in the third-place match?",
+   "reading": "The team with the highest pass completion %, in the 3rd place final, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the team with the highest pass completion percentage in the third-place match, which matches the reading."
+  },
+  {
+   "spec_id": "3d1df2180d15",
+   "question": "Who the hells been havin' the most shots? Give  us the top 5 atakin midfilders who've had a crack at goal n played at least 200 mins, dont care what part of the tournement it was, just give it to us straight.",
+   "reading": "The 5 players with the most shots, among attacking midfielders (AM), with at least 200 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players."
+  },
+  {
+   "spec_id": "39deeaa98b73",
+   "question": "Which are top 5 teams that completed the most progressive carries against Mexico?",
+   "reading": "The 5 teams with the most progressive carries, against Mexico, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 teams, which matches the reading."
+  },
+  {
+   "spec_id": "674b3f7be7d6",
+   "question": "Who had the most shot creatin actions in the 16's? Top 3",
+   "reading": "The 3 players with the most shot-creating actions, in Round of 16, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, the reading asks for the 3 players with the most."
+  },
+  {
+   "spec_id": "b517cfa9962b",
+   "question": "Which of Piotr Zieliński and Ángel Di María had the most assists?",
+   "reading": "Assists for Piotr Zieliński and Ángel Di María, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup."
+  },
+  {
+   "spec_id": "315a1eb53821",
+   "question": "who be da top 3 cb's scorin non-pen goals per 90 min wit minimum of 450 min on the pitch?",
+   "reading": "The 3 players with the highest non-penalty goals per 90, among centre-backs (CB), with at least 450 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 centre-backs, but the reading asks for the 3 players with the highest non-penalty goals per 90."
+  },
+  {
+   "spec_id": "fc0ca740a629",
+   "question": "Hey, can you rank the top 10 teams with the most key passes only in their matches against Portugal?",
+   "reading": "The 10 teams with the most key passes, against Portugal, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 teams, which matches the reading."
+  },
+  {
+   "spec_id": "d1bb951dd62a",
+   "question": "Who made the most progressive passes between Kevin De Bruyne and Ounahi?",
+   "reading": "Progressive passes (simplified) for Kevin De Bruyne and Azzedine Ounahi, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison between two players, not a total for each."
+  },
+  {
+   "spec_id": "a1c476c6195c",
+   "question": "Who were Argentina's top 10 full-backs at completing passes per 90?",
+   "reading": "The 10 players with the highest passes completed per 90, among full-backs (FB), playing for Argentina, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 10 full-backs, but the reading specifies the 10 players with the highest pass completion rate per 90."
+  },
+  {
+   "spec_id": "c9ad0e94c262",
+   "question": "Who were the top 3 wingers that attempted the most passes per 90 minutes in Qatar 2022, given a minimum of 90 minutes played, and who were they?",
+   "reading": "The 3 players with the highest passes attempted per 90, among wingers (W), with at least 90 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 wingers, but the reading asks for the 3 players with the highest passes attempted per 90, which is ambiguous as to whether it is asking for the top 3 or just any 3 players."
+  },
+  {
+   "spec_id": "1a9475ce2d47",
+   "question": "Who played the most mintues fir there teamz in the qtr finals",
+   "reading": "The player with the most minutes played, in Quarter-finals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the player with the most minutes, but the reading specifies the Quarter-finals stage of the tournament, which the question does not mention."
+  },
+  {
+   "spec_id": "a5b56126eb62",
+   "question": "Which 3 teams had their defensive midfielders complete the most passes  under pressure during the semi-finals?",
+   "reading": "The 3 teams with the most passes completed under pressure, counting only defensive midfielders (DM), in Semi-finals, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 teams, which matches the reading."
+  },
+  {
+   "spec_id": "5e6856663eaf",
+   "question": "Who were the top 5 players for xG/90 in matches against Qatar?",
+   "reading": "The 5 players with the highest expected goals (xG) per 90, against Qatar, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players with the highest xG/90."
+  },
+  {
+   "spec_id": "f7b95c461040",
+   "question": "Who had the tops defenders when it came to rips of passes under pressrure durring knockout rounds, Top 6 crew?",
+   "reading": "The 6 teams with the most passes attempted under pressure, counting only defenders (CB, FB), in the knockout rounds, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top defenders, not the top teams."
+  },
+  {
+   "spec_id": "694046bfb915",
+   "question": "How many non-penalty xG did olmo average per 90 minutes in the 2022 World Cup?",
+   "reading": "Non-penalty xG per 90 for Daniel Olmo, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, and the reading specifies a per-90 rate."
+  },
+  {
+   "spec_id": "89150c505918",
+   "question": "Who happened to be the forward with the highest pass completion percentage under pressure during the World Cup final?",
+   "reading": "The player with the highest pass completion % under pressure, among forwards (ST, W), in the final, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, but the reading asks for a player with at least 90 minutes played."
+  },
+  {
+   "spec_id": "dcae0d1e94d9",
+   "question": "How much xT per 90 did Ream add?",
+   "reading": "Expected threat (xT) added per 90 for Tim Ream, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, and the reading specifies a per-90 rate."
+  },
+  {
+   "spec_id": "86367b57a9fa",
+   "question": "Which team's central midfielders applied the most pressures per game?",
+   "reading": "The team with the most pressures, counting only central midfielders (CM), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a per-game rate, but the reading asks for a total."
+  },
+  {
+   "spec_id": "45b90f6527ff",
+   "question": "Who were the top 3 guys from Ecuador dishin' out the key passes  4 their teammates 2 shoot 4 the whole tournament?",
+   "reading": "The 3 players with the most key passes, playing for Ecuador, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, the reading asks for the 3 players with the most."
+  },
+  {
+   "spec_id": "7fba4ba08477",
+   "question": "Who played the most minutes between Andrej Kramarić, Maeda and Matt Turner?",
+   "reading": "Minutes played for Andrej Kramarić, Daizen Maeda and Matt Turner, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison of minutes played, not a total."
+  },
+  {
+   "spec_id": "986748a836a5",
+   "question": "Who was the worst in xG per 90 among players who've played at least 360 minutes?",
+   "reading": "The player with the lowest expected goals (xG) per 90, with at least 360 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the player with the lowest xG per 90, which matches the reading."
+  },
+  {
+   "spec_id": "366630234ef2",
+   "question": "Who scored the most non-penalty goals per 90 minutes for the United States?",
+   "reading": "The player with the highest non-penalty goals per 90, playing for United States, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, but the reading asks for a player with at least 270 minutes played."
+  },
+  {
+   "spec_id": "f410ef0eea97",
+   "question": "Who scored the most goals ovr all in the 2022 World Cup? The top 6 teams 2gether plz",
+   "reading": "The 6 teams with the most goals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 6 teams by goals scored, but the reading asks for the top 6 teams by goals scored by their players."
+  },
+  {
+   "spec_id": "8989a9a84e85",
+   "question": "Who had more passes attempted under pressur from oppoents  Noppert or leckie",
+   "reading": "Passes attempted under pressure for Andries Noppert and Mathew Leckie, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup."
+  },
+  {
+   "spec_id": "231c7eb5ef0c",
+   "question": "Who were the top 15 midfielders (in terms of assists) in the 2022 world cup?",
+   "reading": "The 15 players with the most assists, among midfielders (AM, CM, DM), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 15 midfielders by assists, which matches the reading."
+  },
+  {
+   "spec_id": "2e30dfc4edc4",
+   "question": "Which 5 Saudi Arabian players made the most completd pases, in %ge.",
+   "reading": "The 5 players with the highest pass completion %, playing for Saudi Arabia, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, but the reading asks for the top 5 players with a percentage, not a count."
+  },
+  {
+   "spec_id": "085938426b16",
+   "question": "Who were the 8 Belgian players who were least involved in creating shots in Qatar 2022?",
+   "reading": "The 8 players with the fewest shot-creating actions, playing for Belgium, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the fewest shot-creating actions, which is a synonym for key passes."
+  },
+  {
+   "spec_id": "2fe8031c638a",
+   "question": "Which team made the most progressive carries against Japan?",
+   "reading": "The team with the most progressive carries, against Japan, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the team with the most progressive carries against Japan, which matches the reading."
+  },
+  {
+   "spec_id": "d26f4f741463",
+   "question": "Who were the top three strikers who completed passes under pressure the most against Iran?  90 minutes minimum",
+   "reading": "The 3 players with the highest pass completion % under pressure, among strikers (ST), against Iran, with at least 90 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top three players, the reading asks for the three players with the highest pass completion % under pressure."
+  },
+  {
+   "spec_id": "d948cdd632d0",
+   "question": "How many passes per 90 did Paquetá complete against Serbia?",
+   "reading": "Passes completed per 90 for Lucas Paquetá, against Serbia, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, the reading asks for a per-90 rate, the question asks for a single player, the reading asks for a single player, the question asks for a single opponent, the reading asks for a single opponent, the question asks for a single statistic, the reading asks for a pass"
+  },
+  {
+   "spec_id": "a4ca3bd1d97c",
+   "question": "Whoz the wingers that completd the fewst passes under pressur? Top 20.",
+   "reading": "The 20 players with the fewest passes completed under pressure, among wingers (W), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 20 wingers, but the reading asks for the 20 players with the fewest passes completed under pressure, which is a different statistic."
+  },
+  {
+   "spec_id": "8506622538e1",
+   "question": "Who were the two  central midfielders that applied the most pressure per 90 on the ball during the knockout stages?",
+   "reading": "The 2 players with the highest pressures per 90, among central midfielders (CM), in the knockout rounds, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top two players, the reading asks for the top two players."
+  },
+  {
+   "spec_id": "1f216de13964",
+   "question": "Oh mate, can you compare sides by side the xT added by Aziz Behich and Neymar Jr in the group stage of the 2022 World Cup?",
+   "reading": "Expected threat (xT) added for Aziz Behich and Neymar, in the group stage, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup of the players' own figures."
+  },
+  {
+   "spec_id": "b2a52317599a",
+   "question": "Which team attempted the most passes per 90 minutes in the third-place match.",
+   "reading": "The 5 teams with the highest passes attempted per 90, in the 3rd place final, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single team, not 5."
+  },
+  {
+   "spec_id": "aa55a34adcf3",
+   "question": "Who were the 5 teams with the highest shots per 90 minutes from their forwards against Croatia?",
+   "reading": "The 5 teams with the highest shots per 90, counting only forwards (ST, W), against Croatia, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the 5 teams with the highest shots per 90 minutes from their forwards against Croatia, which matches the reading exactly."
+  },
+  {
+   "spec_id": "6bb3d9bc772b",
+   "question": "Who played least efficiently in the round of 16 of the 2022 World Cup in terms of  Non-penalty xG",
+   "reading": "The player with the fewest non-penalty xG, in Round of 16, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question does not specify a minimum number of minutes played."
+  },
+  {
+   "spec_id": "97e5080c2f0e",
+   "question": "Who made the most progressive passes among the full backs in the quarter-finals?",
+   "reading": "The 20 players with the most progressive passes (simplified), among full-backs (FB), in Quarter-finals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, not 20."
+  },
+  {
+   "spec_id": "afc2dab8d24f",
+   "question": "Hw many prgresive carries did noppert have?",
+   "reading": "Progressive carries for Andries Noppert, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "ee1ff3b84f2d",
+   "question": "Who were the top 5 centre-backs who scored the most non-penalty goals per 90 minutes.",
+   "reading": "The 5 players with the highest non-penalty goals per 90, among centre-backs (CB), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 centre-backs, which matches the reading."
+  },
+  {
+   "spec_id": "5bcfbe0ead6f",
+   "question": "Who were the top 3 attacking midfielders with the most shot creating actions in the 2022 world cup?",
+   "reading": "The 3 players with the most shot-creating actions, among attacking midfielders (AM), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, the reading asks for the 3 players with the most."
+  },
+  {
+   "spec_id": "9a40899d902c",
+   "question": "Who scored more goals: Julian Alvarez vs Saleh Al Shehri?",
+   "reading": "Goals for Julián Álvarez and Saleh Al Shehri, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup of individual figures."
+  },
+  {
+   "spec_id": "b611c9364137",
+   "question": "Hey, can you give me a comparison of  the number of passes attempted under pressure for Bereszyński  Milenkovic and Nahuel Molina?",
+   "reading": "Passes attempted under pressure for Bartosz Bereszyński, Nikola Milenković and Nahuel Molina, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not just the figures."
+  },
+  {
+   "spec_id": "d27a7f507ea5",
+   "question": "Which are the top 5  teams with the best defensive midfielders who press a lot?",
+   "reading": "The 5 teams with the highest pressures per 90, counting only defensive midfielders (DM), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 teams, but the reading specifies the highest pressures per 90, which is not explicitly mentioned in the question."
+  },
+  {
+   "spec_id": "fecae0ccfe9a",
+   "question": "Who had the most passes completed? Show me the top 10.",
+   "reading": "The 10 players with the most passes completed, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 players with the most passes completed, which matches the reading."
+  },
+  {
+   "spec_id": "4becba552adb",
+   "question": "Which Moroccan midfielder had the least shots in their semi-final match?",
+   "reading": "The player with the fewest shots, among midfielders (AM, CM, DM), playing for Morocco, in Semi-finals, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, but the reading asks for a player with at least 90 minutes played."
+  },
+  {
+   "spec_id": "3daabe36a410",
+   "question": "Who were the five Portuguese defenders that completed the fewest passes under pressure during the World Cup?",
+   "reading": "The 5 players with the fewest passes completed under pressure, among defenders (CB, FB), playing for Portugal, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the fewest passes completed under pressure, not the fewest pressures."
+  },
+  {
+   "spec_id": "1975065e88d5",
+   "question": "Who were the top 10 Aussie players with the most minutes played in the 2022 World Cup - and yeah 200 minutes is the minimum.",
+   "reading": "The 10 players with the most minutes played, playing for Australia, with at least 200 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 10 players, the reading asks for the 10 players."
+  },
+  {
+   "spec_id": "e16263b3580b",
+   "question": "How many goals should john stones ha' scored from his xG  in the 2022 World Cup?",
+   "reading": "Expected goals (xG) for John Stones, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the number of goals John Stones should have scored, not his expected goals."
+  },
+  {
+   "spec_id": "dbc300cc4103",
+   "question": "Who are the  Costa Rica players with the fewest assists in this World Cup?",
+   "reading": "The 5 players with the fewest assists, playing for Costa Rica, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question does not specify the number of players, only that it is several."
+  },
+  {
+   "spec_id": "e8d82a4405ba",
+   "question": "Who made the most key passes in the semifinal matches?",
+   "reading": "The player with the most key passes, in Semi-finals, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a single player, and the reading asks for a single player."
+  },
+  {
+   "spec_id": "d93f5d962fe0",
+   "question": "Who had the most passes off Mexico in 2022 World Cup Matches?  Tells me top 3!",
+   "reading": "The 3 players with the most passes attempted, against Mexico, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 players with the most passes attempted against Mexico, which matches the reading."
+  },
+  {
+   "spec_id": "aa40f1f92acd",
+   "question": "Who had the best pas compleation % under preshure from oppenents  durin the groups sides?",
+   "reading": "The player with the highest pass completion % under pressure, in the group stage, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the best pass completion % under pressure, which is the same as the highest pass completion % under pressure, but it does not specify that it is per 90 minutes."
+  },
+  {
+   "spec_id": "93df9fa6639e",
+   "question": "How much xT did Koundé  create in the round of 16?",
+   "reading": "Expected threat (xT) added for Jules Koundé, in Round of 16, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a total, not a per-90 rate."
+  },
+  {
+   "spec_id": "e98bdf1c5f67",
+   "question": "Who had the better pass completion percentage between Lisandro Martínez and Paredes?",
+   "reading": "Pass completion % for Lisandro Martínez and Leandro Paredes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup."
+  },
+  {
+   "spec_id": "f338988d98c1",
+   "question": "How many non-penalty xG per 90 minutes did Mitchell Duke manage?",
+   "reading": "Non-penalty xG per 90 for Mitchell Duke, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, and the reading specifies a per-90 rate."
+  },
+  {
+   "spec_id": "c625b3d2ce29",
+   "question": "Who were the top 5  playas with the most proggresive passes in the 2022 World Cup Qatar, as long as they'd played at least 450 mins?",
+   "reading": "The 5 players with the most progressive passes (simplified), with at least 450 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 players with the most progressive passes, which matches the reading."
+  },
+  {
+   "spec_id": "c20a74901b62",
+   "question": "Who was the most silky passin' lad under preshure with the ball?",
+   "reading": "The player with the highest pass completion % under pressure, with at least 270 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the player with the highest pass completion % under pressure, but does not specify the minutes threshold."
+  },
+  {
+   "spec_id": "e5da2840e6fc",
+   "question": "Who had the best pass comp pct from thair attackng midfilders during the 2022 World Cup in Qatar? I wanna see the top 8 teams who wern't dropping the ball",
+   "reading": "The 8 teams with the highest pass completion %, counting only attacking midfielders (AM), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 8 teams, but the reading asks for the highest pass completion % rather than the best pass completion %"
+  },
+  {
+   "spec_id": "2c30b2e6893c",
+   "question": "Who were the top three players with the fewest shot-creating actions per 90 minutes, all of whom played at least 90 minutes in Qatar?",
+   "reading": "The 3 players with the lowest shot-creating actions per 90, with at least 90 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top three players, which matches the reading."
+  },
+  {
+   "spec_id": "7fa79fc293f3",
+   "question": "Plz compare the xG for João Félix, Kieffer Moore and Rabman.",
+   "reading": "Expected goals (xG) for João Félix, Kieffer Moore and Baba Rahman, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "161a1eafc975",
+   "question": "Who's had the most gametime amongst the DMs? Top 5 pls",
+   "reading": "The 5 players with the most minutes played, among defensive midfielders (DM), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players with the most minutes."
+  },
+  {
+   "spec_id": "88785688dbdf",
+   "question": "Who are the top 20 goalkeepers in the 2022 World Cup quarter-finals, as ranked by most passes completed per 90 minutes.",
+   "reading": "The 20 teams with the highest passes completed per 90, counting only goalkeepers (GK), in Quarter-finals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for individual players, not teams."
+  },
+  {
+   "spec_id": "79bc0ba0c7cf",
+   "question": "Who made the most key passes against Ghana?  just wanna see the top 3 teams who gave all the assists to others as they smashed shots at Ghana's goal.",
+   "reading": "The 3 teams with the most key passes, against Ghana, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 teams, but the reading asks for the 3 teams with the most key passes, which is a different statistic."
+  },
+  {
+   "spec_id": "599c7d7a06b4",
+   "question": "Who was the highest goal scorer per 90 minutes for Spain in the 2022 World Cup?",
+   "reading": "The player with the highest goals per 90, playing for Spain, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the highest goal scorer per 90 minutes, which matches the reading."
+  },
+  {
+   "spec_id": "2ca607745ccc",
+   "question": "Who were the five full-backs who completed the most passes per 90 minutes in the  2022 FIFA World Cup final?",
+   "reading": "The 5 players with the highest passes attempted per 90, among full-backs (FB), in the final, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for completed passes, not attempted passes."
+  },
+  {
+   "spec_id": "0d61796ea7b6",
+   "question": "Who scored the most non-penalty goals among strikers in the 2022 world Cup",
+   "reading": "The player with the most non-penalty goals, among strikers (ST), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the player with the most non-penalty goals among strikers, which matches the reading exactly."
+  },
+  {
+   "spec_id": "17badd3c2b3a",
+   "question": "So who had da most progressive carries agenst poland?  Gonna list da top 15 national teams for me?",
+   "reading": "The 15 teams with the most progressive carries, against Poland, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 15 teams, not players."
+  },
+  {
+   "spec_id": "19962f9e8a2c",
+   "question": "Which of Héctor Moreno and Mohammadi had more assists in the 2022 world Cup",
+   "reading": "Assists for Héctor Moreno and Milad Mohammadi, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup."
+  },
+  {
+   "spec_id": "568c5da45762",
+   "question": "Which Iranian winger took the most shots in the 2022 World Cup?",
+   "reading": "The player with the most shots, among wingers (W), playing for Iran, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a single player, and the reading asks for a single player."
+  },
+  {
+   "spec_id": "63a16ec835e9",
+   "question": "Who scored the most non-penalty xG, and who was that?",
+   "reading": "The player with the most non-penalty xG, with at least 90 minutes, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, but the reading asks for two players."
+  },
+  {
+   "spec_id": "f1b5a5a26861",
+   "question": "How many pressures per 90 was Theo Hernandez  applying on the ball during the 2022 World Cup in Qatar?",
+   "reading": "Pressures per 90 for Theo Hernández, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, and the reading is for the same statistic and player."
+  },
+  {
+   "spec_id": "b7c3df3a4112",
+   "question": "Who 2 the top 3 Croat forwards who attempted da most passes under pressure durin da 3rd place match?",
+   "reading": "The 3 players with the most passes attempted under pressure, among forwards (ST, W), playing for Croatia, in the 3rd place final, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 forwards, but the reading asks for the 3 players with the most passes attempted under pressure."
+  },
+  {
+   "spec_id": "1d7f62703e4c",
+   "question": "Who were the canadas best passrs under preshure in the world cup? top 3 4eva",
+   "reading": "The 3 players with the most passes completed under pressure, playing for Canada, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, but the reading asks for the 3 players with the most passes completed under pressure, which is a different statistic from the question's 'best passrs under preshure'."
+  },
+  {
+   "spec_id": "6b901188ee47",
+   "question": "Who've been the top 10 defenders by xT created against England when driblling and passing?",
+   "reading": "The 10 players with the most expected threat (xT) added, among defenders (CB, FB), against England, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for defenders, but does not specify the positions CB and FB."
+  },
+  {
+   "spec_id": "2e451595bbd7",
+   "question": "Hey, how many xG per 90 does Joao Felix have in the knockout stages?",
+   "reading": "Expected goals (xG) per 90 for João Félix, in the knockout rounds, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, the reading asks for a per-90 rate, the question asks for the knockout stages, the reading asks for the knockout rounds, the question asks for Joao Felix, the reading asks for Joao Felix."
+  },
+  {
+   "spec_id": "5158cac89a28",
+   "question": "Who were the top 15 teams in terms of non-penalty xG from their central midfielders throughout the whole tournament?",
+   "reading": "The 15 teams with the most non-penalty xG, counting only central midfielders (CM), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 15 teams, which matches the reading."
+  },
+  {
+   "spec_id": "e7fe871e965d",
+   "question": "Who had the best midfielders in the final for xT 90 min?",
+   "reading": "The 3 teams with the highest expected threat (xT) added per 90, counting only midfielders (AM, CM, DM), in the final, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the best midfielders, not the best teams."
+  },
+  {
+   "spec_id": "3553a195fabf",
+   "question": "Who had the most key passes in the round of 16 games against Portugal?",
+   "reading": "The 3 players with the most key passes, in Round of 16, against Portugal, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, not the top 3."
+  },
+  {
+   "spec_id": "48ec51353b28",
+   "question": "Which teams had the highest assist rate per 90 minutes in the third-place match.",
+   "reading": "The 5 teams with the highest assists per 90, in the 3rd place final, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the teams with the highest assist rate per 90 minutes, but the reading specifies the top 5 teams, which the question does not ask for."
+  },
+  {
+   "spec_id": "24a243be8878",
+   "question": "Who had da most progressive carries per 90 in da knock out rounds? Just wana know da top 3 teams",
+   "reading": "The 3 teams with the highest progressive carries per 90, in the knockout rounds, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 teams, not players."
+  },
+  {
+   "spec_id": "ed249a340604",
+   "question": "Who r the 3 centre backs who played the most mins in the 2022 world cup?",
+   "reading": "The 3 players with the most minutes played, among centre-backs (CB), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 3 centre-backs by minutes played, which matches the reading."
+  },
+  {
+   "spec_id": "7e82202799f3",
+   "question": "Who had mae more shit-cratng actins in the group stage, Mazraoui or Ampadu?",
+   "reading": "Shot-creating actions for Ethan Ampadu and Noussair Mazraoui, in the group stage, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup."
+  },
+  {
+   "spec_id": "76819c52caad",
+   "question": "Who was England's best paser under preasure in the world cup?",
+   "reading": "The player with the highest pass completion % under pressure, playing for England, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question does not specify the statistic, it could be pass completion % or pressures won."
+  },
+  {
+   "spec_id": "560478a8321e",
+   "question": "Who were the top 6 wingers cranking out the most passes under pressure per 90 minutes in the quarter-finals?",
+   "reading": "The 6 players with the highest passes attempted under pressure per 90, among wingers (W), in Quarter-finals, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 6 wingers, the reading asks for the 6 players with the highest passes attempted under pressure per 90."
+  },
+  {
+   "spec_id": "bdbafa35e634",
+   "question": "Who scored more goals per 90 minutes, Militão or Owais?",
+   "reading": "Goals per 90 for Éder Militão and Mohammed Al Owais, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison between two players, not a ranking."
+  },
+  {
+   "spec_id": "ee03bf89e28d",
+   "question": "Which attacking midfielder had the highest pass completion percentage in the 2022 World Cup?",
+   "reading": "The player with the highest pass completion %, among attacking midfielders (AM), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the highest pass completion percentage, which matches the reading."
+  },
+  {
+   "spec_id": "1fb846f175fb",
+   "question": "Who do you think were the top three defensive midfielders to complete the most passes under pressure during the semi-final matches?",
+   "reading": "The 3 players with the most passes completed under pressure, among defensive midfielders (DM), in Semi-finals, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top three defensive midfielders, but the reading asks for the three players with the most passes completed under pressure, which is not the same as the top three."
+  },
+  {
+   "spec_id": "65fdb5437e51",
+   "question": "Who were the 10 forwards that scored the least non-penalty goals in qatar?",
+   "reading": "The 10 players with the fewest non-penalty goals, among forwards (ST, W), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for forwards, but the reading specifies ST and W, which are not exactly the same."
+  },
+  {
+   "spec_id": "bf7fee8e296c",
+   "question": "Who had the most progressive passes against Costa Rica in the 2022 world cup.",
+   "reading": "The team with the most progressive passes (simplified), against Costa Rica, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a player, not a team."
+  },
+  {
+   "spec_id": "af43a4f3dc67",
+   "question": "I'm curious, who were the top 10  full backs to apply the most pressures per 90 minutes during the 2022 Qatar World Cup quarter finals?",
+   "reading": "The 10 players with the highest pressures per 90, among full-backs (FB), in Quarter-finals, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 10 full-backs, the reading asks for the 10 players with the highest pressures per 90."
+  },
+  {
+   "spec_id": "195a868292e7",
+   "question": "Who were the top 3 centre-backs and full-backs  from Cameroon with the highest pass completion rate per 90 minutes in the 2022 World Cup?",
+   "reading": "The 3 players with the highest passes completed per 90, among defenders (CB, FB), playing for Cameroon, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 defenders, but the reading asks for the top 3 defenders with at least 270 minutes played."
+  },
+  {
+   "spec_id": "f6e324561694",
+   "question": "Which goalkeeper had the highest pass rate per 90?",
+   "reading": "The team with the highest passes attempted per 90, counting only goalkeepers (GK), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a player, not a team."
+  },
+  {
+   "spec_id": "6ff624b3c150",
+   "question": "Who was top french striker in terms of the most shuts taken?",
+   "reading": "The player with the most shots, among strikers (ST), playing for France, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the player with the most shots, but the reading specifies shots taken, not shots made."
+  },
+  {
+   "spec_id": "c1de520bcb9b",
+   "question": "Hw was kim moon-hwans non-penalty xg for the tournament?",
+   "reading": "Non-penalty xG for Kim Moon-Hwan, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a single player's own figure, which matches the reading."
+  },
+  {
+   "spec_id": "7e0d15cec0d1",
+   "question": "How many shots did Kalidou Koulibaly take at the 2022 World Cup?",
+   "reading": "Shots for Kalidou Koulibaly, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "a21619ff684f",
+   "question": "Hey, can you give me the  progressive passes for Messi and Paquetá in the 2022 World Cup knockout rounds?",
+   "reading": "Progressive passes (simplified) for Lionel Messi and Lucas Paquetá, in the knockout rounds, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for progressive passes for Messi and Paquetá in the knockout rounds, which matches the reading exactly."
+  },
+  {
+   "spec_id": "2f639c1de866",
+   "question": "Who were the 5 best midfielders (in terms of pass completion) in the 2022 World Cup?",
+   "reading": "The 5 players with the highest pass completion %, among midfielders (AM, CM, DM), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 midfielders by pass completion percentage, which matches the reading."
+  },
+  {
+   "spec_id": "c7cfef35b1fc",
+   "question": "Who was the highest passer per 90 minutes in the 2022 World Cup for Wales?",
+   "reading": "The player with the highest passes attempted per 90, playing for Wales, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the highest passer per 90 minutes, but the reading specifies passes attempted per 90, which are different statistics."
+  },
+  {
+   "spec_id": "a2207bb01193",
+   "question": "Who were the centre-backs that made the most passes under pressure per 90 minutes?  Let's see the top 5",
+   "reading": "The 5 players with the highest passes completed under pressure per 90, among centre-backs (CB), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, but the reading specifies centre-backs, which is not explicitly mentioned in the question."
+  },
+  {
+   "spec_id": "bb8c69efd6cc",
+   "question": "Who were the 6 best central midfielders for progressive carries in the 2022 World Cup?",
+   "reading": "The 6 players with the most progressive carries, among central midfielders (CM), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 6 players, not teams, and specifies central midfielders."
+  },
+  {
+   "spec_id": "119b50287714",
+   "question": "Who were the  forwards scoring goals the most often per 90 minutes for their team?",
+   "reading": "The team with the highest non-penalty goals per 90, counting only forwards (ST, W), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for players, not teams."
+  },
+  {
+   "spec_id": "d49d08f8c097",
+   "question": "How many assists per 90 has Sergej Milinković-Savić recorded during the 2022 World Cup in Qatar?",
+   "reading": "Assists per 90 for Sergej Milinković-Savić, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a per-90 rate, and the reading specifies a per-90 rate."
+  },
+  {
+   "spec_id": "a993b3904ddf",
+   "question": "Which 3 players had the least pressure passes per 90 mins in Qatar 2022?",
+   "reading": "The 3 players with the lowest passes attempted under pressure per 90, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the fewest pressure passes per 90, but the reading asks for the fewest passes attempted under pressure per 90."
+  },
+  {
+   "spec_id": "da11ad175467",
+   "question": "Who had the highest expected goals against Germany?",
+   "reading": "The player with the most expected goals (xG), against Germany, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the player with the highest expected goals, which matches the reading."
+  },
+  {
+   "spec_id": "e9cf26b0fd0e",
+   "question": "Can anyone quickly lay out the key passes made by Berghuis and Castelletto at the 2022 FIFA World Cup.",
+   "reading": "Key passes for Steven Berghuis and Jean-Charles Castelletto, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison of the two players' key passes, not just a lookup of their own figures."
+  },
+  {
+   "spec_id": "2a31909be0c6",
+   "question": "Which full-backs had the highest pass completion percentage under pressure at the World Cup? Don't you want the top 3 players.",
+   "reading": "The 3 players with the highest pass completion % under pressure, among full-backs (FB), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 players, but the reading specifies full-backs, which is not explicitly mentioned in the question."
+  },
+  {
+   "spec_id": "39ef8307cd39",
+   "question": "which teams where cranking out the most presures durin the semi finals?  Gonna tell me the top 5?",
+   "reading": "The 5 teams with the most pressures, in Semi-finals, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 teams with the most pressures in the semi-finals, which matches the reading exactly."
+  },
+  {
+   "spec_id": "b08735f942aa",
+   "question": "Which centre backs and full-backs clocked the most minutes? Top 2!",
+   "reading": "The 2 players with the most minutes played, among defenders (CB, FB), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 2 defenders, which matches the reading."
+  },
+  {
+   "spec_id": "74cc14a52888",
+   "question": "Who scored the most goals aginst Austalia?",
+   "reading": "The player with the most goals, against Australia, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, but the reading asks for a player with the most goals against Australia, not the most goals in general."
+  },
+  {
+   "spec_id": "5a4a9acabb14",
+   "question": "Who were the worst 3 centre mids in terms of xT per 90 during the 2022 World Cup in Qatar?",
+   "reading": "The 3 players with the lowest expected threat (xT) added per 90, among central midfielders (CM), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the worst 3 central midfielders, the reading asks for the 3 players with the lowest xT per 90."
+  },
+  {
+   "spec_id": "8ba19fd3db8e",
+   "question": "Which centre-back created the most chances per 90 minutes?",
+   "reading": "The player with the highest shot-creating actions per 90, among centre-backs (CB), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the highest number of key passes, not shot-creating actions."
+  },
+  {
+   "spec_id": "87f7918cebb6",
+   "question": "Who had the most completed passes n all? Giv me the top 3 teams that mashed it out on the pitch like boss!",
+   "reading": "The 3 teams with the most passes completed, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 3 teams, but the reading asks for the teams with the most completed passes, which is not the same as the top 3 teams."
+  },
+  {
+   "spec_id": "2c1358401f20",
+   "question": "How many xG did Hugo Lloris have?",
+   "reading": "Expected goals (xG) for Hugo Lloris, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a count, but the reading asks for a lookup."
+  },
+  {
+   "spec_id": "29cd87ab36e5",
+   "question": "Hey can you compare  Bergwijn, João Félix  and Silvan Widmer for me, like, what is their xT ratting from passin and carrying the ball, yeah?",
+   "reading": "Expected threat (xT) added for Steven Bergwijn, João Félix and Silvan Widmer, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison of xT added from passing and carrying the ball, but the reading only mentions xT added in general."
+  },
+  {
+   "spec_id": "fe101702d158",
+   "question": "Who led the tournament with the most progressive passes completed as a team in Qatar 2022?",
+   "reading": "The team with the most progressive passes (simplified), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the team with the most progressive passes, which matches the reading."
+  },
+  {
+   "spec_id": "791b4798df95",
+   "question": "Who were the top 10 midfielders who completed the most passes per 90 minutes under pressure in the 2022 World Cup?",
+   "reading": "The 10 players with the highest passes completed under pressure per 90, among midfielders (AM, CM, DM), with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 10 midfielders, which matches the reading."
+  },
+  {
+   "spec_id": "177692af3cff",
+   "question": "Who had more assists per 90 in Qatar 2022 - Hernán Galíndez or Pouraliganji?",
+   "reading": "Assists per 90 for Hernán Galíndez and Morteza Pouraliganji, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison, not a lookup."
+  },
+  {
+   "spec_id": "b24c79a92b9b",
+   "question": "Who was the top shot creator at the World Cup, who played at least 450 minutes?",
+   "reading": "The player with the most shot-creating actions, with at least 450 minutes, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top shot creator, which is the same as the player with the most shot-creating actions."
+  },
+  {
+   "spec_id": "bc839a4ed8ef",
+   "question": "Who were the players with the lowest pass completion percentage in 2022 World Cup? Just curious who were the top 5 worst",
+   "reading": "The 5 players with the lowest pass completion %, with at least 270 minutes (default threshold), World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the top 5 worst players, which matches the reading."
+  },
+  {
+   "spec_id": "b9f152464563",
+   "question": "how many presures per 90 did Raphaël Varane put on oppenents on the ball.?",
+   "reading": "Pressures per 90 for Raphaël Varane, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for pressures per 90, which is the same statistic as pressing per 90, and it asks for a single player, Raphaël Varane."
+  },
+  {
+   "spec_id": "433c784848d8",
+   "question": "Which team had the highest non-penalty xG from their wingers in matches against Serbia?",
+   "reading": "The team with the most non-penalty xG, counting only wingers (W), against Serbia, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the team with the highest non-penalty xG from wingers against Serbia, which matches the reading."
+  },
+  {
+   "spec_id": "e07e9cbb1de2",
+   "question": "Who had da most passes complete in da 2022 World Cup v Saudi Arabia?  Top 5 strikers plz",
+   "reading": "The 5 players with the most passes completed, among strikers (ST), against Saudi Arabia, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 strikers, but the reading specifies the top 5 players among strikers."
+  },
+  {
+   "spec_id": "08a0cc667bcd",
+   "question": "Who were the 3 teams that played most mins against brazil?",
+   "reading": "The 3 teams with the most minutes played, against Brazil, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for the 3 teams with the most minutes played against Brazil, which matches the reading."
+  },
+  {
+   "spec_id": "8770c1d0d4a8",
+   "question": "Who were the top 5 Uruguayan defensive midfielders for passes attempted?",
+   "reading": "The 5 players with the most passes attempted, among defensive midfielders (DM), playing for Uruguay, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for the top 5 players, the reading asks for the 5 players with the most."
+  },
+  {
+   "spec_id": "ad3df7acc7cf",
+   "question": "Who were the guys who passed least under pressure in the third-place match?",
+   "reading": "The 10 players with the fewest passes attempted under pressure, in the 3rd place final, with at least 90 minutes (default threshold), World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question does not specify a number of players, but it is asking for several players."
+  },
+  {
+   "spec_id": "bf8b8ffe543a",
+   "question": "Who scored the most goals against South Korea at the 2022 World Cup?",
+   "reading": "The 5 players with the most goals, against South Korea, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a single player, not 5."
+  },
+  {
+   "spec_id": "ae5e628af3d2",
+   "question": "Hey whats Richarlison's rate of regulare goals per 90 mins, n't counting penalties.",
+   "reading": "Non-penalty goals per 90 for Richarlison, World Cup 2022.",
+   "verdict": "yes",
+   "reason": "The question asks for a rate per 90 minutes, which matches the reading."
+  }
+ ],
+ "controls_dropped": [
+  {
+   "spec_id": "8bf22acf2d04",
+   "question": "How does Cody Gakpo's and Darwin  Nunez's xT  by passing and carrying the ball compare in the knockout rounds, mate?",
+   "reading": "Expected threat (xT) added for Cody Gakpo and Achraf Dari, in the knockout rounds, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for a comparison of two players' xT by passing and carrying, but the reading asks for xT added, which is not the same as xT by passing and carrying."
+  },
+  {
+   "spec_id": "22b9b9552ed6",
+   "question": "Who do you think pressed more? How many times did Christian Pulisic, Aaron Mooy and Goncalo Guedes press  opponents on the ball during the 2022 World Cup in Qatar?",
+   "reading": "Pressures for Diogo Costa, Riley McGree and Rodrigo De Paul, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for three different players, not the ones in the reading."
+  },
+  {
+   "spec_id": "ba1315cc8d45",
+   "question": "How many progressive passes 90 per game did Ederson Varela make in the 2022 World Cup Qatar?",
+   "reading": "Progressive passes (simplified) per 90 for Guillermo Varela, World Cup 2022.",
+   "verdict": "no",
+   "reason": "The question asks for Ederson Varela, not Guillermo Varela."
+  }
+ ]
+}
