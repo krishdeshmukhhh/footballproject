@@ -20,7 +20,8 @@ from pathlib import Path
 from query.describe import FAMILIES
 
 from eval import audit_sample, examples, hallucination, verifier_injection
-from eval.make_table import INDEPENDENT_SYSTEMS, comparison_table, independent_table, injection_table, main_table
+from eval.make_table import (INDEPENDENT_SYSTEMS, comparison_table, independent_table, injection_table, main_table,
+                             validated_accuracy)
 from eval.run_eval import CONCURRENCY
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -64,6 +65,10 @@ def independent_facts() -> dict:
     miss = load_jsonl(HERE / "independent_misspelled.jsonl")
     written = test + dropped
     checks = json.loads((RUNS / "independent_name_check.json").read_text())
+    # Disjointness, re-checked with the current resolver (a resolver change can re-key names in the training data).
+    from query.compare import spec_key
+    used = independent_specs.used_spec_keys()
+    assert not any(spec_key(r["spec"]) in used for r in written + miss), "independent spec overlaps a used spec"
 
     # Ceiling: copy the misspelled name verbatim into the gold spec; does it resolve, or is the right player suggested?
     ceiling_misses = []
@@ -95,7 +100,7 @@ def independent_facts() -> dict:
         "ind_metrics": len({r["spec"]["metric"] for r in written}), "n_metrics": len(METRICS),
         "ind_team_q": sum(r["spec"]["group_by"] == "team" for r in test),
         "ind_player_q": sum(bool(r["spec"]["filters"]["players"]) for r in test),
-        "ind_excluded": len(independent_specs.used_spec_keys()),
+        "ind_excluded": len(used),
         "ind_generator": written[0]["generator"], "ind_temperature": independent_questions.TEMPERATURE,
         "ind_typos": sum(r["style"] == "typos_slang" for r in written),
         "ind_fuzzy": sum(bool(c["fuzzy"]) and not c["mismatch"] for c in checks
@@ -103,7 +108,19 @@ def independent_facts() -> dict:
         "mis_n": len(miss), "mis_kinds": ", ".join(f"{n} {k.replace('_', ' ')}" for k, n in kinds.items()),
         "mis_ceiling": len(miss) - len(ceiling_misses), "mis_ceiling_misses": " ".join(ceiling_misses) or "none.",
         "ind_all_fail": len(common),
-    }
+    } | label_validation_facts(test, {r["question"] for r in common})
+
+
+def label_validation_facts(test: list[dict], all_failed: set[str]) -> dict:
+    lv = json.loads((HERE / "label_validation.json").read_text())
+    verdicts = {v["question"]: v for v in lv["verdicts"]}
+    assert set(verdicts) == {r["question"] for r in test}, "label_validation.json does not cover the test set"
+    validated = sorted(q for q, v in verdicts.items() if v["verdict"] == "yes")
+    controls = lv["controls_dropped"]
+    return {"lv_checker": lv["checker"], "lv_n": len(validated), "lv_of": len(verdicts),
+            "lv_controls": len(controls), "lv_controls_no": sum(c["verdict"] == "no" for c in controls),
+            "lv_allfail_no": sum(verdicts[q]["verdict"] == "no" for q in all_failed),
+            "_validated": set(validated)}
 
 
 def run_ok(spec) -> bool:
@@ -276,11 +293,13 @@ def main():
     inj = json.loads((HERE / f"verifier_injection_seed{verifier_injection.HELD_OUT_SEED}.json").read_text())
     facts = spec_facts(res) | data_facts() | training_facts() | static_facts() | injection_facts(inj0, inj)
     facts |= independent_facts()
+    validated = facts.pop("_validated")
     facts |= hallucination_facts(hall, facts.pop("_contaminated_questions"))
     facts |= {f"{s}_ind": res[s]["independent_test"]["exec_acc"] for s, _ in INDEPENDENT_SYSTEMS}
     facts |= {f"{s}_mis": res[s]["independent_misspelled"]["misspelling_pass"] for s, _ in INDEPENDENT_SYSTEMS}
+    facts |= {f"{s}_lv": validated_accuracy(s, validated) for s, _ in INDEPENDENT_SYSTEMS}
     facts |= {"naive_prompt_ktokens": naive_prompt_ktokens(), "main_table": main_table(res, hall),
-              "independent_table": independent_table(res),
+              "independent_table": independent_table(res, validated),
               "comparison_table": comparison_table(hall), "injection_table": injection_table(inj)}
     print("4/4 rendering ...")
     README.write_text(render(facts))

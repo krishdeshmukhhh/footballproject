@@ -37,7 +37,11 @@ number, name and ranking against the result. The goal is answers that never stat
   sampled in code, no round-trip filter, 3 writer errors dropped before any run) and
   `eval/independent_misspelled.jsonl` (20, scored separately). Exec accuracy teacher / base 8B / SFT 80.5 / 75.1 /
   80.8; misspelled-name pass 90 / 90 / 90 (ceiling 19 of 20). 41 questions fail on all three systems, most of them
-  writer errors (`eval/runs/independent_all_failed.json`), left as labelled.
+  writer errors (`eval/runs/independent_all_failed.json`), left as labelled. Post hoc label check by Mistral Small
+  (the writer, so not independent; strict and noisy): 117 of 297 accepted (`eval/label_validation.json`), on which
+  teacher / base 8B / SFT get 94.0 / 85.5 / 95.7. Secondary only; the frozen numbers are the main result.
+- **Resolver fix (after the frozen runs):** the surname step no longer guesses ("Woo-Young Jun" was Son Jun-Ho, now
+  "Did you mean Jung Woo-Young?"); "Neymar Jr" is an alias. No gold spec resolves differently.
 - **Phase 4: not started.** Waiting on the open items below.
 
 ## Key commands and files
@@ -67,8 +71,6 @@ number, name and ranking against the result. The goal is answers that never stat
   ground-truth value in the eval sets is negative, so no score changed.
 - **First-name matching:** a first name unique in the dataset can match the wrong player ("Joshua" matched Kimmich,
   "Joakim" matched Maehle). The answer is still flagged, but the issue names the wrong player.
-- **Surname step picks the wrong player:** "Woo-Young Jun" resolves silently to Son Jun-Ho ("Jun" is a token unique
-  to him), which breaks the never-guess rule. "Neymar Jr" does not resolve. Found on the independent set, not fixed.
 - Contaminated labels: a few paraphrases say "forward" with label `[ST]` (teacher bias passed the round-trip).
 
 ## Decisions and why

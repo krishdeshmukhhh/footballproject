@@ -36,14 +36,23 @@ def main_table(res: dict, hall: dict | None) -> str:
     return "\n".join(lines)
 
 
-def independent_table(res: dict) -> str:
-    """Independent test set, one column per system. The misspelled-name subset is its own row, never mixed in."""
+def validated_accuracy(system: str, validated: set[str]) -> float:
+    """Exec accuracy of a frozen run restricted to the checker-validated questions (post hoc, from the saved misses)."""
+    misses = {m["question"] for m in json.loads((HERE / "runs" / f"eval_{system}_independent_test.json").read_text())}
+    return round(100 * (1 - len(misses & validated) / len(validated)), 1)
+
+
+def independent_table(res: dict, validated: set[str] | None = None) -> str:
+    """Independent test set, one column per system. The misspelled-name subset is its own row, never mixed in.
+    `validated`: questions the label checker accepted; adds a post hoc row under the frozen main result."""
     systems = [(k, label) for k, label in INDEPENDENT_SYSTEMS if "independent_test" in res.get(k, {})]
     ind = {k: res[k]["independent_test"] for k, _ in systems}
     mis = {k: res[k].get("independent_misspelled") for k, _ in systems}
     n, n_mis = ind[systems[0][0]]["n"], (mis[systems[0][0]] or {}).get("n")
     rows = [(f"Valid JSON % (n={n})", lambda k: ind[k]["valid_json"]),
             (f"**Exec acc %** (n={n})", lambda k: f"**{ind[k]['exec_acc']}**"),
+            *([(f"Exec acc % on the checker-validated subset (post hoc, n={len(validated)})",
+                lambda k: validated_accuracy(k, validated))] if validated else []),
             (f"Spec acc % (n={n})", lambda k: ind[k]["spec_acc"]),
             ("Latency p50 (s)", lambda k: ind[k]["latency_p50_s"])]
     if n_mis:

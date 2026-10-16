@@ -54,10 +54,15 @@ including the Brozović question.
 - **Name copying.** The student sometimes "corrects" a misspelled or accented name instead of copying it
   ("Theo Hernédez", "Firas Albirkan"). Resolution then fails, and the pipeline answers "Did you mean ...?" instead of
   guessing.
-- **The surname step can pick the wrong player.** "Woo-Young Jun" (a misspelling of Jung Woo-Young, in the
-  independent set) resolves silently to Son Jun-Ho, because "Jun" is a name token unique to him. This breaks the "never
-  guess" rule. Not fixed.
-- **"Neymar Jr" does not resolve** (it gets "Did you mean Neymar?"), since "Jr" is not part of his display name.
+- **Resolver fix after the frozen independent runs.** The surname step used to match any name token, so "Woo-Young
+  Jun" (a misspelling of Jung Woo-Young) resolved silently to Son Jun-Ho, and "Luis Sosa" to Borna Sosa. It now needs
+  the player's last name token, and a lone surname match is rejected if the other words do not share an initial with
+  his names; initials never choose between players. "Woo-Young Jun" now gets "Did you mean Jung Woo-Young?", and
+  "Neymar Jr" is an alias of Neymar (`tests/test_executor.py`). No gold spec in any set resolves differently. The
+  frozen numbers were scored with the old resolver and are not re-run; the Woo-Young question fails either way.
+  The fix also exposed two training targets that say "Kevin Noppert": the paraphraser invented the first name and the
+  old guess (Andries Noppert) let it through the round trip. They now get "Did you mean", which re-keys one spec in
+  the list of specs already in use. The independent set is still disjoint from all of them.
 - **Ambiguous paraphrases** account for most of the rest (passes "managed" under pressure: attempted or completed?).
 
 ## Independent test set (non-Qwen question writer)
@@ -72,7 +77,7 @@ round-trip filter decides which ones survive. Files: `independent_test.jsonl` ({
   data, drawn from cycling decks so that every metric ({{ind_metrics}} of {{n_metrics}}), every position group and
   family, every stage (the third-place match alone, which the training sampler never draws, included), every team as
   an opponent and every team as a team filter appear. {{ind_team_q}} questions rank teams and {{ind_player_q}} name
-  players. A spec is excluded if it equals any of the {{ind_excluded}} specs already in use: every spec sampled for
+  players. A spec is excluded if it equals any of the {{ind_excluded}} specs already in use (re-checked by `eval.report`): every spec sampled for
   the training data (`data/specs.jsonl`, including specs whose questions were all dropped), train, val, test,
   dev/hard and the few-shot examples. Specs with an empty result, and player specs where a named player did not play
   in the filtered matches, are dropped at sampling, before any model sees them.
@@ -120,6 +125,19 @@ seeing the results.
   for South Korea?" for a top five), turned a team ranking into a player ranking, named a different statistic
   (completed instead of attempted passes), or wrote "per game" for a total. They are left as labelled, so absolute
   accuracy here is a lower bound, and the set is best read as a comparison between systems on the same noisy questions.
+- **Label validation (post hoc, secondary).** After the frozen runs, `{{lv_checker}}` checked every question
+  against the plain-English reading of its gold spec (the interpretation echo, never the JSON) and answered whether
+  the question asks for exactly that (`label_validation.py`; verdicts and the exact prompt in `label_validation.json`).
+  It never saw any system's output, and the rule and prompt were committed before it checked any question. It
+  accepted {{lv_n}} of {{lv_of}}. On that subset: SFT {{sft_lv}}, teacher {{teacher_lv}}, base 8B {{base8b_lv}}
+  (the post hoc row in the table). The frozen full-set numbers stay the main result. Two cautions:
+  - **The checker is the same model that wrote the questions**, so it can share the writer's misreadings and pass a
+    question it wrote badly. It is not an independent judge.
+  - **It is strict and noisy.** It rejected {{lv_controls_no}} of the {{lv_controls}} questions dropped before the
+    runs and {{lv_allfail_no}} of the {{ind_all_fail}} questions every system missed, but read by hand many of its
+    rejections are spurious: it rejects "the top N players" against a reading of "the N players", and calls "pass
+    accuracy" and "pass completion %" different statistics. So the subset is smaller than the set of good labels, and
+    it leans towards plainly worded questions.
 - **Misspelled names:** teacher {{teacher_mis}}, base 8B {{base8b_mis}}, SFT {{sft_mis}}. All three miss the same
   two questions. One is "Thaigo Silva" (the ceiling above). The other is a writer error: for the spec's "McGree"
   (Riley McGree) the writer wrote "Aaron McGree", so the misspelled question names nobody who exists and gets no
