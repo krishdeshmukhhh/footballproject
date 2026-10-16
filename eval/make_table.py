@@ -10,7 +10,9 @@ RESULTS = HERE / "results.json"
 HALLUCINATION = HERE / "hallucination.json"
 ROWS = [("teacher", "Qwen3-32B few-shot (teacher)"), ("base8b", "Base Qwen3-8B few-shot"),
         ("sft", "SFT Qwen3-8B (LoRA)"), ("grpo", "SFT + GRPO Qwen3-8B")]
-DATASETS = [("test", "generated test"), ("dev_hard", "dev/hard"), ("handwritten_test", "hand-written")]
+DATASETS = [("test", "generated test"), ("dev_hard", "dev/hard"), ("independent_test", "independent"),
+            ("handwritten_test", "hand-written")]
+INDEPENDENT_SYSTEMS = [("teacher", "Qwen3-32B teacher"), ("base8b", "Base Qwen3-8B"), ("sft", "SFT Qwen3-8B")]
 INJECTION_TYPES = ["number_perturb", "value_swap", "name_swap", "team_swap", "order_swap", "fabricated_stat"]
 
 
@@ -31,6 +33,25 @@ def main_table(res: dict, hall: dict | None) -> str:
         mem = main_ds.get("weights_gib") or "?"
         lines.append(f"| {label} | {main_ds['valid_json']} | " + " | ".join(accs) +
                      f" | {halluc_col.get(key, 'not measured')} | {main_ds['latency_p50_s']} / {main_ds['latency_p95_s']} | {mem} |")
+    return "\n".join(lines)
+
+
+def independent_table(res: dict) -> str:
+    """Independent test set, one column per system. The misspelled-name subset is its own row, never mixed in."""
+    systems = [(k, label) for k, label in INDEPENDENT_SYSTEMS if "independent_test" in res.get(k, {})]
+    ind = {k: res[k]["independent_test"] for k, _ in systems}
+    mis = {k: res[k].get("independent_misspelled") for k, _ in systems}
+    n, n_mis = ind[systems[0][0]]["n"], (mis[systems[0][0]] or {}).get("n")
+    rows = [(f"Valid JSON % (n={n})", lambda k: ind[k]["valid_json"]),
+            (f"**Exec acc %** (n={n})", lambda k: f"**{ind[k]['exec_acc']}**"),
+            (f"Spec acc % (n={n})", lambda k: ind[k]["spec_acc"]),
+            ("Latency p50 (s)", lambda k: ind[k]["latency_p50_s"])]
+    if n_mis:
+        rows.append((f"**Misspelled-name pass %** (n={n_mis}, separate subset)",
+                     lambda k: f"**{mis[k]['misspelling_pass']}** ({mis[k]['resolved_correct']} fixed the name, "
+                               f"{mis[k]['did_you_mean_correct']} \"Did you mean\" with the right player)"))
+    lines = ["| | " + " | ".join(label for _, label in systems) + " |", "|---|" + "---|" * len(systems)]
+    lines += [f"| {name} | " + " | ".join(str(f(k)) for k, _ in systems) + " |" for name, f in rows]
     return "\n".join(lines)
 
 

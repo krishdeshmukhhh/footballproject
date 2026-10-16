@@ -20,7 +20,7 @@ from pathlib import Path
 from query.describe import FAMILIES
 
 from eval import examples, hallucination, verifier_injection
-from eval.make_table import comparison_table, injection_table, main_table
+from eval.make_table import INDEPENDENT_SYSTEMS, comparison_table, independent_table, injection_table, main_table
 from eval.run_eval import CONCURRENCY
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -79,6 +79,15 @@ def independent_facts() -> dict:
         if not ok:
             ceiling_misses.append(f"for \"{r['misspelled_name']}\" ({r['player']}) the first suggestion is {top}.")
     kinds = {k: sum(r["misspelling"] == k for r in miss) for k in independent_specs.MISSPELLINGS}
+
+    # Questions every system got wrong (possible label errors): saved with each system's spec, for reading by hand.
+    misses = {s: {m["question"]: m for m in json.loads((RUNS / f"eval_{s}_independent_test.json").read_text())}
+              for s, _ in INDEPENDENT_SYSTEMS}
+    common = [r for r in test if all(r["question"] in m for m in misses.values())]
+    (RUNS / "independent_all_failed.json").write_text(json.dumps(
+        [{"question": r["question"], "style": r["style"], "gold_spec": r["spec"],
+          **{s: json.loads(misses[s][r["question"]]["raw"]) for s in misses}} for r in common],
+        indent=1, ensure_ascii=False))
     return {
         "ind_n": len(test), "ind_written": len(written), "ind_dropped_n": len(dropped),
         "ind_dropped_list": "\n".join(f"  - \"{r['question']}\": {r['drop_reason']}." for r in dropped),
@@ -93,6 +102,7 @@ def independent_facts() -> dict:
                          if c["spec_id"] not in independent_name_check.DROPS),
         "mis_n": len(miss), "mis_kinds": ", ".join(f"{n} {k.replace('_', ' ')}" for k, n in kinds.items()),
         "mis_ceiling": len(miss) - len(ceiling_misses), "mis_ceiling_misses": " ".join(ceiling_misses) or "none.",
+        "ind_all_fail": len(common),
     }
 
 
@@ -266,7 +276,10 @@ def main():
     facts = spec_facts(res) | data_facts() | training_facts() | static_facts() | injection_facts(inj0, inj)
     facts |= independent_facts()
     facts |= hallucination_facts(hall, facts.pop("_contaminated_questions"))
+    facts |= {f"{s}_ind": res[s]["independent_test"]["exec_acc"] for s, _ in INDEPENDENT_SYSTEMS}
+    facts |= {f"{s}_mis": res[s]["independent_misspelled"]["misspelling_pass"] for s, _ in INDEPENDENT_SYSTEMS}
     facts |= {"naive_prompt_ktokens": naive_prompt_ktokens(), "main_table": main_table(res, hall),
+              "independent_table": independent_table(res),
               "comparison_table": comparison_table(hall), "injection_table": injection_table(inj)}
     print("4/4 rendering ...")
     README.write_text(render(facts))

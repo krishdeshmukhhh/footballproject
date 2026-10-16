@@ -1,0 +1,3197 @@
+[
+ {
+  "question": "Who were the top full backs for passes attempted against Netherlands?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "passes_attempted",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": null,
+    "opponents": [
+     "Netherlands"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 10
+  },
+  "teacher": {
+   "metric": "passes_attempted",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": null,
+    "opponents": [
+     "Netherlands"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "passes_attempted",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": null,
+    "opponents": [
+     "Netherlands"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "passes_attempted",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": null,
+    "opponents": [
+     "Netherlands"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who had da most pass attempts under preasure per 90 by cb's in the WC?",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "pressured_passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 10
+  },
+  "teacher": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "pressured_passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB"
+    ],
+    "stages": [
+     "Group Stage",
+     "Round of 16",
+     "Quarter-finals",
+     "Semi-finals",
+     "3rd Place Final",
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "pressured_passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Which defensive midfielders scored the most non-penalty goals per 90 against Spain?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "non_penalty_goals",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "DM"
+    ],
+    "stages": null,
+    "opponents": [
+     "Spain"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "non_penalty_goals",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "DM"
+    ],
+    "stages": null,
+    "opponents": [
+     "Spain"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "non_penalty_goals",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "DM"
+    ],
+    "stages": null,
+    "opponents": [
+     "Spain"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "non_penalty_goals",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "DM"
+    ],
+    "stages": null,
+    "opponents": [
+     "Spain"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who had the highest xG in the 3rd place match?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "xg",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "xg",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "xg",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "xg",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who were the top 3 wingers with the mos key psses per 90 wrt than 200 mins played, in qrter?",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "key_passes",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": 200
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "key_passes",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "W"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": 200
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "base8b": {
+   "metric": "key_passes",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "W"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": 200
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "sft": {
+   "metric": "key_passes",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "W"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": 200
+   },
+   "sort": "desc",
+   "limit": 3
+  }
+ },
+ {
+  "question": "Who were the top 5  pass masters per 90 against wales while all the preshure was on em, tryin to keep the ball under duress, y'know.",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "pressured_passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Wales"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Wales"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Wales"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Wales"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who was the most annoying fullback for Mexico on the ball defense 2022 sides?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Mexico"
+    ],
+    "position_groups": [
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "pressured_passes_attempted",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": null,
+    "opponents": [
+     "Mexico"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "pressures",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Mexico"
+    ],
+    "position_groups": [
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "assists",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Mexico"
+    ],
+    "position_groups": [
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who scored the most goals for South Korea at the 2022 World Cup?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "South Korea"
+    ],
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "South Korea"
+    ],
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "South Korea"
+    ],
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "South Korea"
+    ],
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who were da best wingers wiv the highest pass comp% under pressur from oppoents 2022 world cup",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who was the most prolific defensive midfielder in passing the ball around 90 minutes in Qatar?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "DM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": 90
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "DM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "DM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "DM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who had the top 15 centre-backs and full-backs who attempted the most passes per 90 minutes, and which teams did they come from.",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 15
+  },
+  "teacher": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 15
+  },
+  "base8b": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 15
+  },
+  "sft": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 15
+  }
+ },
+ {
+  "question": "Who's been hustlin' n pressin' the most on the ball, checkin the top 10 forwards who've put in atleast 270 mins?",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST",
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": 270
+   },
+   "sort": "desc",
+   "limit": 10
+  },
+  "teacher": {
+   "metric": "pressures",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST",
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": 270
+   },
+   "sort": "desc",
+   "limit": 10
+  },
+  "base8b": {
+   "metric": "pressures",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST",
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": 270
+   },
+   "sort": "desc",
+   "limit": 10
+  },
+  "sft": {
+   "metric": "pressures",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST",
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": 270
+   },
+   "sort": "desc",
+   "limit": 10
+  }
+ },
+ {
+  "question": "How accurate was Woo-Young Jun's passing  when he was under pressure in the knockout rounds?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Woo-Young"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final",
+     "Final",
+     "Quarter-finals",
+     "Round of 16",
+     "Semi-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Woo-Young Jun"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Round of 16",
+     "Quarter-finals",
+     "Semi-finals",
+     "3rd Place Final",
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Woo-Young Jun"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Round of 16",
+     "Quarter-finals",
+     "Semi-finals",
+     "3rd Place Final",
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Woo-Young Jun"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final",
+     "Final",
+     "Quarter-finals",
+     "Round of 16",
+     "Semi-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "How mnay xG does Rapinah expectd when he has 90 mins on the pitch, dont count the pens?",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "npxg",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Raphinha"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "npxg",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Rapinah"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "npxg",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Rapinah"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "npxg",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Rapinah"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Which were the 5 teams that completed the fewest passes against Senegal?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "passes_attempted",
+   "per90": false,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Senegal"
+    ],
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "passes_completed",
+   "per90": false,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Senegal"
+    ],
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "passes_completed",
+   "per90": false,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Senegal"
+    ],
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "passes_completed",
+   "per90": false,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Senegal"
+    ],
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who were the top 5 players in terms of minutes played for Switzerland in the round of 16?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "minutes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Round of 16"
+    ],
+    "opponents": [
+     "Switzerland"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "minutes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Switzerland"
+    ],
+    "position_groups": null,
+    "stages": [
+     "Round of 16"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "minutes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Switzerland"
+    ],
+    "position_groups": null,
+    "stages": [
+     "Round of 16"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "minutes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Switzerland"
+    ],
+    "position_groups": null,
+    "stages": [
+     "Round of 16"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who's had the most finnalz n all in the 2022 World Cup Qater from the midfield 5?",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "assists",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "AM",
+     "CM",
+     "DM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "key_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CM"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "assists",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "AM",
+     "CM",
+     "DM"
+    ],
+    "stages": [
+     "Quarter-finals",
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who scored the most goals in the third place match?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "So who had da most progressive carries agenst Ghana?",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "progressive_carries",
+   "per90": false,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Ghana"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "progressive_carries",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Ghana"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "progressive_carries",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Ghana"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "progressive_carries",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Ghana"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who was Netherlands' leading striker for pressures applied to opponents on the ball in 90s at the 2022 FIFA World Cup.",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "pressures",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Netherlands"
+    ],
+    "position_groups": [
+     "ST"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Netherlands"
+    ],
+    "position_groups": [
+     "ST"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Netherlands"
+    ],
+    "position_groups": [
+     "ST"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Netherlands"
+    ],
+    "position_groups": [
+     "ST"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Which of those midfielders,  Gvardiol, De Jong or Xhaka, had the best xT in Qatar wrt adding it wiv passes n carries, fellas?",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "xt_added",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Frenkie de Jong",
+     "Joško Gvardiol",
+     "Xhaka"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "xt_added",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Gvardiol",
+     "De Jong",
+     "Xhaka"
+    ],
+    "teams": null,
+    "position_groups": [
+     "AM",
+     "CM",
+     "DM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "base8b": {
+   "metric": "xt_added",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Gvardiol",
+     "De Jong",
+     "Xhaka"
+    ],
+    "teams": null,
+    "position_groups": [
+     "CM",
+     "DM"
+    ],
+    "stages": [
+     "Group Stage",
+     "Round of 16",
+     "Quarter-finals",
+     "Semi-finals",
+     "3rd Place Final",
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "sft": {
+   "metric": "xt_added",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "De Jong",
+     "Gvardiol",
+     "Xhaka"
+    ],
+    "teams": null,
+    "position_groups": [
+     "AM",
+     "CM",
+     "DM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  }
+ },
+ {
+  "question": "Who had the tops defenders when it came to rips of passes under pressrure durring knockout rounds, Top 6 crew?",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "pressured_passes_attempted",
+   "per90": false,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": [
+     "3rd Place Final",
+     "Final",
+     "Quarter-finals",
+     "Round of 16",
+     "Semi-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 6
+  },
+  "teacher": {
+   "metric": "pressured_passes_completed",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": [
+     "Round of 16",
+     "Quarter-finals",
+     "Semi-finals",
+     "3rd Place Final",
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 6
+  },
+  "base8b": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": [
+     "Round of 16",
+     "Quarter-finals",
+     "Semi-finals",
+     "3rd Place Final",
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 6
+  },
+  "sft": {
+   "metric": "pressured_passes_completed",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": [
+     "3rd Place Final",
+     "Final",
+     "Quarter-finals",
+     "Round of 16",
+     "Semi-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 6
+  }
+ },
+ {
+  "question": "Which team's central midfielders applied the most pressures per game?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "pressures",
+   "per90": false,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CM"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who scored the most goals ovr all in the 2022 World Cup? The top 6 teams 2gether plz",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 6
+  },
+  "teacher": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 6
+  },
+  "base8b": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Argentina",
+     "France",
+     "Brazil",
+     "England",
+     "Belgium",
+     "Mexico"
+    ],
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 6
+  },
+  "sft": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 6
+  }
+ },
+ {
+  "question": "Who were the top three strikers who completed passes under pressure the most against Iran?  90 minutes minimum",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST"
+    ],
+    "stages": null,
+    "opponents": [
+     "Iran"
+    ],
+    "min_minutes": 90
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "pressured_passes_completed",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST"
+    ],
+    "stages": null,
+    "opponents": [
+     "Iran"
+    ],
+    "min_minutes": 90
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "base8b": {
+   "metric": "pressured_passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST"
+    ],
+    "stages": null,
+    "opponents": [
+     "Iran"
+    ],
+    "min_minutes": 90
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "sft": {
+   "metric": "pressured_passes_completed",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST"
+    ],
+    "stages": null,
+    "opponents": [
+     "Iran"
+    ],
+    "min_minutes": 90
+   },
+   "sort": "desc",
+   "limit": 3
+  }
+ },
+ {
+  "question": "Oh mate, can you compare sides by side the xT added by Aziz Behich and Neymar Jr in the group stage of the 2022 World Cup?",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "xt_added",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Aziz Behich",
+     "Neymar"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Group Stage"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 2
+  },
+  "teacher": {
+   "metric": "xt_added",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Aziz Behich",
+     "Neymar Jr"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Group Stage"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 2
+  },
+  "base8b": {
+   "metric": "xt_added",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Aziz Behich",
+     "Neymar Jr"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Group Stage"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 2
+  },
+  "sft": {
+   "metric": "xt_added",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "Aziz Behich",
+     "Neymar Jr"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Group Stage"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 2
+  }
+ },
+ {
+  "question": "Which team attempted the most passes per 90 minutes in the third-place match.",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who made the most progressive passes among the full backs in the quarter-finals?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "progressive_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 20
+  },
+  "teacher": {
+   "metric": "progressive_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "progressive_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "progressive_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Plz compare the xG for João Félix, Kieffer Moore and Rabman.",
+  "style": "typos_slang",
+  "gold_spec": {
+   "metric": "xg",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "João Félix",
+     "Kieffer Moore",
+     "Rahman"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "xg",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "João Félix",
+     "Kieffer Moore",
+     "Rabman"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "base8b": {
+   "metric": "xg",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "João Félix",
+     "Kieffer Moore",
+     "Rabman"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "sft": {
+   "metric": "xg",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": [
+     "João Félix",
+     "Kieffer Moore",
+     "Rabman"
+    ],
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  }
+ },
+ {
+  "question": "Who are the top 20 goalkeepers in the 2022 World Cup quarter-finals, as ranked by most passes completed per 90 minutes.",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "passes_completed",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "GK"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 20
+  },
+  "teacher": {
+   "metric": "passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "GK"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 20
+  },
+  "base8b": {
+   "metric": "pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "GK"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 20
+  },
+  "sft": {
+   "metric": "passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "GK"
+    ],
+    "stages": [
+     "Quarter-finals"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 20
+  }
+ },
+ {
+  "question": "Who were the five full-backs who completed the most passes per 90 minutes in the  2022 FIFA World Cup final?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": [
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": [
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": [
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "FB"
+    ],
+    "stages": [
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who had the best midfielders in the final for xT 90 min?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "xt_added",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "AM",
+     "CM",
+     "DM"
+    ],
+    "stages": [
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "xt_added",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Argentina",
+     "France"
+    ],
+    "position_groups": [
+     "CM",
+     "DM",
+     "AM"
+    ],
+    "stages": [
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "xt_added",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CM",
+     "DM",
+     "AM"
+    ],
+    "stages": [
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "xt_added",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "AM",
+     "CM",
+     "DM"
+    ],
+    "stages": [
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": 90
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who had the most key passes in the round of 16 games against Portugal?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "key_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Round of 16"
+    ],
+    "opponents": [
+     "Portugal"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "key_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Round of 16"
+    ],
+    "opponents": [
+     "Portugal"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "key_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Round of 16"
+    ],
+    "opponents": [
+     "Portugal"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "key_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Round of 16"
+    ],
+    "opponents": [
+     "Portugal"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who had the most progressive passes against Costa Rica in the 2022 world cup.",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "progressive_passes",
+   "per90": false,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Costa Rica"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "progressive_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Costa Rica"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "progressive_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Group Stage"
+    ],
+    "opponents": [
+     "Costa Rica"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "progressive_passes",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "Costa Rica"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who were the top 3 centre-backs and full-backs  from Cameroon with the highest pass completion rate per 90 minutes in the 2022 World Cup?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Cameroon"
+    ],
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Cameroon"
+    ],
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "base8b": {
+   "metric": "pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Cameroon"
+    ],
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  },
+  "sft": {
+   "metric": "pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": [
+     "Cameroon"
+    ],
+    "position_groups": [
+     "CB",
+     "FB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 3
+  }
+ },
+ {
+  "question": "Which goalkeeper had the highest pass rate per 90?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "passes_attempted",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "GK"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "GK"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "GK"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "GK"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ },
+ {
+  "question": "Who were the centre-backs that made the most passes under pressure per 90 minutes?  Let's see the top 5",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "pressured_passes_completed",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "pressured_passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "pressured_passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "CB"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who were the  forwards scoring goals the most often per 90 minutes for their team?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "non_penalty_goals",
+   "per90": true,
+   "group_by": "team",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST",
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "teacher": {
+   "metric": "goals",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST",
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "goals",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST",
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "goals",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": [
+     "ST",
+     "W"
+    ],
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Which 3 players had the least pressure passes per 90 mins in Qatar 2022?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "pressured_passes_attempted",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 3
+  },
+  "teacher": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 3
+  },
+  "base8b": {
+   "metric": "pressured_pass_completion_pct",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "Group Stage",
+     "Round of 16",
+     "Quarter-finals",
+     "Semi-finals",
+     "3rd Place Final",
+     "Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 3
+  },
+  "sft": {
+   "metric": "pressures",
+   "per90": true,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 3
+  }
+ },
+ {
+  "question": "Who were the guys who passed least under pressure in the third-place match?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "pressured_passes_attempted",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 10
+  },
+  "teacher": {
+   "metric": "pressured_passes_attempted",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 5
+  },
+  "base8b": {
+   "metric": "pressured_passes_completed",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 5
+  },
+  "sft": {
+   "metric": "pressured_passes_attempted",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": [
+     "3rd Place Final"
+    ],
+    "opponents": null,
+    "min_minutes": null
+   },
+   "sort": "asc",
+   "limit": 5
+  }
+ },
+ {
+  "question": "Who scored the most goals against South Korea at the 2022 World Cup?",
+  "style": "casual",
+  "gold_spec": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "South Korea"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 5
+  },
+  "teacher": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "South Korea"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "base8b": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "South Korea"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  },
+  "sft": {
+   "metric": "goals",
+   "per90": false,
+   "group_by": "player",
+   "filters": {
+    "players": null,
+    "teams": null,
+    "position_groups": null,
+    "stages": null,
+    "opponents": [
+     "South Korea"
+    ],
+    "min_minutes": null
+   },
+   "sort": "desc",
+   "limit": 1
+  }
+ }
+]

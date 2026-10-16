@@ -30,8 +30,8 @@ q/s, SFT {{sft_qps}} q/s. Latency is single sequential requests.
   to the original spec, so on paraphrases the teacher is right by construction. Only template questions can catch
   it out. The SFT student matching it there ({{sft_test}} vs {{teacher_test}}) is the meaningful part.
 - **Dev/hard is small (n={{dev_n}}), and it is not untouched.** The pilot's dev/hard misses (a limit of one on plural
-  questions with no number) led to a template fix before the full run. Treat it as a dev set. The hand-written set is
-  the real test.
+  questions with no number) led to a template fix before the full run. Treat it as a dev set. The independent set
+  (below) and the hand-written set are the real tests.
 - **The base 8B is a strong baseline.** Its spec accuracy is lower than its execution accuracy (test
   {{base8b_spec_test}} vs {{base8b_test}}, dev/hard {{base8b_spec_dev_hard}} vs {{base8b_dev_hard}}): many of its specs
   differ from the expected one but return the same rows.
@@ -54,6 +54,10 @@ including the Brozović question.
 - **Name copying.** The student sometimes "corrects" a misspelled or accented name instead of copying it
   ("Theo Hernédez", "Firas Albirkan"). Resolution then fails, and the pipeline answers "Did you mean ...?" instead of
   guessing.
+- **The surname step can pick the wrong player.** "Woo-Young Jun" (a misspelling of Jung Woo-Young, in the
+  independent set) resolves silently to Son Jun-Ho, because "Jun" is a name token unique to him. This breaks the "never
+  guess" rule. Not fixed.
+- **"Neymar Jr" does not resolve** (it gets "Did you mean Neymar?"), since "Jr" is not part of his display name.
 - **Ambiguous paraphrases** account for most of the rest (passes "managed" under pressure: attempted or completed?).
 
 ## Independent test set (non-Qwen question writer)
@@ -98,6 +102,28 @@ stops at "Did you mean ...?" with the right player as the first suggestion. It i
 into the main accuracy. **The ceiling for copying the name verbatim is {{mis_ceiling}} of {{mis_n}}:**
 {{mis_ceiling_misses}} So a system that copies names exactly cannot pass every question; one that corrects the name
 itself still can.
+
+### Results on the independent set
+
+Each system was run once on the final set (`eval.run_eval`, one GPU job at a time), and nothing was changed after
+seeing the results.
+
+{{independent_table}}
+
+- **The teacher's edge from the round-trip filter is gone.** SFT {{sft_ind}}, teacher {{teacher_ind}}, base 8B
+  {{base8b_ind}}. On the generated test split the same systems score {{sft_test}}, {{teacher_test}} and
+  {{base8b_test}}: the filter kept only questions the teacher already reads correctly, and these questions were not
+  filtered at all.
+- **Much of the gap to a perfect score is label noise.** {{ind_all_fail}} questions are missed by all three systems,
+  usually with the same spec from each (`runs/independent_all_failed.json`). Read by hand, nearly all are writer
+  errors that a round trip would have caught: the writer dropped the requested count ("Who scored the most goals
+  for South Korea?" for a top five), turned a team ranking into a player ranking, named a different statistic
+  (completed instead of attempted passes), or wrote "per game" for a total. They are left as labelled, so absolute
+  accuracy here is a lower bound, and the set is best read as a comparison between systems on the same noisy questions.
+- **Misspelled names:** teacher {{teacher_mis}}, base 8B {{base8b_mis}}, SFT {{sft_mis}}. All three miss the same
+  two questions. One is "Thaigo Silva" (the ceiling above). The other is a writer error: for the spec's "McGree"
+  (Riley McGree) the writer wrote "Aaron McGree", so the misspelled question names nobody who exists and gets no
+  suggestion. The teacher more often fixes the name itself; the 8B models copy it and let "Did you mean" catch it.
 
 ## Hallucinated numbers: naive LLM vs the pipeline
 

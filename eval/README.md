@@ -18,12 +18,12 @@ All systems run locally under vLLM on one H200 (GPU 4), with guided JSON decodin
 executing the predicted spec returns the same rows as the expected spec (ties order-insensitive, `query/compare.py`).
 Raw numbers are in `results.json`, and the questions each system got wrong are in `runs/eval_<system>_<dataset>.json`.
 
-| System | Valid JSON % | Exec acc % (generated test) | Exec acc % (dev/hard) | Exec acc % (hand-written) | Hallucinated-number rate | Latency p50 / p95 (s) | Weights in GPU memory (GiB) |
-|---|---|---|---|---|---|---|---|
-| Qwen3-32B few-shot (teacher) | 100.0 | 99.8 (n=443) | 94.4 (n=18) | pending | not measured | 1.473 / 1.571 | 61.03 |
-| Base Qwen3-8B few-shot | 100.0 | 96.8 (n=443) | 94.4 (n=18) | pending | not measured | 0.439 / 0.469 | 15.27 |
-| SFT Qwen3-8B (LoRA) | 100.0 | 99.8 (n=443) | 100.0 (n=18) | pending | 0.0% (n=460) | 0.433 / 0.461 | 15.27 |
-| SFT + GRPO Qwen3-8B | not run | not run | not run | not run | not run | not run | not run |
+| System | Valid JSON % | Exec acc % (generated test) | Exec acc % (dev/hard) | Exec acc % (independent) | Exec acc % (hand-written) | Hallucinated-number rate | Latency p50 / p95 (s) | Weights in GPU memory (GiB) |
+|---|---|---|---|---|---|---|---|---|
+| Qwen3-32B few-shot (teacher) | 100.0 | 99.8 (n=443) | 94.4 (n=18) | 80.5 (n=297) | pending | not measured | 1.473 / 1.571 | 61.03 |
+| Base Qwen3-8B few-shot | 100.0 | 96.8 (n=443) | 94.4 (n=18) | 75.1 (n=297) | pending | not measured | 0.439 / 0.469 | 15.27 |
+| SFT Qwen3-8B (LoRA) | 100.0 | 99.8 (n=443) | 100.0 (n=18) | 80.8 (n=297) | pending | 0.0% (n=460) | 0.433 / 0.461 | 15.27 |
+| SFT + GRPO Qwen3-8B | not run | not run | not run | not run | not run | not run | not run | not run |
 
 Validation split (n=386): teacher 98.7, base 8B 93.0, SFT 98.2. Throughput at
 48 concurrent requests on the generated test split: teacher 21.7 q/s, base 8B 40.8
@@ -35,8 +35,8 @@ q/s, SFT 43.1 q/s. Latency is single sequential requests.
   to the original spec, so on paraphrases the teacher is right by construction. Only template questions can catch
   it out. The SFT student matching it there (99.8 vs 99.8) is the meaningful part.
 - **Dev/hard is small (n=18), and it is not untouched.** The pilot's dev/hard misses (a limit of one on plural
-  questions with no number) led to a template fix before the full run. Treat it as a dev set. The hand-written set is
-  the real test.
+  questions with no number) led to a template fix before the full run. Treat it as a dev set. The independent set
+  (below) and the hand-written set are the real tests.
 - **The base 8B is a strong baseline.** Its spec accuracy is lower than its execution accuracy (test
   94.8 vs 96.8, dev/hard 83.3 vs 94.4): many of its specs
   differ from the expected one but return the same rows.
@@ -59,6 +59,10 @@ including the Brozović question.
 - **Name copying.** The student sometimes "corrects" a misspelled or accented name instead of copying it
   ("Theo Hernédez", "Firas Albirkan"). Resolution then fails, and the pipeline answers "Did you mean ...?" instead of
   guessing.
+- **The surname step can pick the wrong player.** "Woo-Young Jun" (a misspelling of Jung Woo-Young, in the
+  independent set) resolves silently to Son Jun-Ho, because "Jun" is a name token unique to him. This breaks the "never
+  guess" rule. Not fixed.
+- **"Neymar Jr" does not resolve** (it gets "Did you mean Neymar?"), since "Jr" is not part of his display name.
 - **Ambiguous paraphrases** account for most of the rest (passes "managed" under pressure: attempted or completed?).
 
 ## Independent test set (non-Qwen question writer)
@@ -105,6 +109,34 @@ stops at "Did you mean ...?" with the right player as the first suggestion. It i
 into the main accuracy. **The ceiling for copying the name verbatim is 19 of 20:**
 for "Thaigo Silva" (Thiago Silva) the first suggestion is Bernardo Silva. So a system that copies names exactly cannot pass every question; one that corrects the name
 itself still can.
+
+### Results on the independent set
+
+Each system was run once on the final set (`eval.run_eval`, one GPU job at a time), and nothing was changed after
+seeing the results.
+
+| | Qwen3-32B teacher | Base Qwen3-8B | SFT Qwen3-8B |
+|---|---|---|---|
+| Valid JSON % (n=297) | 100.0 | 100.0 | 100.0 |
+| **Exec acc %** (n=297) | **80.5** | **75.1** | **80.8** |
+| Spec acc % (n=297) | 77.4 | 68.4 | 78.5 |
+| Latency p50 (s) | 1.534 | 0.455 | 0.448 |
+| **Misspelled-name pass %** (n=20, separate subset) | **90.0** (11 fixed the name, 7 "Did you mean" with the right player) | **90.0** (6 fixed the name, 12 "Did you mean" with the right player) | **90.0** (6 fixed the name, 12 "Did you mean" with the right player) |
+
+- **The teacher's edge from the round-trip filter is gone.** SFT 80.8, teacher 80.5, base 8B
+  75.1. On the generated test split the same systems score 99.8, 99.8 and
+  96.8: the filter kept only questions the teacher already reads correctly, and these questions were not
+  filtered at all.
+- **Much of the gap to a perfect score is label noise.** 41 questions are missed by all three systems,
+  usually with the same spec from each (`runs/independent_all_failed.json`). Read by hand, nearly all are writer
+  errors that a round trip would have caught: the writer dropped the requested count ("Who scored the most goals
+  for South Korea?" for a top five), turned a team ranking into a player ranking, named a different statistic
+  (completed instead of attempted passes), or wrote "per game" for a total. They are left as labelled, so absolute
+  accuracy here is a lower bound, and the set is best read as a comparison between systems on the same noisy questions.
+- **Misspelled names:** teacher 90.0, base 8B 90.0, SFT 90.0. All three miss the same
+  two questions. One is "Thaigo Silva" (the ceiling above). The other is a writer error: for the spec's "McGree"
+  (Riley McGree) the writer wrote "Aaron McGree", so the misspelled question names nobody who exists and gets no
+  suggestion. The teacher more often fixes the name itself; the 8B models copy it and let "Did you mean" catch it.
 
 ## Hallucinated numbers: naive LLM vs the pipeline
 
